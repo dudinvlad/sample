@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>project_id</key>
+    <string>5d051a97-d072-4462-a6b1-abcf5b66e72f</string>
+    <key>app_id</key>
+    <string>3cbc17c6-f9c1-4501-aae0-a02fbc07f103</string>
+    <key>package_name</key>
+    <string>12312312312312</string>
+    <key>token_type</key>
+    <string>bearer</string>
+    <key>access_token</key>
+    <string>eyJhbGciOiJSUzI1NiIsImtpZCI6IjAwMDEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiI1ZDA1MWE5Ny1kMDcyLTQ0NjItYTZiMS1hYmNmNWI2NmU3MmYiLCJpYXQiOjE2MzQ2NTA4NjMsImlzcyI6ImFwcGZsb3cuYWkiLCJzdWIiOiIzY2JjMTdjNi1mOWMxLTQ1MDEtYWFlMC1hMDJmYmMwN2YxMDMiLCJ0eXBlIjoiYXBwIn0.GDqJd2Nm6gabH3Z1QtAmyC1w19mD1vtFiqd0QIn12Mm2yNbYYQC67qfGm73b8Sorh1dHCOxQ15gWv6acBkxFwN2Mg5PbQWjl1_8ufvPpsyLX5greu0XthIK7Zjqzbq8wQP5-Ts5XQOXzKnfzXNhyyv9muELYum5knxB9LdqQdn3Vof6f8WvlepErDh5GJGZ-HHVGdNQ2UuDqbhOV--gVGuaISqkLgfayB4vGdJ9vybZ_fu-w80FGxDKDRUF_XsrN9no2I-c7nv8kyhqqUtnplPtzGXwm_fy4X2S9diOVAyr32F80lgSUIzAdXKOs_BK5ChULi8DZsQkKcwtFzh75Ew</string>
+  </dict>
+</plist>
