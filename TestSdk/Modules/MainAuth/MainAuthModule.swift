@@ -46,4 +46,5 @@ protocol MainAuthInteractorOutputProtocol: AnyObject { }
 protocol MainAuthRouterInputProtocol {
     func showLoginFlow()
     func showSignUpFlow()
+    func showMainFlow()
 }

@@ -18,13 +18,16 @@ extension Module {
         weak var viewController: UIViewController!
         private let signupAssemblying: SignupModule.ModuleAssemblying
         private let loginAssemblying: LoginModule.ModuleAssemblying
+        private let mainFlowAssemblying: MainFlowModule.ModuleAssemblying
 
         required init(
             signup: SignupModule.ModuleAssemblying,
-            login: LoginModule.ModuleAssemblying
+            login: LoginModule.ModuleAssemblying,
+            main: MainFlowModule.ModuleAssemblying
         ) {
             self.signupAssemblying = signup
             self.loginAssemblying = login
+            self.mainFlowAssemblying = main
         }
     }
 }
@@ -36,5 +39,9 @@ extension Router: Module.RouterInput {
 
     func showSignUpFlow() {
         viewController.navigationController?.pushViewController(signupAssemblying.assemble(), animated: true)
+    }
+
+    func showMainFlow() {
+        UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController = UINavigationController(rootViewController: mainFlowAssemblying.assemble())
     }
 }

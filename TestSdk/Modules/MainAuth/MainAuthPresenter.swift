@@ -19,7 +19,13 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        required init() { }
+        private let keychainService: StoreProtocol
+
+        required init(
+            keychainService: StoreProtocol
+        ) {
+            self.keychainService = keychainService
+        }
 
     }
 }
@@ -36,4 +42,13 @@ extension Presenter: Module.ViewOutput {
     }
 }
 
-extension Presenter: Module.InteractorOutput { }
+extension Presenter: Module.InteractorOutput {
+    func didLoad() {
+        guard
+            let userUid: String? = keychainService.get(KeychainStore.KeychainKeys.userUid.rawValue),
+            userUid != nil
+        else { return }
+
+        router.showMainFlow()
+    }
+}

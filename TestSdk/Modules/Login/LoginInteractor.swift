@@ -21,15 +21,13 @@ extension Module {
         required init(authService: AuthService) {
             self.authService = authService
         }
-
     }
 }
 
 extension Interactor: Module.InteractorInput {
     func login(email: String, password: String) {
-        authService.login(email: email, password: password) { [weak self] _ in
-            self?.output.successLogin()
-            self?.output.infoNetworking(text: "show main flow soon")
+        authService.login(email: email, password: password) { [weak self] responseUser in
+            self?.output.successLogin(by: responseUser)
         } failure: { [weak self] error in
             self?.output.failureNetworking(text: error)
         }

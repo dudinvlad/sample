@@ -42,7 +42,7 @@ protocol LoginInteractorInputProtocol {
 }
 
 protocol LoginInteractorOutputProtocol: BaseInteractorOutput {
-    func successLogin()
+    func successLogin(by user: AMUser)
 }
 
 // MARK: - Router

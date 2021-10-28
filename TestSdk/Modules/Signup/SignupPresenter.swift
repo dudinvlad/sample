@@ -19,20 +19,49 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        required init() { }
+        private let storageService: StorageService
+        private let keychainService: StoreProtocol
+
+        required init(
+            storageService: StorageService,
+            keychainService: StoreProtocol
+        ) {
+            self.storageService = storageService
+            self.keychainService = keychainService
+        }
 
     }
 }
 
-private extension Presenter { }
+private extension Presenter {
+}
 
 extension Presenter: Module.ViewOutput {
     func requestSignup(email: String, password: String, name: String, phone: String, sex: String) {
-        interactor.signup(email, password, name, phone, sex)
+        interactor.signup(email, password) { [weak self] result in
+            switch result {
+            case .success(var user):
+                user.name = name
+                user.phone = phone
+                user.sex = sex
+                self?.storageService.saveUserInfo(user)
+                self?.interactor.login(email, password)
+            default:
+                return
+            }
+        }
     }
 }
 
 extension Presenter: Module.InteractorOutput {
+    func successLogin(by user: AMUser) {
+        keychainService.set(
+            user.id,
+            key: KeychainStore.KeychainKeys.userUid.rawValue
+        )
+        router.showMainFlow()
+    }
+
     var controller: BaseViewInput? {
         return view
     }

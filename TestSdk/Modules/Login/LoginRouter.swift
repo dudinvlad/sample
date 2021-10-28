@@ -16,12 +16,16 @@ extension Module {
         // MARK: - Dependencies
 
         weak var viewController: UIViewController!
+        private let mainFlowAssemblying: MainFlowModule.ModuleAssemblying
 
-        required init() { }
+        required init(mainFlow: MainFlowModule.ModuleAssemblying) {
+            self.mainFlowAssemblying =  mainFlow
+        }
     }
 }
 
 extension Router: Module.RouterInput {
     func showMainFlow() {
+        UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController = UINavigationController(rootViewController: mainFlowAssemblying.assemble())
     }
 }

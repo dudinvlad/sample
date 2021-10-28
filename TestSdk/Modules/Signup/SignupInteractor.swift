@@ -17,29 +17,29 @@ extension Module {
 
         weak var output: InteractorOutput!
         private let authService: AuthService
-        private let storageService: StorageService
 
         required init(
-            authService: AuthService,
-            storageService: StorageService
+            authService: AuthService
         ) {
             self.authService = authService
-            self.storageService = storageService
         }
 
     }
 }
 
 extension Interactor: Module.InteractorInput {
-    func signup(_ email: String, _ password: String, _ name: String, _ phone: String, _ sex: String) {
-        authService.signup(email: email, password: password) { [weak self] user in
-            var newUser = user
-            newUser.name = name
-            newUser.phone = phone
-            newUser.sex = sex
+    func login(_ email: String, _ password: String) {
+        authService.login(email: email, password: password) { [weak self] responseUser in
+            self?.output.successLogin(by: responseUser)
+        } failure: { [weak self] error in
+            self?.output.failureNetworking(text: error)
+        }
 
-            self?.storageService.saveUserInfo(newUser)
-            self?.output.infoNetworking(text: "show main flow soon")
+    }
+
+    func signup(_ email: String, _ password: String, completion: @escaping (Result<AMUser, AMError>) -> Void) {
+        authService.signup(email: email, password: password) { user in
+            completion(.success(user))
         } failure: { [weak self] error in
             self?.output.failureNetworking(text: error)
         }

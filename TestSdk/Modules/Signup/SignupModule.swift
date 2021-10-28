@@ -46,15 +46,20 @@ protocol SignupInteractorInputProtocol {
     func signup(
         _ email: String,
         _ password: String,
-        _ name: String,
-        _ phone: String,
-        _ sex: String
+        completion: @escaping (Result<AMUser, AMError>) -> Void
+    )
+    func login(
+        _ email: String,
+        _ password: String
     )
 }
 
 protocol SignupInteractorOutputProtocol: BaseInteractorOutput {
+    func successLogin(by user: AMUser)
 }
 
 // MARK: - Router
 
-protocol SignupRouterInputProtocol { }
+protocol SignupRouterInputProtocol {
+    func showMainFlow()
+}

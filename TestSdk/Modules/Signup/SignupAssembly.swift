@@ -16,15 +16,19 @@ extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var authService: AuthService!
         @Injected var storageService: StorageService!
+        @Injected var keychainService: StoreProtocol!
+        @Injected var mainFlowAssemblying: MainFlowModule.ModuleAssemblying!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init()
-            let interactor: Interactor = .init(
-                authService: authService,
-                storageService: storageService
+            let presenter: Presenter   = .init(
+                storageService: storageService,
+                keychainService: keychainService
             )
-            let router: Router         = .init()
+            let interactor: Interactor = .init(
+                authService: authService
+            )
+            let router: Router         = .init(mainFlowAssemblying)
 
             viewController.output = presenter
 
