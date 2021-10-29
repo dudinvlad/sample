@@ -90,6 +90,12 @@
 		02F9D16E2725A733003CD6BA /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D16D2725A733003CD6BA /* UIViewController.swift */; };
 		02F9D1702725A84F003CD6BA /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D16F2725A84F003CD6BA /* UIApplication.swift */; };
 		468EAEB7413A6DEBA1573A0C /* Pods_TestSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968168DDF3B7DFD58805EB71 /* Pods_TestSdk.framework */; };
+		63FB3C8A272C09F900C413FA /* SubscriptionsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */; };
+		63FB3C8B272C09F900C413FA /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */; };
+		63FB3C8C272C09F900C413FA /* SubscriptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */; };
+		63FB3C8D272C09F900C413FA /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C87272C09F900C413FA /* SubscriptionsViewController.swift */; };
+		63FB3C8E272C09F900C413FA /* SubscriptionsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C88272C09F900C413FA /* SubscriptionsAssembly.swift */; };
+		63FB3C8F272C09F900C413FA /* SubscriptionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C89272C09F900C413FA /* SubscriptionsInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +180,12 @@
 		02F9D16D2725A733003CD6BA /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		02F9D16F2725A84F003CD6BA /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		2DC886687E02350B51D3D8FD /* Pods-TestSdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestSdk.release.xcconfig"; path = "Target Support Files/Pods-TestSdk/Pods-TestSdk.release.xcconfig"; sourceTree = "<group>"; };
+		63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModule.swift; sourceTree = "<group>"; };
+		63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
+		63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouter.swift; sourceTree = "<group>"; };
+		63FB3C87272C09F900C413FA /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
+		63FB3C88272C09F900C413FA /* SubscriptionsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsAssembly.swift; sourceTree = "<group>"; };
+		63FB3C89272C09F900C413FA /* SubscriptionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsInteractor.swift; sourceTree = "<group>"; };
 		968168DDF3B7DFD58805EB71 /* Pods_TestSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6119971B782942BAFEF7627 /* Pods-TestSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestSdk.debug.xcconfig"; path = "Target Support Files/Pods-TestSdk/Pods-TestSdk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,6 +297,7 @@
 				02F9D126272462F2003CD6BA /* Signup */,
 				02F9D119272329C1003CD6BA /* MainAuth */,
 				02578E912721F0E10006AA7C /* Welcome */,
+				63BB1897272C08A300D21CF0 /* Subscriptions */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -500,6 +513,19 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		63BB1897272C08A300D21CF0 /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */,
+				63FB3C88272C09F900C413FA /* SubscriptionsAssembly.swift */,
+				63FB3C87272C09F900C413FA /* SubscriptionsViewController.swift */,
+				63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */,
+				63FB3C89272C09F900C413FA /* SubscriptionsInteractor.swift */,
+				63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */,
+			);
+			path = Subscriptions;
+			sourceTree = "<group>";
+		};
 		E3C95CF08829EA23F4D55F5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +676,7 @@
 				0277B30B272A8B69003EBD38 /* MainFlowInteractor.swift in Sources */,
 				0277B31A272A8FDE003EBD38 /* AlarmViewController.swift in Sources */,
 				02578E982721F0FC0006AA7C /* WelcomeModule.swift in Sources */,
+				63FB3C8A272C09F900C413FA /* SubscriptionsModule.swift in Sources */,
 				02F9D124272329EC003CD6BA /* MainAuthAssembly.swift in Sources */,
 				02F9D117272328FB003CD6BA /* Applicable.swift in Sources */,
 				0277B30D272A8D9A003EBD38 /* BaseTabBarController.swift in Sources */,
@@ -659,6 +686,7 @@
 				02F9D147272466B4003CD6BA /* UIView.swift in Sources */,
 				0277B323272A8FEC003EBD38 /* AboutUsModule.swift in Sources */,
 				0277B32F272ACE76003EBD38 /* AMError.swift in Sources */,
+				63FB3C8D272C09F900C413FA /* SubscriptionsViewController.swift in Sources */,
 				02F9D162272586BB003CD6BA /* AuthService.swift in Sources */,
 				0277B328272A8FEC003EBD38 /* AboutUsInteractor.swift in Sources */,
 				02F9D16C272598E6003CD6BA /* StorageService.swift in Sources */,
@@ -668,6 +696,7 @@
 				02F9D12D27246310003CD6BA /* SignupModule.swift in Sources */,
 				02F9D14D27248CFA003CD6BA /* Image.swift in Sources */,
 				02F9D11327232880003CD6BA /* Color.swift in Sources */,
+				63FB3C8C272C09F900C413FA /* SubscriptionsRouter.swift in Sources */,
 				02F9D13527246503003CD6BA /* InputFieldView.swift in Sources */,
 				0277B30A272A8B69003EBD38 /* MainFlowAssembly.swift in Sources */,
 				02F9D16927259873003CD6BA /* Encodable.swift in Sources */,
@@ -679,7 +708,9 @@
 				02F9D12F27246310003CD6BA /* SignupRouter.swift in Sources */,
 				02F9D1672725977D003CD6BA /* User.swift in Sources */,
 				02F9D122272329EC003CD6BA /* MainAuthRouter.swift in Sources */,
+				63FB3C8B272C09F900C413FA /* SubscriptionsPresenter.swift in Sources */,
 				02578E9D2721F0FC0006AA7C /* WelcomeInteractor.swift in Sources */,
+				63FB3C8E272C09F900C413FA /* SubscriptionsAssembly.swift in Sources */,
 				02F9D15A27249108003CD6BA /* LoginInteractor.swift in Sources */,
 				02F9D121272329EC003CD6BA /* MainAuthPresenter.swift in Sources */,
 				0277B319272A8FDE003EBD38 /* AlarmRouter.swift in Sources */,
@@ -711,6 +742,7 @@
 				02F9D13027246310003CD6BA /* SignupViewController.swift in Sources */,
 				02F9D15727249108003CD6BA /* LoginRouter.swift in Sources */,
 				02578E9B2721F0FC0006AA7C /* WelcomeViewController.swift in Sources */,
+				63FB3C8F272C09F900C413FA /* SubscriptionsInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
