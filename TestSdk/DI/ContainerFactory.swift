@@ -16,7 +16,7 @@ class RestContainerFactory {
     private lazy var loginAssembly = LoginModule.ModuleAssembly()
     private lazy var mainAssembly = MainFlowModule.ModuleAssembly()
     private lazy var alarmAssembly = AlarmModule.ModuleAssembly()
-    private lazy var spotifyAssembly = SpotifyModule.ModuleAssembly()
+    private lazy var spotifyAssembly = AboutUsModule.ModuleAssembly()
 
     // MARK: - Services
 
@@ -35,7 +35,7 @@ class RestContainerFactory {
         container.register { [loginAssembly]() -> LoginModule.ModuleAssemblying in loginAssembly }
         container.register { [mainAssembly]() -> MainFlowModule.ModuleAssemblying in mainAssembly }
         container.register { [alarmAssembly]() -> AlarmModule.ModuleAssemblying in alarmAssembly }
-        container.register { [spotifyAssembly]() -> SpotifyModule.ModuleAssemblying in spotifyAssembly }
+        container.register { [spotifyAssembly]() -> AboutUsModule.ModuleAssemblying in spotifyAssembly }
 
         // MARK: - Services
 

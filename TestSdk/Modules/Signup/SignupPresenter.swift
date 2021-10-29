@@ -38,6 +38,7 @@ private extension Presenter {
 
 extension Presenter: Module.ViewOutput {
     func requestSignup(email: String, password: String, name: String, phone: String, sex: String) {
+        view.showActivity()
         interactor.signup(email, password) { [weak self] result in
             switch result {
             case .success(var user):
@@ -47,6 +48,7 @@ extension Presenter: Module.ViewOutput {
                 self?.storageService.saveUserInfo(user)
                 self?.interactor.login(email, password)
             default:
+                self?.view.hideActivity()
                 return
             }
         }
@@ -55,6 +57,7 @@ extension Presenter: Module.ViewOutput {
 
 extension Presenter: Module.InteractorOutput {
     func successLogin(by user: AMUser) {
+        view.hideActivity()
         keychainService.set(
             user.id,
             key: KeychainStore.KeychainKeys.userUid.rawValue

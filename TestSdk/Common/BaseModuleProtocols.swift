@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import NVActivityIndicatorView
 
 protocol BaseViewInput: AnyObject {
     func showNetworking(error text: String)
@@ -50,9 +51,11 @@ extension BaseViewInput where Self: UIViewController {
     }
 
     func showActivity() {
+        NetworkingActivity.show(viewController: self, color: Style.Color.nightBlue, type: .ballSpinFadeLoader)
     }
 
     func hideActivity() {
+        NetworkingActivity.hide()
     }
 }
 

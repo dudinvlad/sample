@@ -1,5 +1,5 @@
 //
-//  SpotifyAssembly.swift
+//  AboutUsAssembly.swift
 //  TestSdk
 //
 //  Created Vladislav Dudin on 28.10.2021.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-private typealias Module = SpotifyModule
+private typealias Module = AboutUsModule
 private typealias View = Module.ViewController
 
 extension Module {

@@ -15,10 +15,10 @@ private typealias View = Module.ViewController
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var alarmAssemblying: AlarmModule.ModuleAssemblying!
-        @Injected var spotifyAssemblying: SpotifyModule.ModuleAssemblying!
+        @Injected var aboutUsAssemblying: AboutUsModule.ModuleAssemblying!
 
         func assemble() -> UITabBarController {
-            let viewController: View   = .init([alarmAssemblying.assemble(), spotifyAssemblying.assemble()])
+            let viewController: View   = .init([alarmAssemblying.assemble(), aboutUsAssemblying.assemble()])
             let presenter: Presenter   = .init()
             let interactor: Interactor = .init()
             let router: Router         = .init()

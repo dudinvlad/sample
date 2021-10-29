@@ -12,7 +12,7 @@ private typealias Module = AlarmModule
 private typealias View = Module.ViewController
 
 extension Module {
-    final class ViewController: UIViewController {
+    final class ViewController: BaseViewController {
         // MARK: - Dependencies
 
         var output: ViewOutput!
@@ -53,7 +53,6 @@ private extension View {
         let label = UILabel()
         label.text = "Setup your alarm here"
         label.font = Style.Font.authDescriptionRegular
-        view.backgroundColor = Style.Color.main
         view.addSubview(label)
 
         label.snp.makeConstraints { make in

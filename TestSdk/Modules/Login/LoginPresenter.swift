@@ -32,12 +32,14 @@ private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
     func requestLogin(with email: String, password: String) {
-        interactor.login(email: email, password: password)
+        view.showActivity()
+            interactor.login(email: email, password: password)
     }
 }
 
 extension Presenter: Module.InteractorOutput {
     func successLogin(by user: AMUser) {
+        view.hideActivity()
         keychainService.set(
             user.id,
             key: KeychainStore.KeychainKeys.userUid.rawValue

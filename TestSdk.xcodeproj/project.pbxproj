@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE711272AE52D00023261 /* NVActivityIndicatorView */; };
+		023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EE713272BCE1600023261 /* NetworkingActivity.swift */; };
 		02578E6A2720A98F0006AA7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02578E692720A98F0006AA7C /* AppDelegate.swift */; };
 		02578E6C2720A98F0006AA7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02578E6B2720A98F0006AA7C /* SceneDelegate.swift */; };
 		02578E732720A9920006AA7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02578E722720A9920006AA7C /* Assets.xcassets */; };
@@ -36,12 +38,12 @@
 		0277B31A272A8FDE003EBD38 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B314272A8FDE003EBD38 /* AlarmViewController.swift */; };
 		0277B31B272A8FDE003EBD38 /* AlarmAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B315272A8FDE003EBD38 /* AlarmAssembly.swift */; };
 		0277B31C272A8FDE003EBD38 /* AlarmInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B316272A8FDE003EBD38 /* AlarmInteractor.swift */; };
-		0277B323272A8FEC003EBD38 /* SpotifyModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B31D272A8FEC003EBD38 /* SpotifyModule.swift */; };
-		0277B324272A8FEC003EBD38 /* SpotifyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B31E272A8FEC003EBD38 /* SpotifyPresenter.swift */; };
-		0277B325272A8FEC003EBD38 /* SpotifyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B31F272A8FEC003EBD38 /* SpotifyRouter.swift */; };
-		0277B326272A8FEC003EBD38 /* SpotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B320272A8FEC003EBD38 /* SpotifyViewController.swift */; };
-		0277B327272A8FEC003EBD38 /* SpotifyAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B321272A8FEC003EBD38 /* SpotifyAssembly.swift */; };
-		0277B328272A8FEC003EBD38 /* SpotifyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B322272A8FEC003EBD38 /* SpotifyInteractor.swift */; };
+		0277B323272A8FEC003EBD38 /* AboutUsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B31D272A8FEC003EBD38 /* AboutUsModule.swift */; };
+		0277B324272A8FEC003EBD38 /* AboutUsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B31E272A8FEC003EBD38 /* AboutUsPresenter.swift */; };
+		0277B325272A8FEC003EBD38 /* AboutUsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B31F272A8FEC003EBD38 /* AboutUsRouter.swift */; };
+		0277B326272A8FEC003EBD38 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B320272A8FEC003EBD38 /* AboutUsViewController.swift */; };
+		0277B327272A8FEC003EBD38 /* AboutUsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B321272A8FEC003EBD38 /* AboutUsAssembly.swift */; };
+		0277B328272A8FEC003EBD38 /* AboutUsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B322272A8FEC003EBD38 /* AboutUsInteractor.swift */; };
 		0277B32A272ABA9B003EBD38 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B329272ABA9A003EBD38 /* KeychainManager.swift */; };
 		0277B32D272ABB38003EBD38 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 0277B32C272ABB38003EBD38 /* KeychainAccess */; };
 		0277B32F272ACE76003EBD38 /* AMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B32E272ACE76003EBD38 /* AMError.swift */; };
@@ -91,6 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		023EE713272BCE1600023261 /* NetworkingActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingActivity.swift; sourceTree = "<group>"; };
 		02578E662720A98E0006AA7C /* TestSdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSdk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02578E692720A98F0006AA7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02578E6B2720A98F0006AA7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,12 +123,12 @@
 		0277B314272A8FDE003EBD38 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		0277B315272A8FDE003EBD38 /* AlarmAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAssembly.swift; sourceTree = "<group>"; };
 		0277B316272A8FDE003EBD38 /* AlarmInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmInteractor.swift; sourceTree = "<group>"; };
-		0277B31D272A8FEC003EBD38 /* SpotifyModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyModule.swift; sourceTree = "<group>"; };
-		0277B31E272A8FEC003EBD38 /* SpotifyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPresenter.swift; sourceTree = "<group>"; };
-		0277B31F272A8FEC003EBD38 /* SpotifyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRouter.swift; sourceTree = "<group>"; };
-		0277B320272A8FEC003EBD38 /* SpotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyViewController.swift; sourceTree = "<group>"; };
-		0277B321272A8FEC003EBD38 /* SpotifyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAssembly.swift; sourceTree = "<group>"; };
-		0277B322272A8FEC003EBD38 /* SpotifyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyInteractor.swift; sourceTree = "<group>"; };
+		0277B31D272A8FEC003EBD38 /* AboutUsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsModule.swift; sourceTree = "<group>"; };
+		0277B31E272A8FEC003EBD38 /* AboutUsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsPresenter.swift; sourceTree = "<group>"; };
+		0277B31F272A8FEC003EBD38 /* AboutUsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsRouter.swift; sourceTree = "<group>"; };
+		0277B320272A8FEC003EBD38 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		0277B321272A8FEC003EBD38 /* AboutUsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsAssembly.swift; sourceTree = "<group>"; };
+		0277B322272A8FEC003EBD38 /* AboutUsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsInteractor.swift; sourceTree = "<group>"; };
 		0277B329272ABA9A003EBD38 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		0277B32E272ACE76003EBD38 /* AMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMError.swift; sourceTree = "<group>"; };
 		02F9D11227232880003CD6BA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 			files = (
 				02578E8D2721F02E0006AA7C /* SnapKit in Frameworks */,
 				02578E902721F07F0006AA7C /* IQKeyboardManagerSwift in Frameworks */,
+				023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */,
 				02578E892721EF5A0006AA7C /* Macaroni in Frameworks */,
 				468EAEB7413A6DEBA1573A0C /* Pods_TestSdk.framework in Frameworks */,
 				0277B32D272ABB38003EBD38 /* KeychainAccess in Frameworks */,
@@ -319,7 +323,7 @@
 		0277B2FF272A8B57003EBD38 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0277B310272A8FCD003EBD38 /* Spotify */,
+				0277B310272A8FCD003EBD38 /* AboutUs */,
 				0277B30F272A8FC4003EBD38 /* Alarm */,
 				0277B30E272A8FB4003EBD38 /* TabBar */,
 			);
@@ -352,17 +356,17 @@
 			path = Alarm;
 			sourceTree = "<group>";
 		};
-		0277B310272A8FCD003EBD38 /* Spotify */ = {
+		0277B310272A8FCD003EBD38 /* AboutUs */ = {
 			isa = PBXGroup;
 			children = (
-				0277B31D272A8FEC003EBD38 /* SpotifyModule.swift */,
-				0277B31E272A8FEC003EBD38 /* SpotifyPresenter.swift */,
-				0277B31F272A8FEC003EBD38 /* SpotifyRouter.swift */,
-				0277B320272A8FEC003EBD38 /* SpotifyViewController.swift */,
-				0277B321272A8FEC003EBD38 /* SpotifyAssembly.swift */,
-				0277B322272A8FEC003EBD38 /* SpotifyInteractor.swift */,
+				0277B31D272A8FEC003EBD38 /* AboutUsModule.swift */,
+				0277B31E272A8FEC003EBD38 /* AboutUsPresenter.swift */,
+				0277B31F272A8FEC003EBD38 /* AboutUsRouter.swift */,
+				0277B320272A8FEC003EBD38 /* AboutUsViewController.swift */,
+				0277B321272A8FEC003EBD38 /* AboutUsAssembly.swift */,
+				0277B322272A8FEC003EBD38 /* AboutUsInteractor.swift */,
 			);
-			path = Spotify;
+			path = AboutUs;
 			sourceTree = "<group>";
 		};
 		02F9D11127232875003CD6BA /* Style */ = {
@@ -417,6 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				02F9D13427246503003CD6BA /* InputFieldView.swift */,
+				023EE713272BCE1600023261 /* NetworkingActivity.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 				02578E8C2721F02E0006AA7C /* SnapKit */,
 				02578E8F2721F07F0006AA7C /* IQKeyboardManagerSwift */,
 				0277B32C272ABB38003EBD38 /* KeychainAccess */,
+				023EE711272AE52D00023261 /* NVActivityIndicatorView */,
 			);
 			productName = TestSdk;
 			productReference = 02578E662720A98E0006AA7C /* TestSdk.app */;
@@ -560,6 +566,7 @@
 				02578E8B2721F02E0006AA7C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				02578E8E2721F07F0006AA7C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				0277B32B272ABB38003EBD38 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				0277B330272ADC0A003EBD38 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 02578E672720A98E0006AA7C /* Products */;
 			projectDirPath = "";
@@ -650,10 +657,10 @@
 				0277B307272A8B69003EBD38 /* MainFlowPresenter.swift in Sources */,
 				02F9D164272593CE003CD6BA /* DataBaseManager.swift in Sources */,
 				02F9D147272466B4003CD6BA /* UIView.swift in Sources */,
-				0277B323272A8FEC003EBD38 /* SpotifyModule.swift in Sources */,
+				0277B323272A8FEC003EBD38 /* AboutUsModule.swift in Sources */,
 				0277B32F272ACE76003EBD38 /* AMError.swift in Sources */,
 				02F9D162272586BB003CD6BA /* AuthService.swift in Sources */,
-				0277B328272A8FEC003EBD38 /* SpotifyInteractor.swift in Sources */,
+				0277B328272A8FEC003EBD38 /* AboutUsInteractor.swift in Sources */,
 				02F9D16C272598E6003CD6BA /* StorageService.swift in Sources */,
 				02578E992721F0FC0006AA7C /* WelcomePresenter.swift in Sources */,
 				0277B317272A8FDE003EBD38 /* AlarmModule.swift in Sources */,
@@ -668,7 +675,7 @@
 				02578E9A2721F0FC0006AA7C /* WelcomeRouter.swift in Sources */,
 				02578E9C2721F0FC0006AA7C /* WelcomeAssembly.swift in Sources */,
 				02578E6A2720A98F0006AA7C /* AppDelegate.swift in Sources */,
-				0277B327272A8FEC003EBD38 /* SpotifyAssembly.swift in Sources */,
+				0277B327272A8FEC003EBD38 /* AboutUsAssembly.swift in Sources */,
 				02F9D12F27246310003CD6BA /* SignupRouter.swift in Sources */,
 				02F9D1672725977D003CD6BA /* User.swift in Sources */,
 				02F9D122272329EC003CD6BA /* MainAuthRouter.swift in Sources */,
@@ -691,11 +698,12 @@
 				0277B31B272A8FDE003EBD38 /* AlarmAssembly.swift in Sources */,
 				0277B308272A8B69003EBD38 /* MainFlowRouter.swift in Sources */,
 				02F9D15627249108003CD6BA /* LoginPresenter.swift in Sources */,
-				0277B324272A8FEC003EBD38 /* SpotifyPresenter.swift in Sources */,
-				0277B326272A8FEC003EBD38 /* SpotifyViewController.swift in Sources */,
+				0277B324272A8FEC003EBD38 /* AboutUsPresenter.swift in Sources */,
+				0277B326272A8FEC003EBD38 /* AboutUsViewController.swift in Sources */,
 				02F9D15527249108003CD6BA /* LoginModule.swift in Sources */,
 				02578EA32721F3E60006AA7C /* ContainerFactory.swift in Sources */,
-				0277B325272A8FEC003EBD38 /* SpotifyRouter.swift in Sources */,
+				0277B325272A8FEC003EBD38 /* AboutUsRouter.swift in Sources */,
+				023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */,
 				02F9D14927248A51003CD6BA /* Button.swift in Sources */,
 				02F9D13727246529003CD6BA /* Label.swift in Sources */,
 				0277B32A272ABA9B003EBD38 /* KeychainManager.swift in Sources */,
@@ -937,9 +945,22 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		0277B330272ADC0A003EBD38 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		023EE711272AE52D00023261 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0277B330272ADC0A003EBD38 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
 		02578E882721EF5A0006AA7C /* Macaroni */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02578E872721EF5A0006AA7C /* XCRemoteSwiftPackageReference "Macaroni" */;

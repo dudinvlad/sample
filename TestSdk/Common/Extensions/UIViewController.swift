@@ -10,12 +10,12 @@ import UIKit
 extension UIViewController {
     func topMostViewController() -> UIViewController {
 
-            if let presented = self.presentedViewController {
+        if let presented = self.presentedViewController, !presented.isBeingDismissed {
                 return presented.topMostViewController()
             }
 
-            if let navigation = self as? UINavigationController {
-                return navigation.visibleViewController?.topMostViewController() ?? navigation
+        if let navigation = self as? UINavigationController, let visibleViewController = navigation.visibleViewController, !visibleViewController.isBeingDismissed {
+                return visibleViewController.topMostViewController()
             }
 
             if let tab = self as? UITabBarController {
