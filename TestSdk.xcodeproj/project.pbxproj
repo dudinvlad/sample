@@ -528,9 +528,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		636E413127304569002C7D19 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				636E412F27301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		63BB1897272C08A300D21CF0 /* Subscriptions */ = {
 			isa = PBXGroup;
 			children = (
+				636E413127304569002C7D19 /* Cell */,
 				636E412A272FE47D002C7D19 /* Models */,
 				63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */,
 				63FB3C88272C09F900C413FA /* SubscriptionsAssembly.swift */,
@@ -538,7 +547,6 @@
 				63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */,
 				63FB3C89272C09F900C413FA /* SubscriptionsInteractor.swift */,
 				63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */,
-				636E412F27301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift */,
 			);
 			path = Subscriptions;
 			sourceTree = "<group>";
