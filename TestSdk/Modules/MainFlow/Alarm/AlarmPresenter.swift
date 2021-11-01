@@ -26,6 +26,10 @@ extension Module {
 
 private extension Presenter { }
 
-extension Presenter: Module.ViewOutput { }
+extension Presenter: Module.ViewOutput {
+    func presentSubscriptionsModule() {
+        router.presentSubscriptionsModule()
+    }
+}
 
 extension Presenter: Module.InteractorOutput { }

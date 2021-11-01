@@ -1,5 +1,5 @@
 //
-//  UIColor+Extension.swift
+//  UIView+Extension.swift
 //  TestSdk
 //
 //  Created by macuser on 10/29/21.
@@ -17,7 +17,7 @@ extension UIView {
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         gradientLayer.locations = locations
         gradientLayer.frame = bounds
-        layer.insertSublayer(gradientLayer, at:0)
+        layer.insertSublayer(gradientLayer, at: 0)
     }
 
 }

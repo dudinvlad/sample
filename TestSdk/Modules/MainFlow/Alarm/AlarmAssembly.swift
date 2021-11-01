@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import Macaroni
 
 private typealias Module = AlarmModule
 private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
+        @Injected var subscriptionsModule: SubscriptionsModule.ModuleAssemblying!
+
         func assemble() -> UIViewController {
             let viewController: View   = .init()
             let presenter: Presenter   = .init()
             let interactor: Interactor = .init()
-            let router: Router         = .init()
+            let router: Router         = .init(with: subscriptionsModule)
 
             viewController.output = presenter
 

@@ -30,14 +30,18 @@ protocol AlarmAssemblyProtocol {
 // MARK: - View
 protocol AlarmViewInputProtocol: AnyObject { }
 
-protocol AlarmViewOutputProtocol: BaseViewOutput { }
+protocol AlarmViewOutputProtocol: BaseViewOutput {
+    func presentSubscriptionsModule()
+}
 
 // MARK: - Interactor
 
 protocol AlarmInteractorInputProtocol { }
 
-protocol AlarmInteractorOutputProtocol: AnyObject { }
+protocol AlarmInteractorOutputProtocol: AnyObject {}
 
 // MARK: - Router
 
-protocol AlarmRouterInputProtocol { }
+protocol AlarmRouterInputProtocol {
+    func presentSubscriptionsModule()
+}
