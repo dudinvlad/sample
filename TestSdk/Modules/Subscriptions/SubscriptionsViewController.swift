@@ -31,7 +31,25 @@ extension Module {
         // MARK: - Variables
         private let cellReuseIdentifier = String(describing: SubscriptionCardCollectionViewCell.self)
 
-        private let dataSource = [SubscriptionCardModel(style: .nonSelected, period: "Weekly", price: 1, per: "per mounth"), SubscriptionCardModel( style: .nonSelected, period: "Monthly", price: 2, per: "per mounth"), SubscriptionCardModel( style: .nonSelected, period: "Yearly", price: 3, per: "per mounth") ]
+        private let dataSource = [
+            SubscriptionCardModel(
+                style: .nonSelected,
+                period: "Weekly",
+                price: 1,
+                per: "per mounth",
+                productId: "unlockMusic.weekly.subscriptions"),
+            SubscriptionCardModel(
+                style: .selected,
+                period: "Monthly",
+                price: 2, per: "per mounth",
+                productId: "unlockMusic.monthly.subscriptions"),
+            SubscriptionCardModel(
+                style: .nonSelected,
+                period: "Yearly",
+                price: 3,
+                per: "per mounth",
+                productId: "unlockMusic.yearly.subscriptions")
+        ]
 
         private lazy var closeButton: UIButton = build {
             $0.setImage(Style.Image.close, for: .normal)
@@ -105,13 +123,23 @@ extension Module {
             $0.addAction(privacyPolicyDidTap, for: .touchUpInside)
         }
 
+        private var selectedProductId: String?
+
         // MARK: - Actions
         private lazy var closeDidTap: UIAction = .init { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         }
 
-        private lazy var restoreDidTap: UIAction = .init { [weak self] _ in }
-        private lazy var subscriptionDidTap: UIAction = .init { [weak self] _ in }
+        private lazy var restoreDidTap: UIAction = .init { [weak self] _ in
+            self?.output.restoreDidTap()
+        }
+
+        private lazy var subscriptionDidTap: UIAction = .init { [weak self] _ in
+            guard let self = self, let productId = self.selectedProductId else { return }
+
+            self.output.subscriptionDidTap(productId: productId)
+        }
+
         private lazy var termsDidTap: UIAction = .init { [weak self] _ in }
         private lazy var privacyPolicyDidTap: UIAction = .init { [weak self] _ in }
 
@@ -140,7 +168,11 @@ extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as? SubscriptionCardCollectionViewCell else { return UICollectionViewCell() }
 
         cell.setupContent(cardModel: dataSource[indexPath.row])
-        cell.configureStyle(woth: cell.isSelected ? .selected : .nonSelected)
+        cell.configureStyle(woth: dataSource[indexPath.row].style == .selected ? .selected : .nonSelected)
+
+        if dataSource[indexPath.row].style == .selected {
+            selectedProductId = dataSource[indexPath.row].productId
+        }
 
         return cell
     }
@@ -158,6 +190,7 @@ extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
 
         if let cell = collectionView.cellForItem(at: indexPath) as? SubscriptionCardCollectionViewCell {
             cell.configureStyle(woth: .selected)
+            selectedProductId = dataSource[indexPath.row].productId
         }
     }
 

@@ -30,7 +30,10 @@ protocol SubscriptionsAssemblyProtocol {
 // MARK: - View
 protocol SubscriptionsViewInputProtocol: AnyObject { }
 
-protocol SubscriptionsViewOutputProtocol: BaseViewOutput { }
+protocol SubscriptionsViewOutputProtocol: BaseViewOutput {
+  	func restoreDidTap()
+    func subscriptionDidTap(productId: String)
+}
 
 // MARK: - Interactor
 

@@ -17,6 +17,7 @@ struct SubscriptionCardModel {
     let period: String
     let price: Float
     let per: String
+    let productId: String
 
 }
 

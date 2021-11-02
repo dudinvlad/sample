@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import Macaroni
 
 private typealias Module = SubscriptionsModule
 private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
+        @Injected var purchaseManager: PurchaseManager!
+
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init()
+            let presenter: Presenter   = .init(with: purchaseManager)
             let interactor: Interactor = .init()
             let router: Router         = .init()
 
