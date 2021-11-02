@@ -104,25 +104,6 @@ extension Module {
             $0.font = Style.Font.priceDescriptionSmall
         }
 
-        private lazy var termsStackView: UIStackView = build {
-            $0 <~ Style.Stack.defaultHorizontalStack
-            $0.spacing = 24
-            $0.distribution = .fillEqually
-            $0.alignment = .center
-        }
-
-        private lazy var termsButton: UIButton = build {
-            $0.setTitle("Terms", for: .normal)
-            $0.tintColor = Style.Color.main
-            $0.addAction(termsDidTap, for: .touchUpInside)
-        }
-
-        private lazy var privacyPolicyButton: UIButton = build {
-            $0.setTitle("Privacy Policy", for: .normal)
-            $0.tintColor = Style.Color.main
-            $0.addAction(privacyPolicyDidTap, for: .touchUpInside)
-        }
-
         private var selectedProductId: String?
 
         // MARK: - Actions
@@ -214,7 +195,6 @@ private extension View {
         view.addSubview(subscriptionCardsCollectionView)
         view.addSubview(subscriptionButton)
         view.addSubview(descriptionLabel)
-        view.addSubview(termsStackView)
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
@@ -243,20 +223,13 @@ private extension View {
             make.top.equalTo(subscriptionCardsCollectionView.snp.bottom).offset(14)
             make.leading.equalTo(subscriptionCardsCollectionView)
             make.trailing.equalTo(subscriptionCardsCollectionView)
-            make.height.equalTo(70)
+            make.height.equalTo(60)
         }
 
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(subscriptionButton.snp.bottom).offset(14)
             make.leading.trailing.greaterThanOrEqualTo(view).inset(32)
             make.centerX.equalTo(subscriptionButton.center.x)
-        }
-        
-        termsStackView.addArrangedSubview(termsButton)
-        termsStackView.addArrangedSubview(privacyPolicyButton)
-
-        termsStackView.snp.makeConstraints { make in
-            make.bottom.trailing.leading.equalToSuperview().inset(24)
         }
     }
 }
