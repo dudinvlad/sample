@@ -32,6 +32,7 @@ class SubscriptionCardCollectionViewCell: UICollectionViewCell {
         $0.textAlignment = .center
         $0.textColor = Style.Color.white
         $0.font = Style.Font.priceDescriptionSmall
+        $0.numberOfLines = 2
     }
 
     override init(frame: CGRect) {
@@ -45,9 +46,9 @@ class SubscriptionCardCollectionViewCell: UICollectionViewCell {
     }
 
     func setupContent(cardModel: SubscriptionCardModel) {
-        periodLabel.text = cardModel.period
-        priceLabel.text = "\(cardModel.price.description) USD"
-        perLabel.text = cardModel.per
+        periodLabel.text = cardModel.product.localizedTitle
+        priceLabel.text = "\(cardModel.product.price.description) USD"
+        perLabel.text = cardModel.product.localizedDescription
         configureStyle(woth: cardModel.style)
     }
 
@@ -76,7 +77,6 @@ private extension SubscriptionCardCollectionViewCell {
         addSubview(perLabel)
 
         makeConstraints()
-        //        setupContent()
     }
 
     func makeConstraints() {
@@ -100,7 +100,7 @@ private extension SubscriptionCardCollectionViewCell {
         }
 
         perLabel.snp.makeConstraints { make in
-            make.leading.trailing.greaterThanOrEqualTo(self.safeAreaLayoutGuide)
+            make.leading.trailing.greaterThanOrEqualTo(self.safeAreaLayoutGuide).inset(4)
             make.centerX.equalToSuperview()
             make.top.equalTo(priceLabel.snp.bottom).offset(2)
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 private typealias Module = SubscriptionsModule
 private typealias Presenter = Module.Presenter
@@ -31,25 +32,27 @@ private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
     func didLoad() {
-        purchaseManager.initialize { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//                case let .success(products):
-//                default:
-//                    break
-//            }
-        }
+        purchaseManager.fetchAvailableProducts { products in
+            var dataSourse = [SubscriptionCardModel]()
 
+            for (index, product) in products.enumerated() {
+                if index == 1 {
+                    dataSourse.append(SubscriptionCardModel(style: .selected, product: product))
+                } else {
+                    dataSourse.append(SubscriptionCardModel(style: .nonSelected, product: product))
+                }
+            }
+            self.view.set(dataSource: dataSourse)
+        }
     }
 
     func restoreDidTap() {
-        purchaseManager.restorePurchases { [weak self] _ in
-            // Handle result
-        }
+        purchaseManager.restorePurchase()
     }
 
-    func subscriptionDidTap(productId: String) {
-        purchaseManager.purchaseProduct(productId: productId) { [weak self] _ in
+    func subscriptionDidTap(product: SKProduct) {
+        purchaseManager.purchase(product: product) { error, product, transaltion in
+
         }
     }
 }

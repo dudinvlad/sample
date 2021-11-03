@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 private typealias Module = SubscriptionsModule
 private typealias View = Module.ViewController
@@ -31,25 +32,7 @@ extension Module {
         // MARK: - Variables
         private let cellReuseIdentifier = String(describing: SubscriptionCardCollectionViewCell.self)
 
-        private let dataSource = [
-            SubscriptionCardModel(
-                style: .nonSelected,
-                period: "Weekly",
-                price: 1,
-                per: "per mounth",
-                productId: "unlockMusic.weekly.subscriptions"),
-            SubscriptionCardModel(
-                style: .selected,
-                period: "Monthly",
-                price: 2, per: "per mounth",
-                productId: "unlockMusic.monthly.subscriptions"),
-            SubscriptionCardModel(
-                style: .nonSelected,
-                period: "Yearly",
-                price: 3,
-                per: "per mounth",
-                productId: "unlockMusic.yearly.subscriptions")
-        ]
+        private var dataSource: [SubscriptionCardModel] = []
 
         private lazy var closeButton: UIButton = build {
             $0.setImage(Style.Image.close, for: .normal)
@@ -104,7 +87,7 @@ extension Module {
             $0.font = Style.Font.priceDescriptionSmall
         }
 
-        private var selectedProductId: String?
+        private var selectedProduct: SKProduct?
 
         // MARK: - Actions
         private lazy var closeDidTap: UIAction = .init { [weak self] _ in
@@ -116,9 +99,9 @@ extension Module {
         }
 
         private lazy var subscriptionDidTap: UIAction = .init { [weak self] _ in
-            guard let self = self, let productId = self.selectedProductId else { return }
+            guard let self = self, let productId = self.selectedProduct else { return }
 
-            self.output.subscriptionDidTap(productId: productId)
+            self.output.subscriptionDidTap(product: productId)
         }
 
         private lazy var termsDidTap: UIAction = .init { [weak self] _ in }
@@ -151,7 +134,7 @@ extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
         cell.configureStyle(woth: dataSource[indexPath.row].style == .selected ? .selected : .nonSelected)
 
         if dataSource[indexPath.row].style == .selected {
-            selectedProductId = dataSource[indexPath.row].productId
+            selectedProduct = dataSource[indexPath.row].product
         }
 
         return cell
@@ -170,7 +153,7 @@ extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
 
         if let cell = collectionView.cellForItem(at: indexPath) as? SubscriptionCardCollectionViewCell {
             cell.configureStyle(woth: .selected)
-            selectedProductId = dataSource[indexPath.row].productId
+            selectedProduct = dataSource[indexPath.row].product
         }
     }
 
@@ -181,10 +164,6 @@ private extension View {
         view.backgroundColor = Style.Color.black
         subscriptionCardsCollectionView.delegate = self
         subscriptionCardsCollectionView.dataSource = self
-
-        let indexPath = subscriptionCardsCollectionView.indexPathsForSelectedItems?.last ?? IndexPath(item: 0, section: 0)
-        subscriptionCardsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
-
     }
 
     func makeConstraints() {
@@ -233,4 +212,11 @@ private extension View {
     }
 }
 
-extension View: Module.ViewInput { }
+extension View: Module.ViewInput {
+    func set(dataSource value: [SubscriptionCardModel]) {
+        self.dataSource = value
+        DispatchQueue.main.async { [weak self] in
+            self?.subscriptionCardsCollectionView.reloadData()
+        }
+    }
+}
