@@ -19,8 +19,13 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        required init() {}
+        private let notificationManager: NotificationManager
 
+        required init(
+            notificationManager: NotificationManager)
+        {
+            self.notificationManager = notificationManager
+        }
     }
 }
 

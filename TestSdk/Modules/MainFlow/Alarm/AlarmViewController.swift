@@ -95,4 +95,8 @@ private extension View {
     }
 }
 
-extension View: Module.ViewInput { }
+extension View: Module.ViewInput {
+    func getSelectedTime() -> TimeInterval {
+        return alarmPicker.date.timeIntervalSinceNow
+    }
+}

@@ -28,7 +28,9 @@ protocol AlarmAssemblyProtocol {
 }
 
 // MARK: - View
-protocol AlarmViewInputProtocol: BaseViewInput { }
+protocol AlarmViewInputProtocol: BaseViewInput {
+    func getSelectedTime() -> TimeInterval
+}
 
 protocol AlarmViewOutputProtocol: BaseViewOutput {
     func showChooseMusic()

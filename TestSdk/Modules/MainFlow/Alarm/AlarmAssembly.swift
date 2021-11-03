@@ -14,11 +14,13 @@ private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
+        @Injected var notificationManager: NotificationManager!
         @Injected var chooseMusicAssemblying: ChooseMusicModule.ModuleAssemblying!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init()
+            let presenter: Presenter   = .init(notificationManager: notificationManager)
+
             let interactor: Interactor = .init()
             let router: Router         = .init(
                 chooseMusic: chooseMusicAssemblying

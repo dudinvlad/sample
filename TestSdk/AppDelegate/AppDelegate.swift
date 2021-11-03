@@ -11,9 +11,7 @@ import Firebase
 import UserNotifications
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -24,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseApp.configure()
 
         registerForRemoteNotification()
-
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 
@@ -43,13 +41,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func registerForRemoteNotification() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
-            if let error = error {
-                print("Request Authorization Failed (\(error), \(error.localizedDescription))")
-            }
-            else {
+        let notificationCenter = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        notificationCenter.requestAuthorization(options: options) {
+            (didAllow, error) in
+            if !didAllow {
+                print("User has declined notifications")
             }
         }
+
     }
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        completionHandler([.alert, .sound])
+    }
+
+}
