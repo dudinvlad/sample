@@ -90,10 +90,10 @@
 		02F9D16E2725A733003CD6BA /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D16D2725A733003CD6BA /* UIViewController.swift */; };
 		02F9D1702725A84F003CD6BA /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D16F2725A84F003CD6BA /* UIApplication.swift */; };
 		468EAEB7413A6DEBA1573A0C /* Pods_TestSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968168DDF3B7DFD58805EB71 /* Pods_TestSdk.framework */; };
-		636E412C272FE48F002C7D19 /* SubscriptionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E412B272FE48F002C7D19 /* SubscriptionCardModel.swift */; };
 		636E413027301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E412F27301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift */; };
 		6370A3FD27305DCA00EEFD84 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370A3FC27305DCA00EEFD84 /* PurchaseManager.swift */; };
 		6370A3FF2731792900EEFD84 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370A3FE2731792900EEFD84 /* StoreKit.framework */; };
+		6370A4082732B6E100EEFD84 /* SubscriptionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370A4072732B6E100EEFD84 /* SubscriptionCardModel.swift */; };
 		63FB3C8A272C09F900C413FA /* SubscriptionsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */; };
 		63FB3C8B272C09F900C413FA /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */; };
 		63FB3C8C272C09F900C413FA /* SubscriptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */; };
@@ -185,11 +185,11 @@
 		02F9D16D2725A733003CD6BA /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		02F9D16F2725A84F003CD6BA /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		2DC886687E02350B51D3D8FD /* Pods-TestSdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestSdk.release.xcconfig"; path = "Target Support Files/Pods-TestSdk/Pods-TestSdk.release.xcconfig"; sourceTree = "<group>"; };
-		636E412B272FE48F002C7D19 /* SubscriptionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCardModel.swift; sourceTree = "<group>"; };
 		636E412F27301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		6370A3FC27305DCA00EEFD84 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		6370A3FE2731792900EEFD84 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6370A4002731795300EEFD84 /* TestSdk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSdk.entitlements; sourceTree = "<group>"; };
+		6370A4072732B6E100EEFD84 /* SubscriptionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCardModel.swift; sourceTree = "<group>"; };
 		63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModule.swift; sourceTree = "<group>"; };
 		63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
 		63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouter.swift; sourceTree = "<group>"; };
@@ -493,6 +493,7 @@
 		02F9D15D2725859E003CD6BA /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				6370A4062732AFE600EEFD84 /* Purchase */,
 				02F9D16A272598D4003CD6BA /* Storage */,
 				02F9D160272586AE003CD6BA /* Auth */,
 			);
@@ -530,7 +531,7 @@
 		636E412A272FE47D002C7D19 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				636E412B272FE48F002C7D19 /* SubscriptionCardModel.swift */,
+				6370A4072732B6E100EEFD84 /* SubscriptionCardModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -543,10 +544,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		63BB1897272C08A300D21CF0 /* Subscriptions */ = {
+		6370A4062732AFE600EEFD84 /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
 				6370A3FC27305DCA00EEFD84 /* PurchaseManager.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		63BB1897272C08A300D21CF0 /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
 				636E413127304569002C7D19 /* Cell */,
 				636E412A272FE47D002C7D19 /* Models */,
 				63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */,
@@ -729,7 +737,6 @@
 				02F9D147272466B4003CD6BA /* UIView.swift in Sources */,
 				0277B323272A8FEC003EBD38 /* AboutUsModule.swift in Sources */,
 				0277B32F272ACE76003EBD38 /* AMError.swift in Sources */,
-				636E412C272FE48F002C7D19 /* SubscriptionCardModel.swift in Sources */,
 				63FB3C8D272C09F900C413FA /* SubscriptionsViewController.swift in Sources */,
 				02F9D162272586BB003CD6BA /* AuthService.swift in Sources */,
 				0277B328272A8FEC003EBD38 /* AboutUsInteractor.swift in Sources */,
@@ -785,6 +792,7 @@
 				02F9D13727246529003CD6BA /* Label.swift in Sources */,
 				0277B32A272ABA9B003EBD38 /* KeychainManager.swift in Sources */,
 				02F9D120272329EC003CD6BA /* MainAuthModule.swift in Sources */,
+				6370A4082732B6E100EEFD84 /* SubscriptionCardModel.swift in Sources */,
 				02F9D13027246310003CD6BA /* SignupViewController.swift in Sources */,
 				02F9D15727249108003CD6BA /* LoginRouter.swift in Sources */,
 				02578E9B2721F0FC0006AA7C /* WelcomeViewController.swift in Sources */,
