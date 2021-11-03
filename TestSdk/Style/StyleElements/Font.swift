@@ -36,6 +36,7 @@ extension Style.Font {
     static let authTitleBold = makeFont(.bold, 16)
     static let inputRegular = makeFont(.regular, 16)
     static let authDescriptionRegular = makeFont(.light, 16)
+    static let infoMedium = makeFont(.medium, 16)
 
     // MARK: - Private
     private static func customizeNumbers(in font: UIFont, size: CGFloat) -> UIFont {

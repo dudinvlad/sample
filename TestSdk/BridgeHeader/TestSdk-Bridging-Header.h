@@ -3,3 +3,4 @@
 //
 
 #import <ImplusAnalytics/ImplusAnalytics.h>
+#import <SpotifyiOS/SpotifyiOS.h>

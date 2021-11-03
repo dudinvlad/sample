@@ -12,4 +12,9 @@ extension Style.Label {
         titleColor: .black,
         font: Style.Font.authTitleBold
     )
+    static let infoLabel = ColoredLabel(
+        titleColor: Style.Color.nightBlue,
+        font: Style.Font.infoMedium,
+        align: .center
+    )
 }

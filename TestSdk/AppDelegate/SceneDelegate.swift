@@ -10,8 +10,9 @@ import Macaroni
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Injected var welcomeAssembly: WelcomeModule.ModuleAssemblying!
-    var window: UIWindow?
+    @Injected var spotifyManager: SpotifyManager!
 
+    var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -26,6 +27,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+
+        let parameters = spotifyManager.appRemote.authorizationParameters(from: url)
+
+        if let accessToken = parameters?[SPTAppRemoteAccessTokenKey] {
+            spotifyManager.appRemote.connectionParameters.accessToken = accessToken
+        } else if let error = parameters?[SPTAppRemoteErrorDescriptionKey] {
+            print(error)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

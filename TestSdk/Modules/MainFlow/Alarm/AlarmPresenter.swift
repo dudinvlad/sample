@@ -19,13 +19,25 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        required init() { }
+        private let spotifyManager: SpotifyManager
+
+        required init(with spotify: SpotifyManager) {
+            self.spotifyManager = spotify
+        }
 
     }
 }
 
 private extension Presenter { }
 
-extension Presenter: Module.ViewOutput { }
+extension Presenter: Module.ViewOutput {
+    func requestSpotifyConnect() {
+        spotifyManager.connect()
+    }
+}
 
-extension Presenter: Module.InteractorOutput { }
+extension Presenter: Module.InteractorOutput {
+    var controller: BaseViewInput? {
+        view
+    }
+}
