@@ -31,7 +31,6 @@ protocol ChooseMusicAssemblyProtocol {
 protocol ChooseMusicViewInputProtocol: BaseViewInput { }
 
 protocol ChooseMusicViewOutputProtocol: BaseViewOutput {
-    func presentSubscriptionsModule()
     func showChooseSource()
 }
 
@@ -44,6 +43,5 @@ protocol ChooseMusicInteractorOutputProtocol: BaseInteractorOutput { }
 // MARK: - Router
 
 protocol ChooseMusicRouterInputProtocol {
-    func presentSubscriptionsModule()
     func showChooseSourceModule()
 }

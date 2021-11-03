@@ -41,7 +41,6 @@ extension Module {
         }
 
         private lazy var startAction: UIAction = .init { _ in
-//            self.output.requestSpotifyConnect()
             self.output.showChooseMusic()
         }
 

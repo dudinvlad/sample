@@ -14,7 +14,6 @@ private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
-        @Injected var subscriptionsModule: SubscriptionsModule.ModuleAssemblying!
         @Injected var chooseSourceModule: ChooseSourceModule.ModuleAssemblying!
 
         func assemble() -> UIViewController {
@@ -22,7 +21,6 @@ extension Module {
             let presenter: Presenter   = .init()
             let interactor: Interactor = .init()
             let router: Router         = .init(
-                subscriptionsModule: subscriptionsModule,
                 chooseSourceModule: chooseSourceModule
             )
 

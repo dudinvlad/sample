@@ -16,9 +16,16 @@ extension Module {
         // MARK: - Dependencies
 
         weak var viewController: UIViewController!
+        private let subscriptionsModule: SubscriptionsModule.ModuleAssemblying
 
-        required init() { }
+        required init(subscriptionsModule: SubscriptionsModule.ModuleAssemblying) {
+            self.subscriptionsModule = subscriptionsModule
+        }
     }
 }
 
-extension Router: Module.RouterInput { }
+extension Router: Module.RouterInput {
+    func presentSubscriptionsModule() {
+        viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
+    }
+}

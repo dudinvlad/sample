@@ -16,24 +16,17 @@ extension Module {
         // MARK: - Dependencies
 
         weak var viewController: UIViewController!
-        private let subscriptionsModule: SubscriptionsModule.ModuleAssemblying
         private let chooseSourceModule: ChooseSourceModule.ModuleAssemblying
 
         required init(
-            subscriptionsModule: SubscriptionsModule.ModuleAssemblying,
             chooseSourceModule: ChooseSourceModule.ModuleAssemblying
         ) {
-            self.subscriptionsModule = subscriptionsModule
             self.chooseSourceModule = chooseSourceModule
         }
     }
 }
 
 extension Router: Module.RouterInput {
-    func presentSubscriptionsModule() {
-        viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
-    }
-
     func showChooseSourceModule() {
         viewController.navigationController?.pushViewController(chooseSourceModule.assemble(), animated: true)
     }

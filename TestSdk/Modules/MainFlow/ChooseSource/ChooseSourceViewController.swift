@@ -47,6 +47,15 @@ extension Module {
             $0.text = "Online · Premium required"
         }
 
+        private lazy var spotifyButton: UIButton = build {
+            $0.backgroundColor = .clear
+            $0.addAction(spotifyAction, for: .touchUpInside)
+        }
+
+        private lazy var spotifyAction: UIAction = .init { _ in
+            self.output.presentSubscriptionsModule()
+        }
+
         private lazy var spacerView: UIView = .init()
         private lazy var containerSpacerView: UIView = .init()
 
@@ -92,6 +101,7 @@ private extension View {
         view.backgroundColor = Style.Color.black
         title = "Choose Source"
         view.addSubview(containerStack)
+        view.addSubview(spotifyButton)
 
         containerStack.addArrangedSubview(subContainerStack)
         containerStack.addArrangedSubview(containerSpacerView)
@@ -111,6 +121,10 @@ private extension View {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview()
+        }
+
+        spotifyButton.snp.makeConstraints { make in
+            make.edges.equalTo(containerStack.snp.edges)
         }
 
         logoImageView.snp.makeConstraints { make in

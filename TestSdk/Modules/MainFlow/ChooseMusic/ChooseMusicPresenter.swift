@@ -30,10 +30,6 @@ extension Presenter: Module.ViewOutput {
     func showChooseSource() {
         router.showChooseSourceModule()
     }
-
-    func presentSubscriptionsModule() {
-        router.presentSubscriptionsModule()
-    }
 }
 
 extension Presenter: Module.InteractorOutput {

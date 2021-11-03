@@ -31,6 +31,10 @@ extension Module {
 private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
+    func presentSubscriptionsModule() {
+        router.presentSubscriptionsModule()
+    }
+
     func requestSpotifyConnect() {
         spotifyManager.connect { [weak self] code in
             self?.interactor.exchangeToken(with: code)
