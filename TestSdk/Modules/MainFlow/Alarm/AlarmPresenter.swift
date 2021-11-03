@@ -32,4 +32,8 @@ extension Presenter: Module.ViewOutput {
     }
 }
 
-extension Presenter: Module.InteractorOutput { }
+extension Presenter: Module.InteractorOutput {
+    var controller: BaseViewInput? {
+        view
+    }
+}

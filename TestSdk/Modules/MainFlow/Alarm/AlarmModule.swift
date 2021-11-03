@@ -28,7 +28,7 @@ protocol AlarmAssemblyProtocol {
 }
 
 // MARK: - View
-protocol AlarmViewInputProtocol: AnyObject { }
+protocol AlarmViewInputProtocol: BaseViewInput { }
 
 protocol AlarmViewOutputProtocol: BaseViewOutput {
     func presentSubscriptionsModule()
@@ -38,7 +38,7 @@ protocol AlarmViewOutputProtocol: BaseViewOutput {
 
 protocol AlarmInteractorInputProtocol { }
 
-protocol AlarmInteractorOutputProtocol: AnyObject {}
+protocol AlarmInteractorOutputProtocol: BaseInteractorOutput {}
 
 // MARK: - Router
 
