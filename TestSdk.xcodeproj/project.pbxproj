@@ -97,6 +97,7 @@
 		636E413027301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E412F27301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift */; };
 		6370A3FD27305DCA00EEFD84 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370A3FC27305DCA00EEFD84 /* PurchaseManager.swift */; };
 		6370A3FF2731792900EEFD84 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370A3FE2731792900EEFD84 /* StoreKit.framework */; };
+		6370A4042732A9F100EEFD84 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370A4032732A9F100EEFD84 /* NotificationManager.swift */; };
 		63FB3C8A272C09F900C413FA /* SubscriptionsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */; };
 		63FB3C8B272C09F900C413FA /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */; };
 		63FB3C8C272C09F900C413FA /* SubscriptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */; };
@@ -196,6 +197,7 @@
 		6370A3FC27305DCA00EEFD84 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		6370A3FE2731792900EEFD84 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6370A4002731795300EEFD84 /* TestSdk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSdk.entitlements; sourceTree = "<group>"; };
+		6370A4032732A9F100EEFD84 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModule.swift; sourceTree = "<group>"; };
 		63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
 		63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouter.swift; sourceTree = "<group>"; };
@@ -501,6 +503,8 @@
 		02F9D15D2725859E003CD6BA /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				6370A4022732A9E000EEFD84 /* Notification */,
+				6370A4012732A9C500EEFD84 /* Purchase */,
 				02F9D16A272598D4003CD6BA /* Storage */,
 				02F9D160272586AE003CD6BA /* Auth */,
 				02462DD42731C7C800B3B0AD /* SpotifyManager.swift */,
@@ -552,10 +556,25 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		63BB1897272C08A300D21CF0 /* Subscriptions */ = {
+		6370A4012732A9C500EEFD84 /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
 				6370A3FC27305DCA00EEFD84 /* PurchaseManager.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		6370A4022732A9E000EEFD84 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				6370A4032732A9F100EEFD84 /* NotificationManager.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		63BB1897272C08A300D21CF0 /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
 				636E413127304569002C7D19 /* Cell */,
 				636E412A272FE47D002C7D19 /* Models */,
 				63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */,
@@ -761,6 +780,7 @@
 				02578E9C2721F0FC0006AA7C /* WelcomeAssembly.swift in Sources */,
 				02578E6A2720A98F0006AA7C /* AppDelegate.swift in Sources */,
 				0277B327272A8FEC003EBD38 /* AboutUsAssembly.swift in Sources */,
+				6370A4042732A9F100EEFD84 /* NotificationManager.swift in Sources */,
 				02F9D12F27246310003CD6BA /* SignupRouter.swift in Sources */,
 				02F9D1672725977D003CD6BA /* User.swift in Sources */,
 				02F9D122272329EC003CD6BA /* MainAuthRouter.swift in Sources */,

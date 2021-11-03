@@ -20,9 +20,14 @@ extension Module {
         var router: RouterInput!
 
         private let spotifyManager: SpotifyManager
+        private let notificationManager: NotificationManager
 
-        required init(with spotify: SpotifyManager) {
+        required init(
+            with spotify: SpotifyManager,
+            notificationManager: NotificationManager)
+        {
             self.spotifyManager = spotify
+            self.notificationManager = notificationManager
         }
 
     }
@@ -32,7 +37,8 @@ private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
     func requestSpotifyConnect() {
-        spotifyManager.connect()
+        let timeInterval = view.getSelectedTime()
+        notificationManager.scheduleNotification(identifier: "\(timeInterval)", soundName: "", timeInterval: timeInterval)
     }
 
     func presentSubscriptionsModule() {

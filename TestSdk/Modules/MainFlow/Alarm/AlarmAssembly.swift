@@ -15,12 +15,13 @@ private typealias View = Module.ViewController
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var spotifyManager: SpotifyManager!
+        @Injected var notificationManager: NotificationManager!
         @Injected var subscriptionsModule: SubscriptionsModule.ModuleAssemblying!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
             let presenter: Presenter   = .init(
-                with: spotifyManager
+                with: spotifyManager, notificationManager: notificationManager
             )
             let interactor: Interactor = .init()
             let router: Router         = .init(with: subscriptionsModule)

@@ -29,6 +29,7 @@ class RestContainerFactory {
     private lazy var keychainStorage: StoreProtocol = KeychainStore()
     private lazy var spotifyManager: SpotifyManager = SpotifyManager()
     private lazy var purchaseManager: PurchaseManager = PurchaseManager()
+    private lazy var notificationManager: NotificationManager = NotificationManager()
 
     func build() -> Container {
         let container = Container()
@@ -53,6 +54,7 @@ class RestContainerFactory {
         container.register{ [keychainStorage]() -> StoreProtocol in keychainStorage}
         container.register{ [spotifyManager]() -> SpotifyManager in spotifyManager}
         container.register{ [purchaseManager]() -> PurchaseManager in purchaseManager}
+        container.register{ [notificationManager]() -> NotificationManager in notificationManager}
 
         return container
     }
