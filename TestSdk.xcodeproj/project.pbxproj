@@ -50,6 +50,26 @@
 		0277B32D272ABB38003EBD38 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 0277B32C272ABB38003EBD38 /* KeychainAccess */; };
 		0277B32F272ACE76003EBD38 /* AMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B32E272ACE76003EBD38 /* AMError.swift */; };
 		028F0D7127328D0300E5E5D4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 028F0D7027328D0300E5E5D4 /* StoreKit.framework */; };
+		028F0D752732B30600E5E5D4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 028F0D742732B30600E5E5D4 /* Alamofire */; };
+		028F0D782732B39D00E5E5D4 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D772732B39D00E5E5D4 /* ApiManager.swift */; };
+		028F0D7A2732B40E00E5E5D4 /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D792732B40E00E5E5D4 /* EndpointType.swift */; };
+		028F0D7D2732B4CA00E5E5D4 /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D7C2732B4CA00E5E5D4 /* SpotifyService.swift */; };
+		028F0D7F2732B59E00E5E5D4 /* RestSpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D7E2732B59E00E5E5D4 /* RestSpotifyService.swift */; };
+		028F0D812732B61B00E5E5D4 /* SpotifyEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D802732B61B00E5E5D4 /* SpotifyEndpoints.swift */; };
+		028F0D832732CBBB00E5E5D4 /* SpotifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D822732CBBA00E5E5D4 /* SpotifyModels.swift */; };
+		028F0D852732D1C500E5E5D4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D842732D1C500E5E5D4 /* Data.swift */; };
+		028F0D8D2732E81C00E5E5D4 /* ChooseMusicModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D872732E81B00E5E5D4 /* ChooseMusicModule.swift */; };
+		028F0D8E2732E81C00E5E5D4 /* ChooseMusicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D882732E81B00E5E5D4 /* ChooseMusicPresenter.swift */; };
+		028F0D8F2732E81C00E5E5D4 /* ChooseMusicRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D892732E81C00E5E5D4 /* ChooseMusicRouter.swift */; };
+		028F0D902732E81C00E5E5D4 /* ChooseMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D8A2732E81C00E5E5D4 /* ChooseMusicViewController.swift */; };
+		028F0D912732E81C00E5E5D4 /* ChooseMusicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D8B2732E81C00E5E5D4 /* ChooseMusicAssembly.swift */; };
+		028F0D922732E81C00E5E5D4 /* ChooseMusicInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D8C2732E81C00E5E5D4 /* ChooseMusicInteractor.swift */; };
+		028F0D9A273328F300E5E5D4 /* ChooseSourceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D94273328F300E5E5D4 /* ChooseSourceModule.swift */; };
+		028F0D9B273328F300E5E5D4 /* ChooseSourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D95273328F300E5E5D4 /* ChooseSourcePresenter.swift */; };
+		028F0D9C273328F300E5E5D4 /* ChooseSourceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D96273328F300E5E5D4 /* ChooseSourceRouter.swift */; };
+		028F0D9D273328F300E5E5D4 /* ChooseSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D97273328F300E5E5D4 /* ChooseSourceViewController.swift */; };
+		028F0D9E273328F300E5E5D4 /* ChooseSourceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D98273328F300E5E5D4 /* ChooseSourceAssembly.swift */; };
+		028F0D9F273328F300E5E5D4 /* ChooseSourceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F0D99273328F300E5E5D4 /* ChooseSourceInteractor.swift */; };
 		02F9D11327232880003CD6BA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D11227232880003CD6BA /* Color.swift */; };
 		02F9D115272328D5003CD6BA /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D114272328D5003CD6BA /* Style.swift */; };
 		02F9D117272328FB003CD6BA /* Applicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D116272328FB003CD6BA /* Applicable.swift */; };
@@ -148,6 +168,25 @@
 		0277B329272ABA9A003EBD38 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		0277B32E272ACE76003EBD38 /* AMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMError.swift; sourceTree = "<group>"; };
 		028F0D7027328D0300E5E5D4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		028F0D772732B39D00E5E5D4 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		028F0D792732B40E00E5E5D4 /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
+		028F0D7C2732B4CA00E5E5D4 /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
+		028F0D7E2732B59E00E5E5D4 /* RestSpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestSpotifyService.swift; sourceTree = "<group>"; };
+		028F0D802732B61B00E5E5D4 /* SpotifyEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyEndpoints.swift; sourceTree = "<group>"; };
+		028F0D822732CBBA00E5E5D4 /* SpotifyModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyModels.swift; sourceTree = "<group>"; };
+		028F0D842732D1C500E5E5D4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		028F0D872732E81B00E5E5D4 /* ChooseMusicModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicModule.swift; sourceTree = "<group>"; };
+		028F0D882732E81B00E5E5D4 /* ChooseMusicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicPresenter.swift; sourceTree = "<group>"; };
+		028F0D892732E81C00E5E5D4 /* ChooseMusicRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicRouter.swift; sourceTree = "<group>"; };
+		028F0D8A2732E81C00E5E5D4 /* ChooseMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicViewController.swift; sourceTree = "<group>"; };
+		028F0D8B2732E81C00E5E5D4 /* ChooseMusicAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicAssembly.swift; sourceTree = "<group>"; };
+		028F0D8C2732E81C00E5E5D4 /* ChooseMusicInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicInteractor.swift; sourceTree = "<group>"; };
+		028F0D94273328F300E5E5D4 /* ChooseSourceModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceModule.swift; sourceTree = "<group>"; };
+		028F0D95273328F300E5E5D4 /* ChooseSourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourcePresenter.swift; sourceTree = "<group>"; };
+		028F0D96273328F300E5E5D4 /* ChooseSourceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceRouter.swift; sourceTree = "<group>"; };
+		028F0D97273328F300E5E5D4 /* ChooseSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceViewController.swift; sourceTree = "<group>"; };
+		028F0D98273328F300E5E5D4 /* ChooseSourceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceAssembly.swift; sourceTree = "<group>"; };
+		028F0D99273328F300E5E5D4 /* ChooseSourceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceInteractor.swift; sourceTree = "<group>"; };
 		02F9D11227232880003CD6BA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		02F9D114272328D5003CD6BA /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		02F9D116272328FB003CD6BA /* Applicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
@@ -217,6 +256,7 @@
 				02578E902721F07F0006AA7C /* IQKeyboardManagerSwift in Frameworks */,
 				023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */,
 				028F0D7127328D0300E5E5D4 /* StoreKit.framework in Frameworks */,
+				028F0D752732B30600E5E5D4 /* Alamofire in Frameworks */,
 				468EAEB7413A6DEBA1573A0C /* Pods_TestSdk.framework in Frameworks */,
 				023EE75627317FE300023261 /* Macaroni in Frameworks */,
 				023EE758273185F400023261 /* SpotifyiOS.framework in Frameworks */,
@@ -243,6 +283,7 @@
 				02578E672720A98E0006AA7C /* Products */,
 				023BACF4905CB7E51F0EDFC8 /* Pods */,
 				E3C95CF08829EA23F4D55F5F /* Frameworks */,
+				028F0D722732AA2A00E5E5D4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -257,6 +298,7 @@
 		02578E682720A98E0006AA7C /* TestSdk */ = {
 			isa = PBXGroup;
 			children = (
+				028F0D762732B31100E5E5D4 /* Networking */,
 				6370A4002731795300EEFD84 /* TestSdk.entitlements */,
 				02F9D16527259772003CD6BA /* Models */,
 				02F9D15D2725859E003CD6BA /* Managers */,
@@ -358,6 +400,8 @@
 		0277B2FF272A8B57003EBD38 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				028F0D93273328E400E5E5D4 /* ChooseSource */,
+				028F0D862732E7C100E5E5D4 /* ChooseMusic */,
 				0277B310272A8FCD003EBD38 /* AboutUs */,
 				0277B30F272A8FC4003EBD38 /* Alarm */,
 				0277B30E272A8FB4003EBD38 /* TabBar */,
@@ -402,6 +446,60 @@
 				0277B322272A8FEC003EBD38 /* AboutUsInteractor.swift */,
 			);
 			path = AboutUs;
+			sourceTree = "<group>";
+		};
+		028F0D722732AA2A00E5E5D4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				6370A3FE2731792900EEFD84 /* StoreKit.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		028F0D762732B31100E5E5D4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				028F0D7B2732B4A500E5E5D4 /* SpotifyTokenService */,
+				028F0D772732B39D00E5E5D4 /* ApiManager.swift */,
+				028F0D792732B40E00E5E5D4 /* EndpointType.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		028F0D7B2732B4A500E5E5D4 /* SpotifyTokenService */ = {
+			isa = PBXGroup;
+			children = (
+				028F0D7C2732B4CA00E5E5D4 /* SpotifyService.swift */,
+				028F0D7E2732B59E00E5E5D4 /* RestSpotifyService.swift */,
+				028F0D802732B61B00E5E5D4 /* SpotifyEndpoints.swift */,
+			);
+			path = SpotifyTokenService;
+			sourceTree = "<group>";
+		};
+		028F0D862732E7C100E5E5D4 /* ChooseMusic */ = {
+			isa = PBXGroup;
+			children = (
+				028F0D872732E81B00E5E5D4 /* ChooseMusicModule.swift */,
+				028F0D882732E81B00E5E5D4 /* ChooseMusicPresenter.swift */,
+				028F0D892732E81C00E5E5D4 /* ChooseMusicRouter.swift */,
+				028F0D8A2732E81C00E5E5D4 /* ChooseMusicViewController.swift */,
+				028F0D8B2732E81C00E5E5D4 /* ChooseMusicAssembly.swift */,
+				028F0D8C2732E81C00E5E5D4 /* ChooseMusicInteractor.swift */,
+			);
+			path = ChooseMusic;
+			sourceTree = "<group>";
+		};
+		028F0D93273328E400E5E5D4 /* ChooseSource */ = {
+			isa = PBXGroup;
+			children = (
+				028F0D94273328F300E5E5D4 /* ChooseSourceModule.swift */,
+				028F0D95273328F300E5E5D4 /* ChooseSourcePresenter.swift */,
+				028F0D96273328F300E5E5D4 /* ChooseSourceRouter.swift */,
+				028F0D97273328F300E5E5D4 /* ChooseSourceViewController.swift */,
+				028F0D98273328F300E5E5D4 /* ChooseSourceAssembly.swift */,
+				028F0D99273328F300E5E5D4 /* ChooseSourceInteractor.swift */,
+			);
+			path = ChooseSource;
 			sourceTree = "<group>";
 		};
 		02F9D11127232875003CD6BA /* Style */ = {
@@ -481,6 +579,7 @@
 				02F9D16D2725A733003CD6BA /* UIViewController.swift */,
 				02F9D16F2725A84F003CD6BA /* UIApplication.swift */,
 				0277B30C272A8D9A003EBD38 /* BaseTabBarController.swift */,
+				028F0D842732D1C500E5E5D4 /* Data.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -522,6 +621,7 @@
 			children = (
 				02F9D1662725977D003CD6BA /* User.swift */,
 				0277B32E272ACE76003EBD38 /* AMError.swift */,
+				028F0D822732CBBA00E5E5D4 /* SpotifyModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -610,6 +710,7 @@
 				0277B32C272ABB38003EBD38 /* KeychainAccess */,
 				023EE711272AE52D00023261 /* NVActivityIndicatorView */,
 				023EE75527317FE300023261 /* Macaroni */,
+				028F0D742732B30600E5E5D4 /* Alamofire */,
 			);
 			productName = TestSdk;
 			productReference = 02578E662720A98E0006AA7C /* TestSdk.app */;
@@ -645,6 +746,7 @@
 				0277B32B272ABB38003EBD38 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				0277B330272ADC0A003EBD38 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				023EE75427317FE300023261 /* XCRemoteSwiftPackageReference "Macaroni" */,
+				028F0D732732B30600E5E5D4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 02578E672720A98E0006AA7C /* Products */;
 			projectDirPath = "";
@@ -725,16 +827,21 @@
 				0277B318272A8FDE003EBD38 /* AlarmPresenter.swift in Sources */,
 				02F9D15827249108003CD6BA /* LoginViewController.swift in Sources */,
 				02F9D123272329EC003CD6BA /* MainAuthViewController.swift in Sources */,
+				028F0D9B273328F300E5E5D4 /* ChooseSourcePresenter.swift in Sources */,
 				0277B30B272A8B69003EBD38 /* MainFlowInteractor.swift in Sources */,
+				028F0D9F273328F300E5E5D4 /* ChooseSourceInteractor.swift in Sources */,
 				0277B31A272A8FDE003EBD38 /* AlarmViewController.swift in Sources */,
+				028F0D7F2732B59E00E5E5D4 /* RestSpotifyService.swift in Sources */,
 				02578E982721F0FC0006AA7C /* WelcomeModule.swift in Sources */,
 				63FB3C8A272C09F900C413FA /* SubscriptionsModule.swift in Sources */,
 				02F9D124272329EC003CD6BA /* MainAuthAssembly.swift in Sources */,
 				63FB3C92272C188400C413FA /* UIView+Extension.swift in Sources */,
 				02F9D117272328FB003CD6BA /* Applicable.swift in Sources */,
+				028F0D7A2732B40E00E5E5D4 /* EndpointType.swift in Sources */,
 				0277B30D272A8D9A003EBD38 /* BaseTabBarController.swift in Sources */,
 				02F9D14B27248BA9003CD6BA /* BaseViewController.swift in Sources */,
 				0277B307272A8B69003EBD38 /* MainFlowPresenter.swift in Sources */,
+				028F0D912732E81C00E5E5D4 /* ChooseMusicAssembly.swift in Sources */,
 				02F9D164272593CE003CD6BA /* DataBaseManager.swift in Sources */,
 				02F9D147272466B4003CD6BA /* UIView.swift in Sources */,
 				0277B323272A8FEC003EBD38 /* AboutUsModule.swift in Sources */,
@@ -746,30 +853,39 @@
 				02F9D16C272598E6003CD6BA /* StorageService.swift in Sources */,
 				02578E992721F0FC0006AA7C /* WelcomePresenter.swift in Sources */,
 				0277B317272A8FDE003EBD38 /* AlarmModule.swift in Sources */,
+				028F0D812732B61B00E5E5D4 /* SpotifyEndpoints.swift in Sources */,
 				02F9D13127246310003CD6BA /* SignupAssembly.swift in Sources */,
 				02F9D12D27246310003CD6BA /* SignupModule.swift in Sources */,
 				02F9D14D27248CFA003CD6BA /* Image.swift in Sources */,
 				6370A3FD27305DCA00EEFD84 /* PurchaseManager.swift in Sources */,
+				028F0D9C273328F300E5E5D4 /* ChooseSourceRouter.swift in Sources */,
 				02F9D11327232880003CD6BA /* Color.swift in Sources */,
 				63FB3C8C272C09F900C413FA /* SubscriptionsRouter.swift in Sources */,
 				02F9D13527246503003CD6BA /* InputFieldView.swift in Sources */,
+				028F0D782732B39D00E5E5D4 /* ApiManager.swift in Sources */,
 				0277B30A272A8B69003EBD38 /* MainFlowAssembly.swift in Sources */,
 				02F9D16927259873003CD6BA /* Encodable.swift in Sources */,
 				02F9D15927249108003CD6BA /* LoginAssembly.swift in Sources */,
 				02578E9A2721F0FC0006AA7C /* WelcomeRouter.swift in Sources */,
 				636E413027301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift in Sources */,
+				028F0D8F2732E81C00E5E5D4 /* ChooseMusicRouter.swift in Sources */,
 				02578E9C2721F0FC0006AA7C /* WelcomeAssembly.swift in Sources */,
+				028F0D902732E81C00E5E5D4 /* ChooseMusicViewController.swift in Sources */,
 				02578E6A2720A98F0006AA7C /* AppDelegate.swift in Sources */,
 				0277B327272A8FEC003EBD38 /* AboutUsAssembly.swift in Sources */,
 				02F9D12F27246310003CD6BA /* SignupRouter.swift in Sources */,
 				02F9D1672725977D003CD6BA /* User.swift in Sources */,
+				028F0D7D2732B4CA00E5E5D4 /* SpotifyService.swift in Sources */,
 				02F9D122272329EC003CD6BA /* MainAuthRouter.swift in Sources */,
 				63FB3C8B272C09F900C413FA /* SubscriptionsPresenter.swift in Sources */,
+				028F0D8D2732E81C00E5E5D4 /* ChooseMusicModule.swift in Sources */,
 				02578E9D2721F0FC0006AA7C /* WelcomeInteractor.swift in Sources */,
 				63FB3C8E272C09F900C413FA /* SubscriptionsAssembly.swift in Sources */,
 				02F9D15A27249108003CD6BA /* LoginInteractor.swift in Sources */,
 				02F9D121272329EC003CD6BA /* MainAuthPresenter.swift in Sources */,
 				02462DD52731C7C800B3B0AD /* SpotifyManager.swift in Sources */,
+				028F0D8E2732E81C00E5E5D4 /* ChooseMusicPresenter.swift in Sources */,
+				028F0D922732E81C00E5E5D4 /* ChooseMusicInteractor.swift in Sources */,
 				0277B319272A8FDE003EBD38 /* AlarmRouter.swift in Sources */,
 				02F9D1442724663C003CD6BA /* Font.swift in Sources */,
 				02F9D15F272585C8003CD6BA /* AuthServiceManager.swift in Sources */,
@@ -778,6 +894,7 @@
 				02F9D13227246310003CD6BA /* SignupInteractor.swift in Sources */,
 				0277B306272A8B69003EBD38 /* MainFlowModule.swift in Sources */,
 				0277B309272A8B69003EBD38 /* MainFlowViewController.swift in Sources */,
+				028F0D832732CBBB00E5E5D4 /* SpotifyModels.swift in Sources */,
 				02F9D115272328D5003CD6BA /* Style.swift in Sources */,
 				0277B31C272A8FDE003EBD38 /* AlarmInteractor.swift in Sources */,
 				02F9D125272329EC003CD6BA /* MainAuthInteractor.swift in Sources */,
@@ -786,6 +903,8 @@
 				0277B31B272A8FDE003EBD38 /* AlarmAssembly.swift in Sources */,
 				0277B308272A8B69003EBD38 /* MainFlowRouter.swift in Sources */,
 				02F9D15627249108003CD6BA /* LoginPresenter.swift in Sources */,
+				028F0D852732D1C500E5E5D4 /* Data.swift in Sources */,
+				028F0D9A273328F300E5E5D4 /* ChooseSourceModule.swift in Sources */,
 				0277B324272A8FEC003EBD38 /* AboutUsPresenter.swift in Sources */,
 				0277B326272A8FEC003EBD38 /* AboutUsViewController.swift in Sources */,
 				02F9D15527249108003CD6BA /* LoginModule.swift in Sources */,
@@ -793,6 +912,7 @@
 				0277B325272A8FEC003EBD38 /* AboutUsRouter.swift in Sources */,
 				023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */,
 				02F9D14927248A51003CD6BA /* Button.swift in Sources */,
+				028F0D9D273328F300E5E5D4 /* ChooseSourceViewController.swift in Sources */,
 				02F9D13727246529003CD6BA /* Label.swift in Sources */,
 				0277B32A272ABA9B003EBD38 /* KeychainManager.swift in Sources */,
 				02F9D120272329EC003CD6BA /* MainAuthModule.swift in Sources */,
@@ -800,6 +920,7 @@
 				02F9D15727249108003CD6BA /* LoginRouter.swift in Sources */,
 				02578E9B2721F0FC0006AA7C /* WelcomeViewController.swift in Sources */,
 				63FB3C8F272C09F900C413FA /* SubscriptionsInteractor.swift in Sources */,
+				028F0D9E273328F300E5E5D4 /* ChooseSourceAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,6 +1069,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestSdk/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1044,6 +1166,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestSdk/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1188,6 +1311,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		028F0D732732B30600E5E5D4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Nikita0104117/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1215,6 +1346,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0277B32B272ABB38003EBD38 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		028F0D742732B30600E5E5D4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 028F0D732732B30600E5E5D4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -135,7 +135,6 @@ extension Module {
         override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
             subscriptionButton.setGradientBackground(topColor: Style.Color.darkGreen, bottomColor: Style.Color.lightGreen)
-
         }
     }
 }

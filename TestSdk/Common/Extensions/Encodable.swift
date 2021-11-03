@@ -8,7 +8,7 @@
 import Foundation
 
 extension Encodable {
-    func asDictionary() throws -> Any {
+    func asDictionary() throws -> [String: Any] {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         let data = try encoder.encode(self)

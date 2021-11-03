@@ -22,4 +22,6 @@ extension Style.Button {
         font: Style.Font.authTitleBold,
         cornerRadius: 5
     )
+
+    static let spotifyButton = ColoredButton(background: .clear, title: .white, font: Style.Font.titleBold, cornerRadius: 5)
 }

@@ -51,7 +51,6 @@ extension Presenter: Module.ViewOutput {
     func subscriptionDidTap(productId: String) {
         purchaseManager.purchaseProduct(productId: productId) { [weak self] _ in
         }
-
     }
 }
 

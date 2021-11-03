@@ -7,9 +7,16 @@
 
 import Foundation
 
+enum SpotifyConstants: String {
+    case spotifyClientID = "4cdd37c0271b4b4a93456b17b1b5e253"
+    case spotifyClientSecret = "10e1d6a2b39e4f67a828d490b2ec25b9"
+    case spotifyRedirectUrl = "spotify-ios-quick-start://spotify-login-callback"
+}
+
 class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate {
-    private let spotifyClientID = "4cdd37c0271b4b4a93456b17b1b5e253"
-    private let spotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
+    private let spotifyRedirectURL = URL(string: SpotifyConstants.spotifyRedirectUrl.rawValue)!
+
+    var spotifyCodeCallBack: ((String) -> Void)?
 
     lazy var sessionManager: SPTSessionManager = {
         let manager = SPTSessionManager(configuration: configuration, delegate: self)
@@ -23,7 +30,7 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
     }()
 
     lazy var configuration: SPTConfiguration = {
-        let configuration = SPTConfiguration(clientID: spotifyClientID, redirectURL: spotifyRedirectURL)
+        let configuration = SPTConfiguration(clientID: SpotifyConstants.spotifyClientID.rawValue, redirectURL: spotifyRedirectURL)
 
         configuration.playURI = ""
 
@@ -32,8 +39,13 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     // MARK: - Public
 
-    func connect() {
-        sessionManager.initiateSession(with: [.playlistModifyPrivate, .playlistReadPrivate], options: .clientOnly)
+    func connect(_ completion: @escaping (String) -> Void) {
+        self.spotifyCodeCallBack = completion
+        sessionManager.initiateSession(with: [.playlistReadPrivate, .appRemoteControl, .userLibraryRead], options: .clientOnly)
+    }
+
+    func swapAccessToken(_ code: String) {
+        spotifyCodeCallBack?(code)
     }
 
     // MARK: - SPTAppRemoteDelegate
@@ -61,6 +73,6 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         appRemote.connectionParameters.accessToken = session.accessToken
-        appRemote.connect()
+//        appRemote.connect()
     }
 }

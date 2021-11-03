@@ -41,7 +41,8 @@ extension Module {
         }
 
         private lazy var startAction: UIAction = .init { _ in
-            self.output.requestSpotifyConnect()
+//            self.output.requestSpotifyConnect()
+            self.output.showChooseMusic()
         }
 
         // MARK: - Lifecycle
@@ -65,7 +66,6 @@ extension Module {
             super.viewDidAppear(animated)
 
             output?.didAppear()
-            output.presentSubscriptionsModule()
         }
 
         override func viewDidDisappear(_ animated: Bool) {

@@ -34,8 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let parameters = spotifyManager.appRemote.authorizationParameters(from: url)
 
-        if let accessToken = parameters?[SPTAppRemoteAccessTokenKey] {
-            spotifyManager.appRemote.connectionParameters.accessToken = accessToken
+        if let exchangeCode = parameters?["code"] {
+            spotifyManager.swapAccessToken(exchangeCode)
         } else if let error = parameters?[SPTAppRemoteErrorDescriptionKey] {
             print(error)
         }
