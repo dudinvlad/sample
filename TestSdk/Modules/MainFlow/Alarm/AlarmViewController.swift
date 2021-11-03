@@ -65,6 +65,7 @@ extension Module {
             super.viewDidAppear(animated)
 
             output?.didAppear()
+            output.presentSubscriptionsModule()
         }
 
         override func viewDidDisappear(_ animated: Bool) {

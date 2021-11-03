@@ -9,4 +9,8 @@ import Foundation
 
 extension Style.Image {
     static let backArrow = UIImage(named: "backArrow")
+    static let close = UIImage(systemName: "xmark.circle")
+    static let check = UIImage(systemName: "checkmark.circle.fill")
+    static let emplyCircle = UIImage(systemName: "circle")
+
 }

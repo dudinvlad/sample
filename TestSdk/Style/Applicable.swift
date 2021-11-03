@@ -50,3 +50,7 @@ public func build<T: UIView>(builder: (T) -> Void) -> T {
     build(T(), builder: builder)
 }
 
+public func build<T: NSObject>(builder: (T) -> Void) -> T {
+    build(T(), builder: builder)
+}
+

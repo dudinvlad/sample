@@ -32,14 +32,17 @@ protocol AlarmViewInputProtocol: BaseViewInput { }
 
 protocol AlarmViewOutputProtocol: BaseViewOutput {
     func requestSpotifyConnect()
+    func presentSubscriptionsModule()
 }
 
 // MARK: - Interactor
 
 protocol AlarmInteractorInputProtocol { }
 
-protocol AlarmInteractorOutputProtocol: BaseInteractorOutput { }
+protocol AlarmInteractorOutputProtocol: BaseInteractorOutput {}
 
 // MARK: - Router
 
-protocol AlarmRouterInputProtocol { }
+protocol AlarmRouterInputProtocol {
+    func presentSubscriptionsModule()
+}

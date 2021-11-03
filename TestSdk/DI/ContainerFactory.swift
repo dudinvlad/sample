@@ -18,12 +18,17 @@ class RestContainerFactory {
     private lazy var alarmAssembly = AlarmModule.ModuleAssembly()
     private lazy var spotifyAssembly = AboutUsModule.ModuleAssembly()
 
+    // MARK: - Subscriptions
+
+    private lazy var subscriptionsAssembly = SubscriptionsModule.ModuleAssembly()
+
     // MARK: - Services
 
     private lazy var authService: AuthService = AuthServiceManager()
     private lazy var storageService: StorageService = DataBaseManager()
     private lazy var keychainStorage: StoreProtocol = KeychainStore()
     private lazy var spotifyManager: SpotifyManager = SpotifyManager()
+    private lazy var purchaseManager: PurchaseManager = PurchaseManager()
 
     func build() -> Container {
         let container = Container()
@@ -38,12 +43,16 @@ class RestContainerFactory {
         container.register { [alarmAssembly]() -> AlarmModule.ModuleAssemblying in alarmAssembly }
         container.register { [spotifyAssembly]() -> AboutUsModule.ModuleAssemblying in spotifyAssembly }
 
+        // MARK: - Subscriptions
+        container.register { [subscriptionsAssembly]() -> SubscriptionsModule.ModuleAssemblying in subscriptionsAssembly }
+
         // MARK: - Services
 
         container.register{ [authService]() -> AuthService in authService}
         container.register{ [storageService]() -> StorageService in storageService}
         container.register{ [keychainStorage]() -> StoreProtocol in keychainStorage}
         container.register{ [spotifyManager]() -> SpotifyManager in spotifyManager}
+        container.register{ [purchaseManager]() -> PurchaseManager in purchaseManager}
 
         return container
     }

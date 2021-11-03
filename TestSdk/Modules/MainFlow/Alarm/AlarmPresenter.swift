@@ -34,6 +34,10 @@ extension Presenter: Module.ViewOutput {
     func requestSpotifyConnect() {
         spotifyManager.connect()
     }
+
+    func presentSubscriptionsModule() {
+        router.presentSubscriptionsModule()
+    }
 }
 
 extension Presenter: Module.InteractorOutput {
