@@ -23,6 +23,7 @@ class RestContainerFactory {
     private lazy var authService: AuthService = AuthServiceManager()
     private lazy var storageService: StorageService = DataBaseManager()
     private lazy var keychainStorage: StoreProtocol = KeychainStore()
+    private lazy var spotifyManager: SpotifyManager = SpotifyManager()
 
     func build() -> Container {
         let container = Container()
@@ -42,6 +43,7 @@ class RestContainerFactory {
         container.register{ [authService]() -> AuthService in authService}
         container.register{ [storageService]() -> StorageService in storageService}
         container.register{ [keychainStorage]() -> StoreProtocol in keychainStorage}
+        container.register{ [spotifyManager]() -> SpotifyManager in spotifyManager}
 
         return container
     }

@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import Macaroni
 
 private typealias Module = AlarmModule
 private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
+        @Injected var spotifyManager: SpotifyManager!
+
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init()
+            let presenter: Presenter   = .init(
+                with: spotifyManager
+            )
             let interactor: Interactor = .init()
             let router: Router         = .init()
 

@@ -28,15 +28,17 @@ protocol AlarmAssemblyProtocol {
 }
 
 // MARK: - View
-protocol AlarmViewInputProtocol: AnyObject { }
+protocol AlarmViewInputProtocol: BaseViewInput { }
 
-protocol AlarmViewOutputProtocol: BaseViewOutput { }
+protocol AlarmViewOutputProtocol: BaseViewOutput {
+    func requestSpotifyConnect()
+}
 
 // MARK: - Interactor
 
 protocol AlarmInteractorInputProtocol { }
 
-protocol AlarmInteractorOutputProtocol: AnyObject { }
+protocol AlarmInteractorOutputProtocol: BaseInteractorOutput { }
 
 // MARK: - Router
 

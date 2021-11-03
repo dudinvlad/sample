@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE711272AE52D00023261 /* NVActivityIndicatorView */; };
 		023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EE713272BCE1600023261 /* NetworkingActivity.swift */; };
+		023EE75627317FE300023261 /* Macaroni in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE75527317FE300023261 /* Macaroni */; };
+		023EE758273185F400023261 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023EE757273185F400023261 /* SpotifyiOS.framework */; };
+		02462DD52731C7C800B3B0AD /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02462DD42731C7C800B3B0AD /* SpotifyManager.swift */; };
 		02578E6A2720A98F0006AA7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02578E692720A98F0006AA7C /* AppDelegate.swift */; };
 		02578E6C2720A98F0006AA7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02578E6B2720A98F0006AA7C /* SceneDelegate.swift */; };
 		02578E732720A9920006AA7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02578E722720A9920006AA7C /* Assets.xcassets */; };
 		02578E762720A9920006AA7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02578E742720A9920006AA7C /* LaunchScreen.storyboard */; };
 		02578E842721EC7C0006AA7C /* appflow-app-token.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02578E832721EC7C0006AA7C /* appflow-app-token.plist */; };
-		02578E892721EF5A0006AA7C /* Macaroni in Frameworks */ = {isa = PBXBuildFile; productRef = 02578E882721EF5A0006AA7C /* Macaroni */; };
 		02578E8D2721F02E0006AA7C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02578E8C2721F02E0006AA7C /* SnapKit */; };
 		02578E902721F07F0006AA7C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02578E8F2721F07F0006AA7C /* IQKeyboardManagerSwift */; };
 		02578E982721F0FC0006AA7C /* WelcomeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02578E922721F0FB0006AA7C /* WelcomeModule.swift */; };
@@ -47,6 +49,7 @@
 		0277B32A272ABA9B003EBD38 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B329272ABA9A003EBD38 /* KeychainManager.swift */; };
 		0277B32D272ABB38003EBD38 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 0277B32C272ABB38003EBD38 /* KeychainAccess */; };
 		0277B32F272ACE76003EBD38 /* AMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0277B32E272ACE76003EBD38 /* AMError.swift */; };
+		028F0D7127328D0300E5E5D4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 028F0D7027328D0300E5E5D4 /* StoreKit.framework */; };
 		02F9D11327232880003CD6BA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D11227232880003CD6BA /* Color.swift */; };
 		02F9D115272328D5003CD6BA /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D114272328D5003CD6BA /* Style.swift */; };
 		02F9D117272328FB003CD6BA /* Applicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D116272328FB003CD6BA /* Applicable.swift */; };
@@ -94,6 +97,8 @@
 
 /* Begin PBXFileReference section */
 		023EE713272BCE1600023261 /* NetworkingActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingActivity.swift; sourceTree = "<group>"; };
+		023EE757273185F400023261 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		02462DD42731C7C800B3B0AD /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 		02578E662720A98E0006AA7C /* TestSdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSdk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02578E692720A98F0006AA7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02578E6B2720A98F0006AA7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +136,7 @@
 		0277B322272A8FEC003EBD38 /* AboutUsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsInteractor.swift; sourceTree = "<group>"; };
 		0277B329272ABA9A003EBD38 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		0277B32E272ACE76003EBD38 /* AMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMError.swift; sourceTree = "<group>"; };
+		028F0D7027328D0300E5E5D4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		02F9D11227232880003CD6BA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		02F9D114272328D5003CD6BA /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		02F9D116272328FB003CD6BA /* Applicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
@@ -186,8 +192,10 @@
 				02578E8D2721F02E0006AA7C /* SnapKit in Frameworks */,
 				02578E902721F07F0006AA7C /* IQKeyboardManagerSwift in Frameworks */,
 				023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */,
-				02578E892721EF5A0006AA7C /* Macaroni in Frameworks */,
+				028F0D7127328D0300E5E5D4 /* StoreKit.framework in Frameworks */,
 				468EAEB7413A6DEBA1573A0C /* Pods_TestSdk.framework in Frameworks */,
+				023EE75627317FE300023261 /* Macaroni in Frameworks */,
+				023EE758273185F400023261 /* SpotifyiOS.framework in Frameworks */,
 				0277B32D272ABB38003EBD38 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +476,7 @@
 			children = (
 				02F9D16A272598D4003CD6BA /* Storage */,
 				02F9D160272586AE003CD6BA /* Auth */,
+				02462DD42731C7C800B3B0AD /* SpotifyManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -503,6 +512,8 @@
 		E3C95CF08829EA23F4D55F5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				028F0D7027328D0300E5E5D4 /* StoreKit.framework */,
+				023EE757273185F400023261 /* SpotifyiOS.framework */,
 				968168DDF3B7DFD58805EB71 /* Pods_TestSdk.framework */,
 			);
 			name = Frameworks;
@@ -527,11 +538,11 @@
 			);
 			name = TestSdk;
 			packageProductDependencies = (
-				02578E882721EF5A0006AA7C /* Macaroni */,
 				02578E8C2721F02E0006AA7C /* SnapKit */,
 				02578E8F2721F07F0006AA7C /* IQKeyboardManagerSwift */,
 				0277B32C272ABB38003EBD38 /* KeychainAccess */,
 				023EE711272AE52D00023261 /* NVActivityIndicatorView */,
+				023EE75527317FE300023261 /* Macaroni */,
 			);
 			productName = TestSdk;
 			productReference = 02578E662720A98E0006AA7C /* TestSdk.app */;
@@ -562,11 +573,11 @@
 			);
 			mainGroup = 02578E5D2720A98E0006AA7C;
 			packageReferences = (
-				02578E872721EF5A0006AA7C /* XCRemoteSwiftPackageReference "Macaroni" */,
 				02578E8B2721F02E0006AA7C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				02578E8E2721F07F0006AA7C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				0277B32B272ABB38003EBD38 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				0277B330272ADC0A003EBD38 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				023EE75427317FE300023261 /* XCRemoteSwiftPackageReference "Macaroni" */,
 			);
 			productRefGroup = 02578E672720A98E0006AA7C /* Products */;
 			projectDirPath = "";
@@ -682,6 +693,7 @@
 				02578E9D2721F0FC0006AA7C /* WelcomeInteractor.swift in Sources */,
 				02F9D15A27249108003CD6BA /* LoginInteractor.swift in Sources */,
 				02F9D121272329EC003CD6BA /* MainAuthPresenter.swift in Sources */,
+				02462DD52731C7C800B3B0AD /* SpotifyManager.swift in Sources */,
 				0277B319272A8FDE003EBD38 /* AlarmRouter.swift in Sources */,
 				02F9D1442724663C003CD6BA /* Font.swift in Sources */,
 				02F9D15F272585C8003CD6BA /* AuthServiceManager.swift in Sources */,
@@ -853,10 +865,82 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestSdk/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"Founq_KeychainIDFA\"",
+					"-framework",
+					"\"GRPCClient\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"ImplusAnalytics\"",
+					"-framework",
+					"\"ProtoRPC\"",
+					"-framework",
+					"\"Protobuf\"",
+					"-framework",
+					"\"RxLibrary\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.t.TestSdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -876,10 +960,82 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestSdk/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"Founq_KeychainIDFA\"",
+					"-framework",
+					"\"GRPCClient\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"ImplusAnalytics\"",
+					"-framework",
+					"\"ProtoRPC\"",
+					"-framework",
+					"\"Protobuf\"",
+					"-framework",
+					"\"RxLibrary\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.t.TestSdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -913,12 +1069,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		02578E872721EF5A0006AA7C /* XCRemoteSwiftPackageReference "Macaroni" */ = {
+		023EE75427317FE300023261 /* XCRemoteSwiftPackageReference "Macaroni" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:bealex/Macaroni.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 		02578E8B2721F02E0006AA7C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -961,9 +1117,9 @@
 			package = 0277B330272ADC0A003EBD38 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorView;
 		};
-		02578E882721EF5A0006AA7C /* Macaroni */ = {
+		023EE75527317FE300023261 /* Macaroni */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 02578E872721EF5A0006AA7C /* XCRemoteSwiftPackageReference "Macaroni" */;
+			package = 023EE75427317FE300023261 /* XCRemoteSwiftPackageReference "Macaroni" */;
 			productName = Macaroni;
 		};
 		02578E8C2721F02E0006AA7C /* SnapKit */ = {

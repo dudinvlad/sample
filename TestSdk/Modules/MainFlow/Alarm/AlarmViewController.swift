@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 private typealias Module = AlarmModule
 private typealias View = Module.ViewController
@@ -16,6 +17,32 @@ extension Module {
         // MARK: - Dependencies
 
         var output: ViewOutput!
+
+        // MARK: - Variables
+
+        private lazy var containerStackView: UIStackView = build {
+            $0 <~ Style.Stack.smallSpaceVerticalStack
+        }
+
+        private lazy var alarmPicker: UIDatePicker = build {
+            $0.datePickerMode = .time
+            $0.preferredDatePickerStyle = .wheels
+        }
+
+        private lazy var infoLabel: UILabel = build {
+            $0 <~ Style.Label.infoLabel
+            $0.text = "Wake up with your\nfavourite music"
+        }
+
+        private lazy var startButton: UIButton = build {
+            $0 <~ Style.Button.authConfirmButton
+            $0.setTitle("Start", for: .normal)
+            $0.addAction(startAction, for: .touchUpInside)
+        }
+
+        private lazy var startAction: UIAction = .init { _ in
+            self.output.requestSpotifyConnect()
+        }
 
         // MARK: - Lifecycle
 
@@ -50,13 +77,20 @@ extension Module {
 
 private extension View {
     func initialSetup() {
-        let label = UILabel()
-        label.text = "Setup your alarm here"
-        label.font = Style.Font.authDescriptionRegular
-        view.addSubview(label)
+        view.addSubview(containerStackView)
 
-        label.snp.makeConstraints { make in
+        containerStackView.addArrangedSubview(alarmPicker)
+        containerStackView.addArrangedSubview(infoLabel)
+        containerStackView.addArrangedSubview(startButton)
+
+        containerStackView.setCustomSpacing(30, after: infoLabel)
+
+        containerStackView.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+
+        startButton.snp.makeConstraints { make in
+            make.height.equalTo(45)
         }
     }
 }
