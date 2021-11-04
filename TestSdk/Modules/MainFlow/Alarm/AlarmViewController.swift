@@ -42,6 +42,7 @@ extension Module {
 
         private lazy var startAction: UIAction = .init { _ in
             self.output.showChooseMusic()
+            self.output.fireAlarm()
         }
 
         // MARK: - Lifecycle
@@ -96,7 +97,7 @@ private extension View {
 }
 
 extension View: Module.ViewInput {
-    func getSelectedTime() -> TimeInterval {
-        return alarmPicker.date.timeIntervalSinceNow
+    func getSelectedTime() -> Date {
+        return alarmPicker.date
     }
 }

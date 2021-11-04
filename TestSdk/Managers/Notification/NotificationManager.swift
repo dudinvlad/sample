@@ -12,23 +12,24 @@ class NotificationManager {
 	private let notificationCenter = UNUserNotificationCenter.current()
 
     func scheduleNotification(
-        identifier: String,
-        soundName: String,
-        timeInterval: TimeInterval
+        soundName: String? = nil,
+        dateTime: Date
     ) {
         let content = UNMutableNotificationContent()
 
         content.title = "Alarm"
         content.body = "Wake up!"
-        content.sound = UNNotificationSound.init(named:UNNotificationSoundName(rawValue: soundName))
+        if let sound = soundName {
+            content.sound = UNNotificationSound.init(named:UNNotificationSoundName(rawValue: sound))
+        } else {
+            content.sound = .default
+        }
 
-        let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: timeInterval,
-            repeats: false
-        )
+        let dateComponents = Calendar.current.dateComponents([.hour,.minute], from: dateTime)
 
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(
-            identifier: identifier,
+            identifier: UUID().uuidString,
             content: content,
             trigger: trigger
         )

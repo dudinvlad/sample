@@ -35,6 +35,11 @@ extension Presenter: Module.ViewOutput {
     func showChooseMusic() {
         router.presentChooseMusic()
     }
+
+    func fireAlarm() {
+        let date = view.getSelectedTime()
+        notificationManager.scheduleNotification(dateTime: date)
+    }
 }
 
 extension Presenter: Module.InteractorOutput {
