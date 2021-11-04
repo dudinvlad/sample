@@ -34,6 +34,11 @@ extension Module {
 
         private var dataSource: [SubscriptionCardModel] = []
 
+        private lazy var activityIndicator : UIActivityIndicatorView = build {
+            $0.color = Style.Color.white
+            $0.style = .large
+        }
+
         private lazy var closeButton: UIButton = build {
             $0.setImage(Style.Image.close, for: .normal)
             $0.tintColor = Style.Color.white
@@ -113,6 +118,7 @@ extension Module {
             output?.didLoad()
             commonSetup()
             makeConstraints()
+            activityIndicator.startAnimating()
         }
 
         override func viewDidLayoutSubviews() {
@@ -173,6 +179,12 @@ private extension View {
         view.addSubview(subscriptionCardsCollectionView)
         view.addSubview(subscriptionButton)
         view.addSubview(descriptionLabel)
+        view.addSubview(activityIndicator)
+
+        activityIndicator.snp.makeConstraints { make in
+            make.height.width.equalTo(50)
+            make.center.equalToSuperview()
+        }
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
@@ -217,6 +229,8 @@ extension View: Module.ViewInput {
         self.dataSource = value
         DispatchQueue.main.async { [weak self] in
             self?.subscriptionCardsCollectionView.reloadData()
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.removeFromSuperview()
         }
     }
 }
