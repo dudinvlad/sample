@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 struct SubscriptionsModule {
     typealias ModuleAssemblying = SubscriptionsAssemblyProtocol
@@ -28,11 +29,13 @@ protocol SubscriptionsAssemblyProtocol {
 }
 
 // MARK: - View
-protocol SubscriptionsViewInputProtocol: AnyObject { }
+protocol SubscriptionsViewInputProtocol: AnyObject {
+    func set(dataSource value: [SubscriptionCardModel])
+}
 
 protocol SubscriptionsViewOutputProtocol: BaseViewOutput {
   	func restoreDidTap()
-    func subscriptionDidTap(productId: String)
+    func subscriptionDidTap(product: SKProduct)
 }
 
 // MARK: - Interactor

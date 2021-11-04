@@ -2,10 +2,11 @@
 //  SubscriptionCardModel.swift
 //  TestSdk
 //
-//  Created by macuser on 11/1/21.
+//  Created by macuser on 11/3/21.
 //
 
 import Foundation
+import StoreKit
 
 enum SubscriptionCardStyle {
     case selected
@@ -14,10 +15,5 @@ enum SubscriptionCardStyle {
 
 struct SubscriptionCardModel {
     let style: SubscriptionCardStyle
-    let period: String
-    let price: Float
-    let per: String
-    let productId: String
-
+    let product: SKProduct
 }
-

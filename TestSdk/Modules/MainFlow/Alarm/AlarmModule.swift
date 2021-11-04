@@ -28,21 +28,25 @@ protocol AlarmAssemblyProtocol {
 }
 
 // MARK: - View
-protocol AlarmViewInputProtocol: BaseViewInput { }
+protocol AlarmViewInputProtocol: BaseViewInput {
+    func getSelectedTime() -> Date
+}
 
 protocol AlarmViewOutputProtocol: BaseViewOutput {
-    func requestSpotifyConnect()
-    func presentSubscriptionsModule()
+    func showChooseMusic()
+    func fireAlarm()
 }
 
 // MARK: - Interactor
 
-protocol AlarmInteractorInputProtocol { }
+protocol AlarmInteractorInputProtocol {
+}
 
-protocol AlarmInteractorOutputProtocol: BaseInteractorOutput {}
+protocol AlarmInteractorOutputProtocol: BaseInteractorOutput {
+}
 
 // MARK: - Router
 
 protocol AlarmRouterInputProtocol {
-    func presentSubscriptionsModule()
+    func presentChooseMusic()
 }

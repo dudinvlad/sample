@@ -17,4 +17,15 @@ extension Style.Label {
         font: Style.Font.infoMedium,
         align: .center
     )
+
+    static let titleLabel = ColoredLabel(
+        titleColor: .white,
+        font: Style.Font.titleBold
+    )
+
+    static let descriptionLabel = ColoredLabel(
+        titleColor: Style.Color.main,
+        font: Style.Font.infoMedium,
+        numberOfLines: .zero
+    )
 }

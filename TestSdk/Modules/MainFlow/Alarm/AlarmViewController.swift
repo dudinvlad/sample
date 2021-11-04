@@ -41,7 +41,8 @@ extension Module {
         }
 
         private lazy var startAction: UIAction = .init { _ in
-            self.output.requestSpotifyConnect()
+            self.output.showChooseMusic()
+            self.output.fireAlarm()
         }
 
         // MARK: - Lifecycle
@@ -65,7 +66,6 @@ extension Module {
             super.viewDidAppear(animated)
 
             output?.didAppear()
-            output.presentSubscriptionsModule()
         }
 
         override func viewDidDisappear(_ animated: Bool) {
@@ -96,4 +96,8 @@ private extension View {
     }
 }
 
-extension View: Module.ViewInput { }
+extension View: Module.ViewInput {
+    func getSelectedTime() -> Date {
+        return alarmPicker.date
+    }
+}

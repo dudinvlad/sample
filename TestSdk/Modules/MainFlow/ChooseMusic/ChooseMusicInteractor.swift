@@ -1,14 +1,14 @@
 //
-//  AlarmInteractor.swift
+//  ChooseMusicInteractor.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 28.10.2021.
+//  Created Vladislav Dudin on 03.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 
-private typealias Module = AlarmModule
+private typealias Module = ChooseMusicModule
 private typealias Interactor = Module.Interactor
 
 extension Module {
@@ -17,9 +17,9 @@ extension Module {
 
         weak var output: InteractorOutput!
 
-        required init() {}
+        required init() { }
 
     }
 }
 
-extension Interactor: Module.InteractorInput {}
+extension Interactor: Module.InteractorInput { }

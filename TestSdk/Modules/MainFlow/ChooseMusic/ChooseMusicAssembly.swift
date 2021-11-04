@@ -1,29 +1,27 @@
 //
-//  AlarmAssembly.swift
+//  ChooseMusicAssembly.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 28.10.2021.
+//  Created Vladislav Dudin on 03.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 import Macaroni
 
-private typealias Module = AlarmModule
+private typealias Module = ChooseMusicModule
 private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
-        @Injected var notificationManager: NotificationManager!
-        @Injected var chooseMusicAssemblying: ChooseMusicModule.ModuleAssemblying!
+        @Injected var chooseSourceModule: ChooseSourceModule.ModuleAssemblying!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init(notificationManager: notificationManager)
-
+            let presenter: Presenter   = .init()
             let interactor: Interactor = .init()
             let router: Router         = .init(
-                chooseMusic: chooseMusicAssemblying
+                chooseSourceModule: chooseSourceModule
             )
 
             viewController.output = presenter
