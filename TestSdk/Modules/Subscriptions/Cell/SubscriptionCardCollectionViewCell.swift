@@ -8,7 +8,6 @@
 import UIKit
 
 class SubscriptionCardCollectionViewCell: UICollectionViewCell {
-    //    private var cardModel: SubscriptionCardModel?
 
     private lazy var checkImageView: UIImageView = build {
         $0.image = Style.Image.emplyCircle
@@ -77,6 +76,12 @@ private extension SubscriptionCardCollectionViewCell {
         addSubview(perLabel)
 
         makeConstraints()
+
+        isSkeletonable = true
+//        checkImageView.isSkeletonable = true
+//        periodLabel.isSkeletonable = true
+//        priceLabel.isSkeletonable = true
+//        perLabel.isSkeletonable = true
     }
 
     func makeConstraints() {

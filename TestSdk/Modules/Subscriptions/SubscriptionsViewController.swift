@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import SkeletonView
 
 private typealias Module = SubscriptionsModule
 private typealias View = Module.ViewController
@@ -34,11 +35,6 @@ extension Module {
 
         private var dataSource: [SubscriptionCardModel] = []
 
-        private lazy var activityIndicator : UIActivityIndicatorView = build {
-            $0.color = Style.Color.white
-            $0.style = .large
-        }
-
         private lazy var closeButton: UIButton = build {
             $0.setImage(Style.Image.close, for: .normal)
             $0.tintColor = Style.Color.white
@@ -63,7 +59,7 @@ extension Module {
             $0.minimumLineSpacing = 10
         }
 
-        private lazy var subscriptionCardsCollectionView: UICollectionView = build(
+        private lazy var collectionView: UICollectionView = build(
             .init(
                 frame: .zero,
                 collectionViewLayout: collectionLayout
@@ -104,9 +100,9 @@ extension Module {
         }
 
         private lazy var subscriptionDidTap: UIAction = .init { [weak self] _ in
-            guard let self = self, let productId = self.selectedProduct else { return }
+            guard let self = self, let product = self.selectedProduct else { return }
 
-            self.output.subscriptionDidTap(product: productId)
+            self.output.subscriptionDidTap(product: product)
         }
 
         private lazy var termsDidTap: UIAction = .init { [weak self] _ in }
@@ -118,17 +114,34 @@ extension Module {
             output?.didLoad()
             commonSetup()
             makeConstraints()
-            activityIndicator.startAnimating()
         }
 
         override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
             subscriptionButton.setGradientBackground(topColor: Style.Color.darkGreen, bottomColor: Style.Color.lightGreen)
         }
+
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            output.didAppear()
+
+            collectionView.isSkeletonable = true
+            let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topLeftBottomRight)
+
+            collectionView.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: .wetAsphalt), animation: animation, transition:  .crossDissolve(0.25))
+        }
     }
 }
 
-extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension View: SkeletonCollectionViewDelegate, SkeletonCollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        cellReuseIdentifier
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         dataSource.count
     }
@@ -168,23 +181,17 @@ extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
 private extension View {
     func commonSetup() {
         view.backgroundColor = Style.Color.black
-        subscriptionCardsCollectionView.delegate = self
-        subscriptionCardsCollectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     func makeConstraints() {
         view.addSubview(restoreButton)
         view.addSubview(closeButton)
         view.addSubview(titleLabel)
-        view.addSubview(subscriptionCardsCollectionView)
+        view.addSubview(collectionView)
         view.addSubview(subscriptionButton)
         view.addSubview(descriptionLabel)
-        view.addSubview(activityIndicator)
-
-        activityIndicator.snp.makeConstraints { make in
-            make.height.width.equalTo(50)
-            make.center.equalToSuperview()
-        }
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
@@ -203,16 +210,16 @@ private extension View {
             make.width.equalTo(24)
         }
 
-        subscriptionCardsCollectionView.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.center.equalToSuperview()
             make.height.equalTo(120)
         }
 
         subscriptionButton.snp.makeConstraints { make in
-            make.top.equalTo(subscriptionCardsCollectionView.snp.bottom).offset(14)
-            make.leading.equalTo(subscriptionCardsCollectionView)
-            make.trailing.equalTo(subscriptionCardsCollectionView)
+            make.top.equalTo(collectionView.snp.bottom).offset(14)
+            make.leading.equalTo(collectionView)
+            make.trailing.equalTo(collectionView)
             make.height.equalTo(60)
         }
 
@@ -227,10 +234,11 @@ private extension View {
 extension View: Module.ViewInput {
     func set(dataSource value: [SubscriptionCardModel]) {
         self.dataSource = value
+
         DispatchQueue.main.async { [weak self] in
-            self?.subscriptionCardsCollectionView.reloadData()
-            self?.activityIndicator.stopAnimating()
-            self?.activityIndicator.removeFromSuperview()
+            self?.collectionView.stopSkeletonAnimation()
+            self?.view.hideSkeleton()
+            self?.collectionView.reloadData()
         }
     }
 }
