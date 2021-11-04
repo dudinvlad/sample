@@ -52,7 +52,7 @@ class NotificationManager {
                 guard let trigger = request.trigger as? UNCalendarNotificationTrigger, let nextTriggerDate = trigger.nextTriggerDate() else { return }
 
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "h:mm"
+                dateFormatter.dateFormat = "h:mm a"
                 complition?(dateFormatter.string(from: nextTriggerDate)
 )
             }

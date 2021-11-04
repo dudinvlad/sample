@@ -121,7 +121,7 @@ private extension View {
         startButton.setTitle(alarmIsOn == true ? "Stop" : "Start", for: .normal)
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:mm"
+        dateFormatter.dateFormat = "h:mm a"
 
         guard let _ = time else {
             alarmTimeLabel.text = dateFormatter.string(from: alarmPicker.date)
