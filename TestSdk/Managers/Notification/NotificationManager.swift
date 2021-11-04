@@ -41,4 +41,21 @@ class NotificationManager {
         }
 
     }
+
+    func removeAllPendingNotificationRequests() {
+        notificationCenter.removeAllPendingNotificationRequests()
+    }
+
+    func getPendingNotifications(complition: ((String?) -> ())?) {
+        notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                guard let trigger = request.trigger as? UNCalendarNotificationTrigger, let nextTriggerDate = trigger.nextTriggerDate() else { return }
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "h:mm"
+                complition?(dateFormatter.string(from: nextTriggerDate)
+)
+            }
+        })
+    }
 }

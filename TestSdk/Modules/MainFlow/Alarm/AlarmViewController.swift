@@ -17,6 +17,7 @@ extension Module {
         // MARK: - Dependencies
 
         var output: ViewOutput!
+		private var alarmIsOn = false
 
         // MARK: - Variables
 
@@ -40,9 +41,20 @@ extension Module {
             $0.addAction(startAction, for: .touchUpInside)
         }
 
+        private lazy var alarmTimeLabel: UILabel = build {
+            $0.font = Style.Font.titleBold
+            $0.isHidden = true
+        }
+
         private lazy var startAction: UIAction = .init { _ in
-            self.output.showChooseMusic()
-            self.output.fireAlarm()
+            if !self.alarmIsOn {
+                self.output.fireAlarm()
+                self.output.showChooseMusic()
+            } else {
+                self.output.stoplarm()
+            }
+
+            self.configureUI()
         }
 
         // MARK: - Lifecycle
@@ -79,6 +91,7 @@ extension Module {
 private extension View {
     func initialSetup() {
         view.addSubview(containerStackView)
+        view.addSubview(alarmTimeLabel)
 
         containerStackView.addArrangedSubview(alarmPicker)
         containerStackView.addArrangedSubview(infoLabel)
@@ -93,6 +106,29 @@ private extension View {
         startButton.snp.makeConstraints { make in
             make.height.equalTo(45)
         }
+
+        alarmTimeLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-100)
+            make.centerX.equalToSuperview()
+        }
+    }
+
+    func configureUI(with time: String? = nil) {
+        alarmIsOn.toggle()
+
+        alarmPicker.isHidden = alarmIsOn
+        alarmTimeLabel.isHidden = !alarmIsOn
+        startButton.setTitle(alarmIsOn == true ? "Stop" : "Start", for: .normal)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm"
+
+        guard let _ = time else {
+            alarmTimeLabel.text = dateFormatter.string(from: alarmPicker.date)
+            return
+        }
+
+        alarmTimeLabel.text = time
     }
 }
 
@@ -100,4 +136,9 @@ extension View: Module.ViewInput {
     func getSelectedTime() -> Date {
         return alarmPicker.date
     }
+
+    func alarmIsOnConfigure(with time: String) {
+        configureUI(with: time)
+    }
+
 }

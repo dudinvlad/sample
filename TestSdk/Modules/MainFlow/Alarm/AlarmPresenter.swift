@@ -32,6 +32,15 @@ extension Module {
 private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
+    func didLoad() {
+        notificationManager.getPendingNotifications(complition: { [weak self] time in
+            guard let alarmTime = time else { return }
+            DispatchQueue.main.async {
+                self?.view.alarmIsOnConfigure(with: alarmTime)
+            }
+        })
+    }
+
     func showChooseMusic() {
         router.presentChooseMusic()
     }
@@ -40,6 +49,11 @@ extension Presenter: Module.ViewOutput {
         let date = view.getSelectedTime()
         notificationManager.scheduleNotification(dateTime: date)
     }
+
+    func stoplarm() {
+        notificationManager.removeAllPendingNotificationRequests()
+    }
+
 }
 
 extension Presenter: Module.InteractorOutput {
