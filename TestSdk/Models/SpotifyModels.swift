@@ -24,6 +24,7 @@ struct SpotifyTrack: Codable {
     let name: String
     let artists: [SpotifyArtist]
     let uri: String
+    let previewUrl: String
 }
 
 struct SpotifyArtist: Codable {

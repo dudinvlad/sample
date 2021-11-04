@@ -50,7 +50,7 @@ extension Presenter: Module.InteractorOutput {
     }
 
     func success(with tracks: [SpotifyTrack]) {
-        
+        print(tracks)
     }
 
     var controller: BaseViewInput? {
