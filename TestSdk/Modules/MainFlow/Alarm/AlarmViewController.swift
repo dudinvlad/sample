@@ -81,18 +81,6 @@ extension Module {
                 object: nil
             )
         }
-
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-
-            output?.didAppear()
-        }
-
-        override func viewDidDisappear(_ animated: Bool) {
-            super.viewDidDisappear(animated)
-
-            output?.didDisappear()
-        }
     }
 }
 

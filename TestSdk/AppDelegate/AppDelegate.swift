@@ -51,6 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
     }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        NotificationCenter.default.post(
+            name: NotificationName.alarmWillPresent.notification,
+            object: nil,
+            userInfo: nil
+        )
+    }
+
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
