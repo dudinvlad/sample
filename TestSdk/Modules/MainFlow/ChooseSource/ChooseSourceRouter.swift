@@ -27,13 +27,15 @@ extension Module {
 
 extension Router: Module.RouterInput {
     func presentSubscriptionsModule() {
-        guard let expiredPaymentDate = defaults.object(forKey: UserDefaultsKey.expiredPaymentDate.rawValue) as? Date else {
+        guard let expiredPaymentDate = defaults.object(forKey: UserDefaultsKey.expiredPaymentDate.rawValue) as? Date,
+        	expiredPaymentDate < Date()
+        else {
             viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
             return
         }
 
         if expiredPaymentDate > Date() {
-            viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
+			//MARK: - TODO: go to music list
         }
     }
 }
