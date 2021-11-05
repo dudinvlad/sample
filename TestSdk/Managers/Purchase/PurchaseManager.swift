@@ -40,6 +40,7 @@ class PurchaseManager: NSObject {
 
     fileprivate var productToPurchase: SKProduct?
     fileprivate var purchaseProductComplition: ((PurchasesError, SKProduct?, SKPaymentTransaction?) -> Void)?
+    fileprivate let defaults = UserDefaults.standard
 
     // MARK: - Public
     var isLogEnabled: Bool = true
@@ -133,6 +134,23 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     if let complition = self.purchaseProductComplition {
                         complition(PurchasesError.purchased, self.productToPurchase, trans)
+
+                        let now = Date()
+                        var expiredPaymentDate: Date?
+
+                        if productID.contains(".weekly") {
+                            expiredPaymentDate = now.addDays(n: 7)
+                        }
+
+                        if productID.contains(".monthly") {
+                            expiredPaymentDate = now.addMonth(n: 1)
+                        }
+
+                        if productID.contains(".yearly") {
+                            expiredPaymentDate = now.addYear(n: 1)
+                        }
+
+                        defaults.set(expiredPaymentDate, forKey: "expiredPaymentDate")
                     }
 
                 case .failed:
@@ -140,6 +158,8 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     if let complition = self.purchaseProductComplition {
                         complition(PurchasesError.disabled, self.productToPurchase, trans)
+
+                        defaults.set(nil, forKey: "expiredPaymentDate")
                     }
 
                 case .restored:

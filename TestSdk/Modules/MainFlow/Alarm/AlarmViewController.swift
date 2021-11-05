@@ -72,6 +72,7 @@ extension Module {
 
             output?.didLoad()
             initialSetup()
+            UNUserNotificationCenter.current().delegate = self
         }
 
         override func viewDidAppear(_ animated: Bool) {
@@ -141,4 +142,14 @@ extension View: Module.ViewInput {
         configureUI(with: time)
     }
 
+}
+
+
+
+extension View : UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            self?.configureUI()
+        }
+    }
 }

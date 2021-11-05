@@ -17,6 +17,7 @@ extension Module {
 
         weak var viewController: UIViewController!
         private let subscriptionsModule: SubscriptionsModule.ModuleAssemblying
+        private let defaults = UserDefaults.standard
 
         required init(subscriptionsModule: SubscriptionsModule.ModuleAssemblying) {
             self.subscriptionsModule = subscriptionsModule
@@ -26,6 +27,13 @@ extension Module {
 
 extension Router: Module.RouterInput {
     func presentSubscriptionsModule() {
-        viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
+        guard let expiredPaymentDate = defaults.object(forKey: "expiredPaymentDate") as? Date else {
+            viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
+            return
+        }
+
+        if expiredPaymentDate > Date() {
+            viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
+        }
     }
 }

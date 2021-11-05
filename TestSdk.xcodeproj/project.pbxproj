@@ -119,6 +119,7 @@
 		6370A4042732A9F100EEFD84 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370A4032732A9F100EEFD84 /* NotificationManager.swift */; };
 		6370A4082732B6E100EEFD84 /* SubscriptionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370A4072732B6E100EEFD84 /* SubscriptionCardModel.swift */; };
 		638247732733DE9E0016B1C3 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 638247722733DE9E0016B1C3 /* SkeletonView */; };
+		63824775273525DA0016B1C3 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63824774273525DA0016B1C3 /* Date+Extension.swift */; };
 		63FB3C8A272C09F900C413FA /* SubscriptionsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */; };
 		63FB3C8B272C09F900C413FA /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */; };
 		63FB3C8C272C09F900C413FA /* SubscriptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */; };
@@ -238,6 +239,7 @@
 		6370A4002731795300EEFD84 /* TestSdk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSdk.entitlements; sourceTree = "<group>"; };
 		6370A4032732A9F100EEFD84 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		6370A4072732B6E100EEFD84 /* SubscriptionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCardModel.swift; sourceTree = "<group>"; };
+		63824774273525DA0016B1C3 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		63FB3C84272C09F900C413FA /* SubscriptionsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModule.swift; sourceTree = "<group>"; };
 		63FB3C85272C09F900C413FA /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
 		63FB3C86272C09F900C413FA /* SubscriptionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouter.swift; sourceTree = "<group>"; };
@@ -693,6 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				63FB3C91272C188400C413FA /* UIView+Extension.swift */,
+				63824774273525DA0016B1C3 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -939,6 +942,7 @@
 				02F9D13727246529003CD6BA /* Label.swift in Sources */,
 				0277B32A272ABA9B003EBD38 /* KeychainManager.swift in Sources */,
 				02F9D120272329EC003CD6BA /* MainAuthModule.swift in Sources */,
+				63824775273525DA0016B1C3 /* Date+Extension.swift in Sources */,
 				6370A4082732B6E100EEFD84 /* SubscriptionCardModel.swift in Sources */,
 				02F9D13027246310003CD6BA /* SignupViewController.swift in Sources */,
 				02F9D15727249108003CD6BA /* LoginRouter.swift in Sources */,
