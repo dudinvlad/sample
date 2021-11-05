@@ -8,6 +8,14 @@
 import Foundation
 import UserNotifications
 
+enum NotificationName: String {
+    case alarmWillPresent = "alarmWillPresent"
+
+    var notification: Notification.Name  {
+        return Notification.Name(rawValue: self.rawValue )
+    }
+}
+
 class NotificationManager {
 	private let notificationCenter = UNUserNotificationCenter.current()
 

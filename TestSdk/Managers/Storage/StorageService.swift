@@ -10,3 +10,7 @@ import Foundation
 protocol StorageService {
     func saveUserInfo(_ object: AMUser)
 }
+
+enum UserDefaultsKey: String {
+    case expiredPaymentDate = "expiredPaymentDate"
+}

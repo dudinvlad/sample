@@ -17,7 +17,7 @@ extension Module {
         // MARK: - Dependencies
 
         var output: ViewOutput!
-		private var alarmIsOn = false
+        private var alarmIsOn = false
 
         // MARK: - Variables
 
@@ -46,7 +46,8 @@ extension Module {
             $0.isHidden = true
         }
 
-        private lazy var startAction: UIAction = .init { _ in
+        private lazy var startAction: UIAction = .init { [weak self] _ in
+            guard let self = self else { return }
             if !self.alarmIsOn {
                 self.output.fireAlarm()
                 self.output.showChooseMusic()
@@ -72,7 +73,13 @@ extension Module {
 
             output?.didLoad()
             initialSetup()
-            UNUserNotificationCenter.current().delegate = self
+
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(logYes(note:)),
+                name: NotificationName.alarmWillPresent.notification,
+                object: nil
+            )
         }
 
         override func viewDidAppear(_ animated: Bool) {
@@ -131,6 +138,11 @@ private extension View {
 
         alarmTimeLabel.text = time
     }
+
+    @objc func logYes(note: NSNotification) {
+        configureUI()
+    }
+
 }
 
 extension View: Module.ViewInput {
@@ -140,16 +152,5 @@ extension View: Module.ViewInput {
 
     func alarmIsOnConfigure(with time: String) {
         configureUI(with: time)
-    }
-
-}
-
-
-
-extension View : UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        DispatchQueue.main.async { [weak self] in
-            self?.configureUI()
-        }
     }
 }

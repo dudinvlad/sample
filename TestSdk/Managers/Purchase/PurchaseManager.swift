@@ -150,7 +150,7 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                             expiredPaymentDate = now.addYear(n: 1)
                         }
 
-                        defaults.set(expiredPaymentDate, forKey: "expiredPaymentDate")
+                        defaults.set(expiredPaymentDate, forKey: UserDefaultsKey.expiredPaymentDate.rawValue)
                     }
 
                 case .failed:
@@ -159,7 +159,7 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                     if let complition = self.purchaseProductComplition {
                         complition(PurchasesError.disabled, self.productToPurchase, trans)
 
-                        defaults.set(nil, forKey: "expiredPaymentDate")
+                        defaults.set(nil, forKey: UserDefaultsKey.expiredPaymentDate.rawValue)
                     }
 
                 case .restored:

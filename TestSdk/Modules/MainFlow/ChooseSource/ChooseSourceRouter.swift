@@ -27,7 +27,7 @@ extension Module {
 
 extension Router: Module.RouterInput {
     func presentSubscriptionsModule() {
-        guard let expiredPaymentDate = defaults.object(forKey: "expiredPaymentDate") as? Date else {
+        guard let expiredPaymentDate = defaults.object(forKey: UserDefaultsKey.expiredPaymentDate.rawValue) as? Date else {
             viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
             return
         }

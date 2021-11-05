@@ -59,6 +59,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
+        NotificationCenter.default.post(
+            name: NotificationName.alarmWillPresent.notification,
+            object: nil,
+            userInfo: nil
+        )
+
         completionHandler(.banner)
     }
 
