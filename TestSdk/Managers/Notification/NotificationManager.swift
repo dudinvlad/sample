@@ -9,7 +9,8 @@ import Foundation
 import UserNotifications
 
 enum NotificationName: String {
-    case alarmWillPresent = "alarmWillPresent"
+    case alarmIsOn = "alarmIsOn"
+    case alarmIsOff = "alaemIsOff"
 
     var notification: Notification.Name  {
         return Notification.Name(rawValue: self.rawValue )

@@ -36,7 +36,7 @@ extension Presenter: Module.ViewOutput {
         notificationManager.getPendingNotifications(complition: { [weak self] time in
             guard let alarmTime = time else { return }
             DispatchQueue.main.async {
-                self?.view.alarmIsOnConfigure(with: alarmTime)
+                self?.view.configureOnAlarm(with: alarmTime)
             }
         })
     }
@@ -50,7 +50,7 @@ extension Presenter: Module.ViewOutput {
         notificationManager.scheduleNotification(dateTime: date)
     }
 
-    func stoplarm() {
+    func stopAlarm() {
         notificationManager.removeAllPendingNotificationRequests()
     }
 

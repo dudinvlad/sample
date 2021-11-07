@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import UserNotifications
 
 private typealias Module = AlarmModule
 private typealias View = Module.ViewController
@@ -51,11 +52,12 @@ extension Module {
             if !self.alarmIsOn {
                 self.output.fireAlarm()
                 self.output.showChooseMusic()
+                self.configureOnAlarm(with: self.getSelectedTIme())
             } else {
-                self.output.stoplarm()
+                self.output.stopAlarm()
+                self.configureOffAlarm()
             }
 
-            self.configureUI()
         }
 
         // MARK: - Lifecycle
@@ -73,13 +75,8 @@ extension Module {
 
             output?.didLoad()
             initialSetup()
+            UNUserNotificationCenter.current().delegate = self
 
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(logYes(note:)),
-                name: NotificationName.alarmWillPresent.notification,
-                object: nil
-            )
         }
     }
 }
@@ -109,28 +106,20 @@ private extension View {
         }
     }
 
-    func configureUI(with time: String? = nil) {
-        alarmIsOn.toggle()
+    func configureOffAlarm() {
+        alarmIsOn = false
 
-        alarmPicker.isHidden = alarmIsOn
-        alarmTimeLabel.isHidden = !alarmIsOn
-        startButton.setTitle(alarmIsOn == true ? "Stop" : "Start", for: .normal)
+        alarmPicker.isHidden = false
+        alarmTimeLabel.isHidden = true
+        startButton.setTitle("Start", for: .normal)
+    }
 
+    func getSelectedTIme() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
 
-        guard let _ = time else {
-            alarmTimeLabel.text = dateFormatter.string(from: alarmPicker.date)
-            return
-        }
-
-        alarmTimeLabel.text = time
+        return dateFormatter.string(from: alarmPicker.date)
     }
-
-    @objc func logYes(note: NSNotification) {
-        configureUI()
-    }
-
 }
 
 extension View: Module.ViewInput {
@@ -138,7 +127,26 @@ extension View: Module.ViewInput {
         return alarmPicker.date
     }
 
-    func alarmIsOnConfigure(with time: String) {
-        configureUI(with: time)
+    func configureOnAlarm(with time: String) {
+        alarmIsOn = true
+        alarmPicker.isHidden = true
+        alarmTimeLabel.isHidden = false
+        startButton.setTitle("Stop", for: .normal)
+        alarmTimeLabel.text = time
+    }
+}
+
+extension View: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        configureOffAlarm()
+        completionHandler(.banner)
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        configureOffAlarm()
     }
 }

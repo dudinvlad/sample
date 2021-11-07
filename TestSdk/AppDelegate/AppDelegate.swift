@@ -8,10 +8,11 @@
 import UIKit
 import IQKeyboardManagerSwift
 import Firebase
-import UserNotifications
+import Macaroni
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    @Injected var notificationManager: NotificationManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -21,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         FirebaseApp.configure()
 
-        registerForRemoteNotification()
-        UNUserNotificationCenter.current().delegate = self
+        registerNotification()
         return true
     }
 
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    func registerForRemoteNotification() {
+    func registerNotification() {
         let notificationCenter = UNUserNotificationCenter.current()
         let options: UNAuthorizationOptions = [.alert, .sound]
         notificationCenter.requestAuthorization(options: options) {
@@ -50,25 +50,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-    }
-}
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
-    ) {
-        NotificationCenter.default.post(
-            name: NotificationName.alarmWillPresent.notification,
-            object: nil,
-            userInfo: nil
-        )
-
-        completionHandler(.banner)
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
     }
 }
