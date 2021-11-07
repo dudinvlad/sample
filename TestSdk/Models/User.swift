@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-struct AMUser: Encodable {
+struct AMUser: Codable {
     let id: String
     var name: String
     var email: String

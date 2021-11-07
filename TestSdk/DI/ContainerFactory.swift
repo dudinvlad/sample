@@ -22,6 +22,7 @@ class RestContainerFactory {
     private lazy var aboutUsAssembly = AboutUsModule.ModuleAssembly()
     private lazy var chooseMusicAssembly = ChooseMusicModule.ModuleAssembly()
     private lazy var chooseSourceAssembly = ChooseSourceModule.ModuleAssembly()
+    private lazy var spotifyMusicAssembly = SpotifyMusicModule.ModuleAssembly()
 
     // MARK: - Subscriptions
 
@@ -37,6 +38,7 @@ class RestContainerFactory {
     private lazy var apiManager: ApiManager = ApiManager()
     private lazy var spotifyService: SpotifyService = RestSpotifyService(apiManager)
     private lazy var notificationManager: NotificationManager = NotificationManager()
+    private lazy var userDefaultsManager: UserDefaultsManager = UserDefaultsManager()
 
     func build() -> Container {
         let container = Container()
@@ -55,6 +57,7 @@ class RestContainerFactory {
         container.register { [chooseMusicAssembly]() -> ChooseMusicModule.ModuleAssemblying in chooseMusicAssembly }
         container.register { [chooseSourceAssembly]() -> ChooseSourceModule.ModuleAssemblying in chooseSourceAssembly }
         container.register { [subscriptionsAssembly]() -> SubscriptionsModule.ModuleAssemblying in subscriptionsAssembly }
+        container.register { [spotifyMusicAssembly]() -> SpotifyMusicModule.ModuleAssemblying in spotifyMusicAssembly }
 
         // MARK: - Services
 
@@ -65,6 +68,7 @@ class RestContainerFactory {
         container.register{ [purchaseManager]() -> PurchaseManager in purchaseManager}
         container.register{ [spotifyService]() -> SpotifyService in spotifyService}
         container.register{ [notificationManager]() -> NotificationManager in notificationManager}
+        container.register{ [userDefaultsManager]() -> UserDefaultsManager in userDefaultsManager}
 
         return container
     }

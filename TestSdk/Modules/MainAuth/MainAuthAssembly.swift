@@ -18,11 +18,13 @@ extension Module {
         @Injected var loginAssemblying: LoginModule.ModuleAssemblying!
         @Injected var mainFlowAssemblying: MainFlowModule.ModuleAssemblying!
         @Injected var keychainService: StoreProtocol!
+        @Injected var storageService: StorageService!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
             let presenter: Presenter   = .init(
-                keychainService: keychainService
+                keychainService: keychainService,
+                storageService: storageService
             )
             let interactor: Interactor = .init()
             let router: Router         = .init(

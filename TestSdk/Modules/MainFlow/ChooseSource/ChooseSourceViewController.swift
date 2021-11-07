@@ -18,7 +18,7 @@ extension Module {
         var output: ViewOutput!
 
         // MARK: - Variables
-
+    
         private lazy var containerStack: UIStackView = build {
             $0 <~ Style.Stack.defaultVerticalStack
         }
@@ -53,7 +53,8 @@ extension Module {
         }
 
         private lazy var spotifyAction: UIAction = .init { _ in
-            self.output.presentSubscriptionsModule()
+//            self.output.presentSubscriptionsModule()
+            self.output.requestSpotifyConnect()
         }
 
         private lazy var spacerView: UIView = .init()
@@ -140,4 +141,4 @@ private extension View {
     }
 }
 
-extension View: Module.ViewInput { }
+extension View: Module.ViewInput {}

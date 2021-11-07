@@ -19,20 +19,82 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        required init() { }
+        private let userDefaultsManager: UserDefaultsManager
+        private let notificationManager: NotificationManager
+        private let storageService: StorageService
+
+        required init(
+            userDefaultsManager: UserDefaultsManager,
+            notificationManager: NotificationManager,
+            storageService: StorageService
+        ) {
+            self.userDefaultsManager = userDefaultsManager
+            self.notificationManager = notificationManager
+            self.storageService = storageService
+        }
 
     }
 }
 
-private extension Presenter { }
+private extension Presenter {
+    func writeToDisk(_ item: SpotifyTrack) {
+        guard
+            let previewUrl = URL(string: item.previewUrl ?? ""),
+            let soundData = try? Data(contentsOf: previewUrl)
+        else { return }
+
+        if let directory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first {
+            let soundDirectory = directory.appendingPathComponent("Sounds")
+
+            do {
+                try FileManager.default.createDirectory(atPath: soundDirectory.path,
+                                                withIntermediateDirectories: true, attributes: nil)
+            } catch let error as NSError {
+                print("Error: \(error.localizedDescription)")
+            }
+
+            let destinationUrl = soundDirectory.appendingPathComponent("local_push.mp3")
+
+            DispatchQueue.global(qos: .background).async {
+                do {
+                    try soundData.write(to: destinationUrl, options: [.atomic])
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+
+    }
+}
 
 extension Presenter: Module.ViewOutput {
     func showChooseSource() {
         router.showChooseSourceModule()
     }
+
+    func saveSelectedTrack(_ item: SpotifyTrack) {
+        writeToDisk(item)
+        let date: Date = userDefaultsManager.get(UserDefaultsManager.Keys.selectedDate.rawValue) ?? Date()
+        notificationManager.scheduleNotification(dateTime: date)
+        router.dismissChooseFlow()
+    }
+
+    func requestSavedTracks() {
+        storageService.getTracks { [ weak self] savedTracks in
+            self?.view.update(with: savedTracks)
+        }
+    }
 }
 
 extension Presenter: Module.InteractorOutput {
+    func success(with tracks: [SpotifyTrack]) {
+        view.update(with: tracks)
+    }
+
+    func willAppear() {
+        requestSavedTracks()
+    }
+
     var controller: BaseViewInput? {
         view
     }

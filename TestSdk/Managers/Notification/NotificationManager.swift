@@ -12,18 +12,13 @@ class NotificationManager {
 	private let notificationCenter = UNUserNotificationCenter.current()
 
     func scheduleNotification(
-        soundName: String? = nil,
         dateTime: Date
     ) {
         let content = UNMutableNotificationContent()
 
         content.title = "Alarm"
         content.body = "Wake up!"
-        if let sound = soundName {
-            content.sound = UNNotificationSound.init(named:UNNotificationSoundName(rawValue: sound))
-        } else {
-            content.sound = .default
-        }
+        content.sound = UNNotificationSound(named:UNNotificationSoundName(rawValue: "local_push.mp3"))
 
         let dateComponents = Calendar.current.dateComponents([.hour,.minute], from: dateTime)
 

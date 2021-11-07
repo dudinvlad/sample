@@ -131,7 +131,7 @@ extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as? SubscriptionCardCollectionViewCell else { return UICollectionViewCell() }
 
         cell.setupContent(cardModel: dataSource[indexPath.row])
-        cell.configureStyle(woth: dataSource[indexPath.row].style == .selected ? .selected : .nonSelected)
+        cell.configureStyle(with: dataSource[indexPath.row].style == .selected ? .selected : .nonSelected)
 
         if dataSource[indexPath.row].style == .selected {
             selectedProduct = dataSource[indexPath.row].product
@@ -147,12 +147,12 @@ extension View: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for indexPath in collectionView.indexPathsForVisibleItems {
             if let cell = collectionView.cellForItem(at: indexPath) as? SubscriptionCardCollectionViewCell {
-                cell.configureStyle(woth: .nonSelected)
+                cell.configureStyle(with: .nonSelected)
             }
         }
 
         if let cell = collectionView.cellForItem(at: indexPath) as? SubscriptionCardCollectionViewCell {
-            cell.configureStyle(woth: .selected)
+            cell.configureStyle(with: .selected)
             selectedProduct = dataSource[indexPath.row].product
         }
     }

@@ -1,14 +1,14 @@
 //
-//  AlarmPresenter.swift
+//  SpotifyMusicPresenter.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 28.10.2021.
+//  Created Vladislav Dudin on 07.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 
-private typealias Module = AlarmModule
+private typealias Module = SpotifyMusicModule
 private typealias Presenter = Module.Presenter
 
 extension Module {
@@ -19,26 +19,23 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        private let userDefaultsManager: UserDefaultsManager
+        private let storageService: StorageService
 
-        required init(
-            userDefaultsManager: UserDefaultsManager)
-        {
-            self.userDefaultsManager = userDefaultsManager
+        required init(storageService: StorageService) {
+            self.storageService = storageService
         }
+
     }
 }
 
 private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
-    func showChooseMusic() {
-        router.presentChooseMusic()
-    }
+    func saveSelectedTrack(_ track: SpotifyTrack) {
+        guard track.previewUrl != nil else { view.showNetworking(error: "Sorry! This track is not available"); return }
 
-    func fireAlarm() {
-        let date = view.getSelectedTime()
-        userDefaultsManager.set(date, key: UserDefaultsManager.Keys.selectedDate.rawValue)
+        storageService.saveTracks([track])
+        router.showRootMusicScreen()
     }
 }
 

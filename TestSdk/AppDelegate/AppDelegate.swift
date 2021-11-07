@@ -61,5 +61,4 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     ) {
         completionHandler(.banner)
     }
-
 }

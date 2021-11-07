@@ -17,9 +17,14 @@ extension Module {
 
         weak var viewController: UIViewController!
         private let subscriptionsModule: SubscriptionsModule.ModuleAssemblying
+        private let spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying
 
-        required init(subscriptionsModule: SubscriptionsModule.ModuleAssemblying) {
+        required init(
+            subscriptionsModule: SubscriptionsModule.ModuleAssemblying,
+            spotifyMusic: SpotifyMusicModule.ModuleAssemblying
+        ) {
             self.subscriptionsModule = subscriptionsModule
+            self.spotifyMusicAssemblying = spotifyMusic
         }
     }
 }
@@ -27,5 +32,9 @@ extension Module {
 extension Router: Module.RouterInput {
     func presentSubscriptionsModule() {
         viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
+    }
+
+    func showSpotifyMusic(_ tracks: [SpotifyTrack]) {
+        viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(tracks), animated: true)
     }
 }

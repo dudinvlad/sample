@@ -49,10 +49,10 @@ class SubscriptionCardCollectionViewCell: UICollectionViewCell {
         periodLabel.text = cardModel.product.localizedTitle
         priceLabel.text = "\(cardModel.product.price.description) USD"
         perLabel.text = cardModel.product.localizedDescription
-        configureStyle(woth: cardModel.style)
+        configureStyle(with: cardModel.style)
     }
 
-    func configureStyle(woth style: SubscriptionCardStyle) {
+    func configureStyle(with style: SubscriptionCardStyle) {
         switch style {
             case .selected:
                 checkImageView.image = Style.Image.check

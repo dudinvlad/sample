@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 private typealias Module = ChooseSourceModule
 private typealias Presenter = Module.Presenter
@@ -20,9 +21,20 @@ extension Module {
         var router: RouterInput!
 
         private let spotifyManager: SpotifyManager
+        private let notificationManager: NotificationManager
+        private let userDefaultsManager: UserDefaultsManager
+        private let storageService: StorageService
 
-        required init(with spotify: SpotifyManager) {
+        required init(
+            with spotify: SpotifyManager,
+            notificationManager: NotificationManager,
+            userDefaultsManager: UserDefaultsManager,
+            storageService: StorageService
+        ) {
             self.spotifyManager = spotify
+            self.notificationManager = notificationManager
+            self.userDefaultsManager = userDefaultsManager
+            self.storageService = storageService
         }
 
     }
@@ -40,17 +52,24 @@ extension Presenter: Module.ViewOutput {
             self?.interactor.exchangeToken(with: code)
         }
     }
+
+//    func saveSelectedTrack(_ item: SpotifyTrack) {
+//        let date: Date = userDefaultsManager.get(UserDefaultsManager.Keys.selectedDate.rawValue) ?? Date()
+//        userDefaultsManager.set(item.uri, key: UserDefaultsManager.Keys.selectedUri.rawValue)
+//        notificationManager.scheduleNotification(dateTime: date)
+//    }
 }
 
 extension Presenter: Module.InteractorOutput {
     func spotifySuccess(with accessToken: String) {
         spotifyManager.appRemote.connectionParameters.accessToken = accessToken
+        spotifyManager.appRemote.connect()
         KeychainStore().set(accessToken, key: "spotify_access_token")
         interactor.fetchSavedTracks()
     }
 
     func success(with tracks: [SpotifyTrack]) {
-        print(tracks)
+        router.showSpotifyMusic(tracks)
     }
 
     var controller: BaseViewInput? {
