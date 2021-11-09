@@ -24,7 +24,7 @@ struct ChooseMusicModule {
 // MARK: - Assembly
 
 protocol ChooseMusicAssemblyProtocol {
-    func assemble() -> UIViewController
+    func assemble(with complition: (() -> Void)?) -> UIViewController
 }
 
 // MARK: - View
@@ -36,6 +36,7 @@ protocol ChooseMusicViewOutputProtocol: BaseViewOutput {
     func showChooseSource()
     func requestSavedTracks()
     func saveSelectedTrack(_ item: SpotifyTrack)
+    func trackDidSelect()
 }
 
 // MARK: - Interactor

@@ -505,11 +505,11 @@
 			isa = PBXGroup;
 			children = (
 				028F0D872732E81B00E5E5D4 /* ChooseMusicModule.swift */,
-				028F0D882732E81B00E5E5D4 /* ChooseMusicPresenter.swift */,
-				028F0D892732E81C00E5E5D4 /* ChooseMusicRouter.swift */,
-				028F0D8A2732E81C00E5E5D4 /* ChooseMusicViewController.swift */,
 				028F0D8B2732E81C00E5E5D4 /* ChooseMusicAssembly.swift */,
+				028F0D8A2732E81C00E5E5D4 /* ChooseMusicViewController.swift */,
+				028F0D882732E81B00E5E5D4 /* ChooseMusicPresenter.swift */,
 				028F0D8C2732E81C00E5E5D4 /* ChooseMusicInteractor.swift */,
+				028F0D892732E81C00E5E5D4 /* ChooseMusicRouter.swift */,
 			);
 			path = ChooseMusic;
 			sourceTree = "<group>";

@@ -52,7 +52,7 @@ protocol AlarmInteractorOutputProtocol: BaseInteractorOutput {
 // MARK: - Router
 
 protocol AlarmRouterInputProtocol {
-    func presentChooseMusic()
+    func presentChooseMusic(didSelectTrackHandler:(() -> Void)?)
     func presentSubscriptionFlow()
     func presentAuthFlow()
 }

@@ -108,6 +108,7 @@ extension Module {
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             self.output.saveSelectedTrack(dataSource[indexPath.row])
+            self.output.trackDidSelect()
         }
     }
 }
