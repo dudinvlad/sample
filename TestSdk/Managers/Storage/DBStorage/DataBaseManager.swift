@@ -29,6 +29,8 @@ struct DataBaseManager: StorageService {
 
     func getCurrentUser(completion: @escaping (AMUser?) -> Void) {
         let currentUserId: String = KeychainStore().get(KeychainStore.KeychainKeys.userUid.rawValue) ?? ""
+        guard !currentUserId.isEmpty else { return }
+        
         dataBaseReference.child(currentUserId).getData { error, snapshot in
             guard let userDict = snapshot.value as? [String: Any] else { return }
 

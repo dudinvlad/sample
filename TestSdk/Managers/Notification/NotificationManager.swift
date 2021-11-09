@@ -8,6 +8,15 @@
 import Foundation
 import UserNotifications
 
+enum NotificationName: String {
+    case alarmIsOn = "alarmIsOn"
+    case alarmIsOff = "alaemIsOff"
+
+    var notification: Notification.Name  {
+        return Notification.Name(rawValue: self.rawValue )
+    }
+}
+
 class NotificationManager {
 	private let notificationCenter = UNUserNotificationCenter.current()
 
@@ -35,5 +44,22 @@ class NotificationManager {
             }
         }
 
+    }
+
+    func removeAllPendingNotificationRequests() {
+        notificationCenter.removeAllPendingNotificationRequests()
+    }
+
+    func getPendingNotifications(complition: ((String?) -> ())?) {
+        notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                guard let trigger = request.trigger as? UNCalendarNotificationTrigger, let nextTriggerDate = trigger.nextTriggerDate() else { return }
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "h:mm a"
+                complition?(dateFormatter.string(from: nextTriggerDate)
+)
+            }
+        })
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 private typealias Module = AlarmModule
 private typealias Presenter = Module.Presenter
@@ -20,11 +21,18 @@ extension Module {
         var router: RouterInput!
 
         private let userDefaultsManager: UserDefaultsManager
+        private let keychainManager: StoreProtocol
+        private let notificationManager: NotificationManager
 
         required init(
-            userDefaultsManager: UserDefaultsManager)
+            userDefaultsManager: UserDefaultsManager,
+            notificationManager: NotificationManager,
+            keychainManager: StoreProtocol
+        )
         {
             self.userDefaultsManager = userDefaultsManager
+            self.notificationManager = notificationManager
+            self.keychainManager = keychainManager
         }
     }
 }
@@ -32,6 +40,25 @@ extension Module {
 private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
+    func didLoad() {
+        notificationManager.getPendingNotifications(complition: { [weak self] time in
+            guard let alarmTime = time else { return }
+            
+            DispatchQueue.main.async {
+                self?.view.configureOnAlarm(with: alarmTime)
+            }
+        })
+    }
+
+    func logout() {
+        keychainManager.clear()
+        router.presentAuthFlow()
+    }
+
+    func willAppear() {
+        router.presentSubscriptionFlow()
+    }
+
     func showChooseMusic() {
         router.presentChooseMusic()
     }
@@ -40,6 +67,11 @@ extension Presenter: Module.ViewOutput {
         let date = view.getSelectedTime()
         userDefaultsManager.set(date, key: UserDefaultsManager.Keys.selectedDate.rawValue)
     }
+
+    func stopAlarm() {
+        notificationManager.removeAllPendingNotificationRequests()
+    }
+
 }
 
 extension Presenter: Module.InteractorOutput {

@@ -40,9 +40,17 @@ class PurchaseManager: NSObject {
 
     fileprivate var productToPurchase: SKProduct?
     fileprivate var purchaseProductComplition: ((PurchasesError, SKProduct?, SKPaymentTransaction?) -> Void)?
+    fileprivate let defaults = UserDefaults.standard
+    private let userDefaultsManager: UserDefaultsManager
 
     // MARK: - Public
     var isLogEnabled: Bool = true
+
+    // MARK: - Init
+
+    init(_ userDefaults: UserDefaultsManager) {
+        self.userDefaultsManager = userDefaults
+    }
 
     // MARK: - Methods
     // MARK: - Public
@@ -133,6 +141,23 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     if let complition = self.purchaseProductComplition {
                         complition(PurchasesError.purchased, self.productToPurchase, trans)
+
+                        let now = Date()
+                        var expiredPaymentDate: Date?
+
+                        if productID.contains(".weekly") {
+                            expiredPaymentDate = now.addDays(n: 7)
+                        }
+
+                        if productID.contains(".monthly") {
+                            expiredPaymentDate = now.addMonth(n: 1)
+                        }
+
+                        if productID.contains(".yearly") {
+                            expiredPaymentDate = now.addYear(n: 1)
+                        }
+
+                        userDefaultsManager.set(expiredPaymentDate, key: UserDefaultsManager.Keys.expiredPaymentDate.rawValue)
                     }
 
                 case .failed:
@@ -140,6 +165,8 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     if let complition = self.purchaseProductComplition {
                         complition(PurchasesError.disabled, self.productToPurchase, trans)
+
+                        userDefaultsManager.delete(by: UserDefaultsManager.Keys.expiredPaymentDate.rawValue)
                     }
 
                 case .restored:

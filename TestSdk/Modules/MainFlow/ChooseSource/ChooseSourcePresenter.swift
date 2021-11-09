@@ -43,21 +43,11 @@ extension Module {
 private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
-    func presentSubscriptionsModule() {
-        router.presentSubscriptionsModule()
-    }
-
     func requestSpotifyConnect() {
         spotifyManager.connect { [weak self] code in
             self?.interactor.exchangeToken(with: code)
         }
     }
-
-//    func saveSelectedTrack(_ item: SpotifyTrack) {
-//        let date: Date = userDefaultsManager.get(UserDefaultsManager.Keys.selectedDate.rawValue) ?? Date()
-//        userDefaultsManager.set(item.uri, key: UserDefaultsManager.Keys.selectedUri.rawValue)
-//        notificationManager.scheduleNotification(dateTime: date)
-//    }
 }
 
 extension Presenter: Module.InteractorOutput {

@@ -27,7 +27,6 @@ protocol ChooseSourceAssemblyProtocol {
 protocol ChooseSourceViewInputProtocol: BaseViewInput {}
 
 protocol ChooseSourceViewOutputProtocol: BaseViewOutput {
-    func presentSubscriptionsModule()
     func requestSpotifyConnect()
 }
 
@@ -47,6 +46,5 @@ protocol ChooseSourceInteractorOutputProtocol: BaseInteractorOutput {
 // MARK: - Router
 
 protocol ChooseSourceRouterInputProtocol {
-    func presentSubscriptionsModule()
     func showSpotifyMusic(_ tracks: [SpotifyTrack])
 }

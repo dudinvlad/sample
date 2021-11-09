@@ -16,7 +16,6 @@ extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var spotifyManager: SpotifyManager!
         @Injected var spotifyService: SpotifyService!
-        @Injected var subscriptionsModule: SubscriptionsModule.ModuleAssemblying!
         @Injected var notificationManager: NotificationManager!
         @Injected var userDefaultsManager: UserDefaultsManager!
         @Injected var storageService: StorageService!
@@ -34,8 +33,8 @@ extension Module {
                 spotifyService: spotifyService
             )
             let router: Router         = .init(
-                subscriptionsModule: subscriptionsModule,
-                spotifyMusic: spotifyMusicAssemblying
+                spotifyMusic: spotifyMusicAssemblying,
+                userDefaultsManager: userDefaultsManager
             )
 
             viewController.output = presenter

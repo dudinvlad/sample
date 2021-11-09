@@ -10,6 +10,7 @@ import KeychainAccess
 protocol StoreProtocol: AnyObject {
     func get<T: Decodable>(_ key: String) -> T?
     func set<T: Encodable>(_ value: T?, key: String)
+    func delete(by key: String)
     func clear()
 }
 
@@ -39,6 +40,14 @@ class KeychainStore: StoreProtocol {
             try keychain.set(data, key: key)
         } catch let error {
             debugPrint("‼️ Error set to 🔑: \(error.localizedDescription)")
+        }
+    }
+
+    func delete(by key: String) {
+        do {
+            try keychain.remove(key)
+        } catch let error {
+            debugPrint("‼️ Error delete: \(error.localizedDescription)")
         }
     }
 

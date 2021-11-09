@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class ChooseSourceTableViewCell: UITableViewCell {
     // MARK: - Variables
@@ -45,13 +44,29 @@ class ChooseSourceTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        iconImageView.image = nil
+    }
+
     // MARK: - Public
 
     func setup(with item: SpotifyTrack) {
         titleLabel.text = item.artists.first?.name
         descriptionLabel.text = item.name
         let smallImage = item.album.images.first
-        iconImageView.kf.setImage(with: URL(string: smallImage?.url ?? ""))
+        guard
+            let imageUrl = URL(string: smallImage?.url ?? "")
+        else { return }
+
+        DispatchQueue.global(qos: .background).async {
+            if let imageData = try? Data(contentsOf: imageUrl) {
+                DispatchQueue.main.async {
+                    self.iconImageView.image = UIImage(data: imageData)
+                }
+            }
+        }
     }
 
 

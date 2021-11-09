@@ -34,7 +34,7 @@ class RestContainerFactory {
     private lazy var storageService: StorageService = DataBaseManager()
     private lazy var keychainStorage: StoreProtocol = KeychainStore()
     private lazy var spotifyManager: SpotifyManager = SpotifyManager()
-    private lazy var purchaseManager: PurchaseManager = PurchaseManager()
+    private lazy var purchaseManager: PurchaseManager = PurchaseManager(userDefaultsManager)
     private lazy var apiManager: ApiManager = ApiManager()
     private lazy var spotifyService: SpotifyService = RestSpotifyService(apiManager)
     private lazy var notificationManager: NotificationManager = NotificationManager()

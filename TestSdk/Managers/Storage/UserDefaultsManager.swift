@@ -12,6 +12,7 @@ class UserDefaultsManager: StoreProtocol {
         case selectedDate
         case selectedUri
         case deviceId
+        case expiredPaymentDate
     }
     private let userDefaults = UserDefaults.standard
 
@@ -22,6 +23,10 @@ class UserDefaultsManager: StoreProtocol {
     func get<T>(_ key: String) -> T? where T : Decodable {
         let value = userDefaults.value(forKey: key) as? T
         return value
+    }
+
+    func delete(by key: String) {
+        userDefaults.removeObject(forKey: key)
     }
 
     func clear() {
