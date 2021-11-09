@@ -396,11 +396,11 @@
 			isa = PBXGroup;
 			children = (
 				02578E922721F0FB0006AA7C /* WelcomeModule.swift */,
-				02578E932721F0FB0006AA7C /* WelcomePresenter.swift */,
-				02578E942721F0FB0006AA7C /* WelcomeRouter.swift */,
-				02578E952721F0FB0006AA7C /* WelcomeViewController.swift */,
 				02578E962721F0FB0006AA7C /* WelcomeAssembly.swift */,
+				02578E952721F0FB0006AA7C /* WelcomeViewController.swift */,
+				02578E932721F0FB0006AA7C /* WelcomePresenter.swift */,
 				02578E972721F0FC0006AA7C /* WelcomeInteractor.swift */,
+				02578E942721F0FB0006AA7C /* WelcomeRouter.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -507,11 +507,11 @@
 			isa = PBXGroup;
 			children = (
 				028F0D872732E81B00E5E5D4 /* ChooseMusicModule.swift */,
-				028F0D882732E81B00E5E5D4 /* ChooseMusicPresenter.swift */,
-				028F0D892732E81C00E5E5D4 /* ChooseMusicRouter.swift */,
-				028F0D8A2732E81C00E5E5D4 /* ChooseMusicViewController.swift */,
 				028F0D8B2732E81C00E5E5D4 /* ChooseMusicAssembly.swift */,
+				028F0D8A2732E81C00E5E5D4 /* ChooseMusicViewController.swift */,
+				028F0D882732E81B00E5E5D4 /* ChooseMusicPresenter.swift */,
 				028F0D8C2732E81C00E5E5D4 /* ChooseMusicInteractor.swift */,
+				028F0D892732E81C00E5E5D4 /* ChooseMusicRouter.swift */,
 			);
 			path = ChooseMusic;
 			sourceTree = "<group>";

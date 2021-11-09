@@ -72,9 +72,7 @@ extension Module {
         private lazy var startAction: UIAction = .init { [weak self] _ in
             guard let self = self else { return }
             if !self.alarmIsOn {
-                self.output.fireAlarm()
                 self.output.showChooseMusic()
-                self.configureOnAlarm(with: self.getSelectedTIme())
             } else {
                 self.output.stopAlarm()
                 self.configureOffAlarm()

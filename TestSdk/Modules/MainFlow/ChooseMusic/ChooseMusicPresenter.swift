@@ -22,15 +22,18 @@ extension Module {
         private let userDefaultsManager: UserDefaultsManager
         private let notificationManager: NotificationManager
         private let storageService: StorageService
+        private var trackDidSelectHandler: (() -> Void)?
 
         required init(
             userDefaultsManager: UserDefaultsManager,
             notificationManager: NotificationManager,
-            storageService: StorageService
+            storageService: StorageService,
+            trackDidSelectHandler: (() -> Void)?
         ) {
             self.userDefaultsManager = userDefaultsManager
             self.notificationManager = notificationManager
             self.storageService = storageService
+            self.trackDidSelectHandler = trackDidSelectHandler
         }
 
     }
@@ -83,6 +86,10 @@ extension Presenter: Module.ViewOutput {
         storageService.getTracks { [ weak self] savedTracks in
             self?.view.update(with: savedTracks)
         }
+    }
+
+    func trackDidSelect() {
+        trackDidSelectHandler?()
     }
 }
 

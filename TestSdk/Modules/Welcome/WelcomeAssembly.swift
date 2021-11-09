@@ -15,10 +15,12 @@ private typealias View = Module.ViewController
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var mainAuthAssemblying: MainAuthModule.ModuleAssemblying!
+        @Injected var userDefaultsManager: UserDefaultsManager!
+        @Injected var keychainService: StoreProtocol!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init()
+            let presenter: Presenter   = .init(with: userDefaultsManager, keychainStore: keychainService)
             let interactor: Interactor = .init()
             let router: Router         = .init(
                 mainAuth: mainAuthAssemblying

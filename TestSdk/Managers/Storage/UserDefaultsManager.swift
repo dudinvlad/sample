@@ -13,7 +13,9 @@ class UserDefaultsManager: StoreProtocol {
         case selectedUri
         case deviceId
         case expiredPaymentDate
+        case userDefaultsIsClean
     }
+
     private let userDefaults = UserDefaults.standard
 
     func set<T>(_ value: T?, key: String) where T : Encodable {
