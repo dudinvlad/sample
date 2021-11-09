@@ -15,10 +15,17 @@ private typealias View = Module.ViewController
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var chooseSourceModule: ChooseSourceModule.ModuleAssemblying!
+        @Injected var userDefaultsManager: UserDefaultsManager!
+        @Injected var notificationManager: NotificationManager!
+        @Injected var storageService: StorageService!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init()
+            let presenter: Presenter   = .init(
+                userDefaultsManager: userDefaultsManager,
+                notificationManager: notificationManager,
+                storageService: storageService
+            )
             let interactor: Interactor = .init()
             let router: Router         = .init(
                 chooseSourceModule: chooseSourceModule

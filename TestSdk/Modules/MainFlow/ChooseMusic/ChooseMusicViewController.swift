@@ -12,7 +12,7 @@ private typealias Module = ChooseMusicModule
 private typealias View = Module.ViewController
 
 extension Module {
-    final class ViewController: UIViewController {
+    final class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // MARK: - Dependencies
 
         // MARK: - Variables
@@ -46,6 +46,17 @@ extension Module {
             $0.addAction(spotifyAction, for: .touchUpInside)
         }
 
+        private var dataSource: [SpotifyTrack] = .init()
+
+        private lazy var trackTableView: UITableView = build {
+            $0.register(ChooseSourceTableViewCell.self, forCellReuseIdentifier: String(describing: ChooseSourceTableViewCell.self))
+            $0.dataSource = self
+            $0.delegate = self
+            $0.backgroundColor = .clear
+            $0.separatorStyle = .none
+            $0.isHidden = true
+        }
+
         private lazy var spotifyAction: UIAction = .init { _ in
             self.output.showChooseSource()
         }
@@ -70,16 +81,33 @@ extension Module {
             initialSetup()
         }
 
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
 
-            output?.didAppear()
+            output.willAppear()
         }
 
-        override func viewDidDisappear(_ animated: Bool) {
-            super.viewDidDisappear(animated)
+        // MARK: - UITableViewDataSource, UITableViewDelegate
 
-            output?.didDisappear()
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            dataSource.count
+        }
+
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChooseSourceTableViewCell.self)) as? ChooseSourceTableViewCell {
+
+                cell.setup(with: dataSource[indexPath.row])
+                return cell
+            }
+            return UITableViewCell()
+        }
+
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 74
+        }
+
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            self.output.saveSelectedTrack(dataSource[indexPath.row])
         }
     }
 }
@@ -88,11 +116,13 @@ private extension View {
     func initialSetup() {
         view.backgroundColor = Style.Color.black
         view.addSubview(containerStack)
+//        view.addSubview(trackTableView)
 
         containerStack.addArrangedSubview(titleLabel)
         containerStack.addArrangedSubview(descriptionLabel)
         containerStack.addArrangedSubview(spotifyButton)
         containerStack.addArrangedSubview(spacerView)
+        containerStack.addArrangedSubview(trackTableView)
 
         containerStack.snp.makeConstraints { make in
             make.topMargin.equalToSuperview().offset(30)
@@ -105,8 +135,22 @@ private extension View {
             make.height.equalTo(60)
         }
 
+//        trackTableView.snp.makeConstraints { make in
+//            make.topMargin.equalToSuperview().offset(30)
+//            make.leading.equalToSuperview().offset(20)
+//            make.trailing.equalToSuperview().offset(-20)
+//            make.bottom.equalToSuperview()
+//        }
+
         title = "Choose Music"
     }
 }
 
-extension View: Module.ViewInput { }
+extension View: Module.ViewInput {
+    func update(with tracks: [SpotifyTrack]) {
+        dataSource = tracks
+        trackTableView.isHidden = dataSource.isEmpty
+        spacerView.isHidden = !dataSource.isEmpty
+        trackTableView.reloadData()
+    }
+}

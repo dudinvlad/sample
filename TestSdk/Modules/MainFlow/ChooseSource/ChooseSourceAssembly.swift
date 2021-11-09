@@ -16,18 +16,25 @@ extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var spotifyManager: SpotifyManager!
         @Injected var spotifyService: SpotifyService!
-        @Injected var subscriptionsModule: SubscriptionsModule.ModuleAssemblying!
+        @Injected var notificationManager: NotificationManager!
+        @Injected var userDefaultsManager: UserDefaultsManager!
+        @Injected var storageService: StorageService!
+        @Injected var spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
             let presenter: Presenter   = .init(
-                with: spotifyManager
+                with: spotifyManager,
+                notificationManager: notificationManager,
+                userDefaultsManager: userDefaultsManager,
+                storageService: storageService
             )
             let interactor: Interactor = .init(
                 spotifyService: spotifyService
             )
             let router: Router         = .init(
-                subscriptionsModule: subscriptionsModule
+                spotifyMusic: spotifyMusicAssemblying,
+                userDefaultsManager: userDefaultsManager
             )
 
             viewController.output = presenter

@@ -20,6 +20,7 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     lazy var sessionManager: SPTSessionManager = {
         let manager = SPTSessionManager(configuration: configuration, delegate: self)
+        manager.delegate = self
         return manager
     }()
 
@@ -41,7 +42,7 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     func connect(_ completion: @escaping (String) -> Void) {
         self.spotifyCodeCallBack = completion
-        sessionManager.initiateSession(with: [.playlistReadPrivate, .userLibraryRead], options: .clientOnly)
+        sessionManager.initiateSession(with: [.streaming, .userModifyPlaybackState, .playlistReadPrivate, .userLibraryRead], options: .clientOnly)
     }
 
     func swapAccessToken(_ code: String) {
@@ -50,7 +51,7 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     // MARK: - SPTAppRemoteDelegate
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-        print("appRemoteDidEstablishConnection")
+        print(appRemote)
     }
 
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
@@ -73,6 +74,6 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         appRemote.connectionParameters.accessToken = session.accessToken
-//        appRemote.connect()
+        appRemote.connect()
     }
 }

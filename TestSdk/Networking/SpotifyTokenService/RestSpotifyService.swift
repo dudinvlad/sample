@@ -34,7 +34,26 @@ struct RestSpotifyService: SpotifyService {
             guard let responseItems = response?.items else { return }
 
             let responseTracks = responseItems.compactMap { $0.track }
-            completion(responseTracks, nil)
+            let tracksWithPreview = responseTracks.filter { $0.previewUrl != nil }
+            completion(tracksWithPreview, nil)
+        }
+    }
+
+    func getAvailableDevices(_ completion: @escaping ([SpotifyDevice], ApiManager.NetworkError?) -> Void) {
+        let request = SpotifyEndpoints.devices
+
+        apiManager.request(endoint: request) { (response: SpotifyDevicesResponse?, error) in
+            guard let responseItems = response?.devices else { return }
+
+            completion(responseItems, nil)
+        }
+    }
+
+    func startPlayback(with deviceId: String, uri: String) {
+        let request = SpotifyEndpoints.startPlayer(deviceId, uri)
+
+        apiManager.request(endoint: request) { (response: String?, error) in
+            print(error)
         }
     }
 }

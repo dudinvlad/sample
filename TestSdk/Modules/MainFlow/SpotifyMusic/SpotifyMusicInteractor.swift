@@ -1,14 +1,14 @@
 //
-//  ChooseMusicInteractor.swift
+//  SpotifyMusicInteractor.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 03.11.2021.
+//  Created Vladislav Dudin on 07.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 
-private typealias Module = ChooseMusicModule
+private typealias Module = SpotifyMusicModule
 private typealias Interactor = Module.Interactor
 
 extension Module {
@@ -22,7 +22,4 @@ extension Module {
     }
 }
 
-extension Interactor: Module.InteractorInput {
-    func fetchSavedTracks() {
-    }
-}
+extension Interactor: Module.InteractorInput { }

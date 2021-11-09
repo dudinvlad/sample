@@ -31,6 +31,7 @@ class ApiManager {
             endoint.url,
             method: endoint.httpMethod,
             parameters: endoint.params,
+            encoding: endoint.encoding,
             headers: endoint.headers
         ).responseData { dataResponse in
             self.handleResponse(dataResponse, completion: completion)

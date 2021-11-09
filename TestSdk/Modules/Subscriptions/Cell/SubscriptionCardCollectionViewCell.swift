@@ -8,7 +8,6 @@
 import UIKit
 
 class SubscriptionCardCollectionViewCell: UICollectionViewCell {
-    //    private var cardModel: SubscriptionCardModel?
 
     private lazy var checkImageView: UIImageView = build {
         $0.image = Style.Image.emplyCircle
@@ -49,10 +48,10 @@ class SubscriptionCardCollectionViewCell: UICollectionViewCell {
         periodLabel.text = cardModel.product.localizedTitle
         priceLabel.text = "\(cardModel.product.price.description) USD"
         perLabel.text = cardModel.product.localizedDescription
-        configureStyle(woth: cardModel.style)
+        configureStyle(with: cardModel.style)
     }
 
-    func configureStyle(woth style: SubscriptionCardStyle) {
+    func configureStyle(with style: SubscriptionCardStyle) {
         switch style {
             case .selected:
                 checkImageView.image = Style.Image.check
@@ -77,6 +76,12 @@ private extension SubscriptionCardCollectionViewCell {
         addSubview(perLabel)
 
         makeConstraints()
+
+        isSkeletonable = true
+//        checkImageView.isSkeletonable = true
+//        periodLabel.isSkeletonable = true
+//        priceLabel.isSkeletonable = true
+//        perLabel.isSkeletonable = true
     }
 
     func makeConstraints() {

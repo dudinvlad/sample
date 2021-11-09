@@ -13,5 +13,11 @@ protocol SpotifyService {
         _ completion: @escaping (String, ApiManager.NetworkError?) -> Void
     )
 
-    func loadSavedTracks(_ completion: @escaping ([SpotifyTrack], ApiManager.NetworkError?) -> Void)
+    func loadSavedTracks(
+        _ completion: @escaping ([SpotifyTrack], ApiManager.NetworkError?) -> Void
+    )
+
+    func getAvailableDevices(_ completion: @escaping ([SpotifyDevice], ApiManager.NetworkError?) -> Void)
+
+    func startPlayback(with deviceId: String, uri: String)
 }

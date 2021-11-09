@@ -38,4 +38,8 @@ extension Interactor: Module.InteractorInput {
             self?.output.success(with: response)
         }
     }
+
+    func startPlayback(with device: String, uri: String) {
+        spotifyService.startPlayback(with: device, uri: uri)
+    }
 }

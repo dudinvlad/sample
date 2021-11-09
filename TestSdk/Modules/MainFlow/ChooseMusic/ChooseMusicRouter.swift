@@ -30,4 +30,8 @@ extension Router: Module.RouterInput {
     func showChooseSourceModule() {
         viewController.navigationController?.pushViewController(chooseSourceModule.assemble(), animated: true)
     }
+
+    func dismissChooseFlow() {
+        viewController.dismiss(animated: true, completion: nil)
+    }
 }

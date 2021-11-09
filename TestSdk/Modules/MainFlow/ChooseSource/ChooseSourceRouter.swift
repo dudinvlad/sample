@@ -16,16 +16,21 @@ extension Module {
         // MARK: - Dependencies
 
         weak var viewController: UIViewController!
-        private let subscriptionsModule: SubscriptionsModule.ModuleAssemblying
+        private let spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying
+        private let userDefaultsManager: UserDefaultsManager
 
-        required init(subscriptionsModule: SubscriptionsModule.ModuleAssemblying) {
-            self.subscriptionsModule = subscriptionsModule
+        required init(
+            spotifyMusic: SpotifyMusicModule.ModuleAssemblying,
+            userDefaultsManager: UserDefaultsManager
+        ) {
+            self.spotifyMusicAssemblying = spotifyMusic
+            self.userDefaultsManager = userDefaultsManager
         }
     }
 }
 
 extension Router: Module.RouterInput {
-    func presentSubscriptionsModule() {
-        viewController.present(subscriptionsModule.assemble(), animated: true, completion: nil)
+    func showSpotifyMusic(_ tracks: [SpotifyTrack]) {
+        viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(tracks), animated: true)
     }
 }

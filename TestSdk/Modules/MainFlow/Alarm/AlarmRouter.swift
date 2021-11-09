@@ -18,11 +18,18 @@ extension Module {
         weak var viewController: UIViewController!
         
         private let chooseMusicAssemblying: ChooseMusicModule.ModuleAssemblying
+        private let subscriptionsAssemblying: SubscriptionsModule.ModuleAssemblying
+        private let mainAuthAssemblying: MainAuthModule.ModuleAssemblying
 
         required init(
-            chooseMusic: ChooseMusicModule.ModuleAssemblying
+            chooseMusic: ChooseMusicModule.ModuleAssemblying,
+            subscription: SubscriptionsModule.ModuleAssemblying,
+            mainAuth: MainAuthModule.ModuleAssemblying
+
         ) {
             self.chooseMusicAssemblying = chooseMusic
+            self.subscriptionsAssemblying = subscription
+            self.mainAuthAssemblying = mainAuth
         }
     }
 }
@@ -31,5 +38,13 @@ extension Router: Module.RouterInput {
     func presentChooseMusic() {
         let naviggationController = UINavigationController(rootViewController: chooseMusicAssemblying.assemble())
         viewController.present(naviggationController, animated: true)
+    }
+
+    func presentSubscriptionFlow() {
+        viewController.present(subscriptionsAssemblying.assemble(), animated: true, completion: nil)
+    }
+
+    func presentAuthFlow() {
+        UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController = UINavigationController(rootViewController: mainAuthAssemblying.assemble())
     }
 }

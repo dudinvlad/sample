@@ -30,11 +30,14 @@ protocol AlarmAssemblyProtocol {
 // MARK: - View
 protocol AlarmViewInputProtocol: BaseViewInput {
     func getSelectedTime() -> Date
+    func configureOnAlarm(with time: String)
 }
 
 protocol AlarmViewOutputProtocol: BaseViewOutput {
     func showChooseMusic()
     func fireAlarm()
+    func stopAlarm()
+    func logout()
 }
 
 // MARK: - Interactor
@@ -49,4 +52,6 @@ protocol AlarmInteractorOutputProtocol: BaseInteractorOutput {
 
 protocol AlarmRouterInputProtocol {
     func presentChooseMusic()
+    func presentSubscriptionFlow()
+    func presentAuthFlow()
 }

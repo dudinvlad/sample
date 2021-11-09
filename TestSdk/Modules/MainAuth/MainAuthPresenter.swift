@@ -20,11 +20,14 @@ extension Module {
         var router: RouterInput!
 
         private let keychainService: StoreProtocol
+        private let storageService: StorageService
 
         required init(
-            keychainService: StoreProtocol
+            keychainService: StoreProtocol,
+            storageService: StorageService
         ) {
             self.keychainService = keychainService
+            self.storageService = storageService
         }
 
     }
@@ -44,11 +47,10 @@ extension Presenter: Module.ViewOutput {
 
 extension Presenter: Module.InteractorOutput {
     func didLoad() {
-        guard
-            let userUid: String? = keychainService.get(KeychainStore.KeychainKeys.userUid.rawValue),
-            userUid != nil
-        else { return }
+        storageService.getCurrentUser { [weak self] response in
+            guard response != nil else { return }
 
-        router.showMainFlow()
+            self?.router.showMainFlow()
+        }
     }
 }

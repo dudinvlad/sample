@@ -21,6 +21,7 @@ protocol EndpointType {
     var headers: HTTPHeaders { get }
     var params: Parameters { get }
     var data: Data? { get }
+    var encoding: ParameterEncoding { get }
 }
 
 extension EndpointType {
@@ -28,6 +29,10 @@ extension EndpointType {
         var headers = HTTPHeaders()
         headers.add(name: "Content-Type", value: "application/json")
         return headers
+    }
+
+    var encoding: ParameterEncoding {
+        return JSONEncoding.default
     }
 
     var data: Data? {
