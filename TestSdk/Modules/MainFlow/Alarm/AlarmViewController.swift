@@ -59,6 +59,16 @@ extension Module {
             self.output.logout()
         }
 
+        private lazy var subscriptionButton: UIButton = build {
+            $0 <~ Style.Button.authConfirmButton
+            $0.setTitle("Subscription", for: .normal)
+            $0.addAction(subscriptionAction, for: .touchUpInside)
+        }
+
+        private lazy var subscriptionAction: UIAction = .init { _ in
+            self.output.showSubscription()
+        }
+
         private lazy var startAction: UIAction = .init { [weak self] _ in
             guard let self = self else { return }
             if !self.alarmIsOn {
@@ -104,6 +114,7 @@ private extension View {
         view.addSubview(containerStackView)
         view.addSubview(alarmTimeLabel)
         view.addSubview(logoutButton)
+        view.addSubview(subscriptionButton)
 
         containerStackView.addArrangedSubview(alarmPicker)
         containerStackView.addArrangedSubview(infoLabel)
@@ -122,37 +133,18 @@ private extension View {
         logoutButton.snp.makeConstraints { make in
             make.topMargin.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-20)
-            make.size.equalTo(CGSize(width: 60, height: 30))
+            make.size.equalTo(CGSize(width: 80, height: 30))
+        }
+
+        subscriptionButton.snp.makeConstraints { make in
+            make.topMargin.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(20)
+            make.size.equalTo(CGSize(width: 120, height: 30))
         }
 
         alarmTimeLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(-100)
             make.centerX.equalToSuperview()
-        }
-    }
-
-    func checkForMusicLibraryAccess(andThen f:(()->())? = nil) {
-        let status = MPMediaLibrary.authorizationStatus()
-        switch status {
-        case .authorized:
-            f?()
-        case .notDetermined:
-            MPMediaLibrary.requestAuthorization() { status in
-                if status == .authorized {
-                    DispatchQueue.main.async {
-                        f?()
-                    }
-                }
-            }
-        case .restricted:
-            // do nothing
-            break
-        case .denied:
-            break
-            // do nothing, or beg the user to authorize us in Settings
-//            let url = URL(string:UIApplication.openSettingsURLString)!
-//            UIApplication.shared.open(url)
-        @unknown default: fatalError()
         }
     }
 
