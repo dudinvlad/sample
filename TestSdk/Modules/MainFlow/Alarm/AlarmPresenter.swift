@@ -50,13 +50,13 @@ extension Presenter: Module.ViewOutput {
         })
     }
 
+    func showSubscription() {
+        router.presentSubscriptionFlow()
+    }
+
     func logout() {
         keychainManager.clear()
         router.presentAuthFlow()
-    }
-
-    func willAppear() {
-        router.presentSubscriptionFlow()
     }
 
     func showChooseMusic() {

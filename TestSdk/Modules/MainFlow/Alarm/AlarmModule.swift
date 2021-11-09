@@ -38,6 +38,7 @@ protocol AlarmViewOutputProtocol: BaseViewOutput {
     func fireAlarm()
     func stopAlarm()
     func logout()
+    func showSubscription()
 }
 
 // MARK: - Interactor

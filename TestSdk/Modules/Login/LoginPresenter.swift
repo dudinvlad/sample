@@ -33,7 +33,7 @@ private extension Presenter { }
 extension Presenter: Module.ViewOutput {
     func requestLogin(with email: String, password: String) {
         view.showActivity()
-            interactor.login(email: email, password: password)
+        interactor.login(email: email, password: password)
     }
 }
 

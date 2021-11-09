@@ -31,7 +31,7 @@ class RestContainerFactory {
     // MARK: - Services
 
     private lazy var authService: AuthService = AuthServiceManager()
-    private lazy var storageService: StorageService = DataBaseManager()
+    private lazy var storageService: StorageService = DataBaseManager(keychainStorage)
     private lazy var keychainStorage: StoreProtocol = KeychainStore()
     private lazy var spotifyManager: SpotifyManager = SpotifyManager()
     private lazy var purchaseManager: PurchaseManager = PurchaseManager(userDefaultsManager)

@@ -12,7 +12,13 @@ struct DataBaseManager: StorageService {
     // MARK: - Variables
     private let dataBaseReference = Database.database().reference(withPath: "users")
     private let tracksBaseReference = Database.database().reference(withPath: "saved_tracks")
+    private let keychain: StoreProtocol
 
+    // MARK: - Init
+
+    init(_ storage: StoreProtocol) {
+        self.keychain = storage
+    }
     // MARK: - Public
 
     func saveUserInfo(_ object: AMUser) {
@@ -21,17 +27,18 @@ struct DataBaseManager: StorageService {
     }
 
     func saveTracks(_ items: [SpotifyTrack]) {
+        guard !getCurrentUserId().isEmpty else { return }
+
         items.forEach { track in
-            let trackObjectReference = tracksBaseReference.child(track.id)
+            let trackObjectReference = tracksBaseReference.child(getCurrentUserId()).child(track.id)
             trackObjectReference.setValue(track.toAnyObject())
         }
     }
 
     func getCurrentUser(completion: @escaping (AMUser?) -> Void) {
-        let currentUserId: String = KeychainStore().get(KeychainStore.KeychainKeys.userUid.rawValue) ?? ""
-        guard !currentUserId.isEmpty else { return }
+        guard !getCurrentUserId().isEmpty else { return }
         
-        dataBaseReference.child(currentUserId).getData { error, snapshot in
+        dataBaseReference.child(getCurrentUserId()).getData { error, snapshot in
             guard let userDict = snapshot.value as? [String: Any] else { return }
 
             do {
@@ -49,7 +56,9 @@ struct DataBaseManager: StorageService {
     }
 
     func getTracks(completion: @escaping ([SpotifyTrack]) -> Void) {
-        tracksBaseReference.getData { error, snapshot in
+        guard !getCurrentUserId().isEmpty else { return }
+
+        tracksBaseReference.child(getCurrentUserId()).getData { error, snapshot in
             guard let tracksDict = snapshot.value as? [String: Any] else { return }
             let values = tracksDict.values.map {$0}
 
@@ -65,5 +74,12 @@ struct DataBaseManager: StorageService {
                 print(error.localizedDescription)
             }
         }
+    }
+
+    // MARK: - Private
+
+    private func getCurrentUserId() -> String {
+        let currentUserId: String = keychain.get(KeychainStore.KeychainKeys.userUid.rawValue) ?? ""
+        return currentUserId
     }
 }
