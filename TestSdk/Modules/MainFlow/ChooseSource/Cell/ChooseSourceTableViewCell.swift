@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChooseSourceTableViewCell: UITableViewCell {
     // MARK: - Variables
@@ -60,13 +61,7 @@ class ChooseSourceTableViewCell: UITableViewCell {
             let imageUrl = URL(string: smallImage?.url ?? "")
         else { return }
 
-        DispatchQueue.global(qos: .background).async {
-            if let imageData = try? Data(contentsOf: imageUrl) {
-                DispatchQueue.main.async {
-                    self.iconImageView.image = UIImage(data: imageData)
-                }
-            }
-        }
+        iconImageView.sd_setImage(with: imageUrl)
     }
 
 

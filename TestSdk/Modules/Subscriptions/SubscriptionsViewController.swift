@@ -180,7 +180,7 @@ extension View: SkeletonCollectionViewDelegate, SkeletonCollectionViewDataSource
 
 private extension View {
     func commonSetup() {
-        view.backgroundColor = Style.Color.black
+        view.backgroundColor = Style.Color.main
         collectionView.delegate = self
         collectionView.dataSource = self
     }

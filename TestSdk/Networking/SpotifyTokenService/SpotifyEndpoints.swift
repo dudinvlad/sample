@@ -9,7 +9,7 @@ import Alamofire
 
 enum SpotifyEndpoints: EndpointType {
     case accessToken(_ code: String)
-    case savedTracks
+    case savedTracks(_ offset: Int)
     case devices
     case startPlayer(_ deviceId: String, _ uri: String)
     case pausePlayer(_ deviceId: String)
@@ -84,6 +84,8 @@ enum SpotifyEndpoints: EndpointType {
             case .startPlayer(_, let uri):
             return ["context_uri": uri,
                     "position_ms": 0]
+            case .savedTracks(let offset):
+            return ["offset": offset]
             default:
                 return [:]
         }

@@ -20,11 +20,18 @@ extension Module {
         var router: RouterInput!
 
         private let storageService: StorageService
+        private var data: SavedTracksResponseModel
 
-        required init(storageService: StorageService) {
+        private lazy var totalTracks: Int = data.total
+        private lazy var offsetTracks: Int = data.items.map { $0.track}.count
+
+        required init(
+            storageService: StorageService,
+            data: SavedTracksResponseModel
+        ) {
             self.storageService = storageService
+            self.data = data
         }
-
     }
 }
 
@@ -37,9 +44,21 @@ extension Presenter: Module.ViewOutput {
         storageService.saveTracks([track])
         router.showRootMusicScreen()
     }
+
+    func requestMoreSaveTrack() {
+        guard offsetTracks < totalTracks else { return }
+
+        interactor.fetchSavedTracks(with: offsetTracks)
+    }
 }
 
 extension Presenter: Module.InteractorOutput {
+    func success(with data: SavedTracksResponseModel) {
+        self.totalTracks = data.total
+        self.offsetTracks += data.items.map { $0.track }.count
+        view.updateTracks(with: data.items.map { $0.track })
+    }
+
     var controller: BaseViewInput? {
         view
     }

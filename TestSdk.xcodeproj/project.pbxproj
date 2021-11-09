@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0223E010273AC5BC00796465 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 0223E00F273AC5BC00796465 /* SDWebImage */; };
 		023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE711272AE52D00023261 /* NVActivityIndicatorView */; };
 		023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EE713272BCE1600023261 /* NetworkingActivity.swift */; };
 		023EE75627317FE300023261 /* Macaroni in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE75527317FE300023261 /* Macaroni */; };
@@ -280,6 +281,7 @@
 				02578E902721F07F0006AA7C /* IQKeyboardManagerSwift in Frameworks */,
 				023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */,
 				028F0D7127328D0300E5E5D4 /* StoreKit.framework in Frameworks */,
+				0223E010273AC5BC00796465 /* SDWebImage in Frameworks */,
 				028F0D752732B30600E5E5D4 /* Alamofire in Frameworks */,
 				468EAEB7413A6DEBA1573A0C /* Pods_TestSdk.framework in Frameworks */,
 				023EE75627317FE300023261 /* Macaroni in Frameworks */,
@@ -787,6 +789,7 @@
 				023EE75527317FE300023261 /* Macaroni */,
 				028F0D742732B30600E5E5D4 /* Alamofire */,
 				638247722733DE9E0016B1C3 /* SkeletonView */,
+				0223E00F273AC5BC00796465 /* SDWebImage */,
 			);
 			productName = TestSdk;
 			productReference = 02578E662720A98E0006AA7C /* TestSdk.app */;
@@ -824,6 +827,7 @@
 				023EE75427317FE300023261 /* XCRemoteSwiftPackageReference "Macaroni" */,
 				028F0D732732B30600E5E5D4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				638247712733DE9E0016B1C3 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				0223E00E273AC5BC00796465 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 02578E672720A98E0006AA7C /* Products */;
 			projectDirPath = "";
@@ -1151,7 +1155,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TestSdk/TestSdk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1249,7 +1253,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TestSdk/TestSdk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1362,6 +1366,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0223E00E273AC5BC00796465 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		023EE75427317FE300023261 /* XCRemoteSwiftPackageReference "Macaroni" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:bealex/Macaroni.git";
@@ -1421,6 +1433,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0223E00F273AC5BC00796465 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0223E00E273AC5BC00796465 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		023EE711272AE52D00023261 /* NVActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0277B330272ADC0A003EBD38 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;

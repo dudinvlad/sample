@@ -34,12 +34,10 @@ extension Interactor: Module.InteractorInput {
     }
 
     func fetchSavedTracks() {
-        spotifyService.loadSavedTracks { [weak self] response, error in
+        spotifyService.loadSavedTracks(offset: .zero) { [weak self] response, error in
             self?.output.success(with: response)
         }
     }
 
-    func startPlayback(with device: String, uri: String) {
-        spotifyService.startPlayback(with: device, uri: uri)
-    }
+    func startPlayback(with device: String, uri: String) {}
 }

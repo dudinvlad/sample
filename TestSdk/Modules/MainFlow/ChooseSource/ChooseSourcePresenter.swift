@@ -58,8 +58,8 @@ extension Presenter: Module.InteractorOutput {
         interactor.fetchSavedTracks()
     }
 
-    func success(with tracks: [SpotifyTrack]) {
-        router.showSpotifyMusic(tracks)
+    func success(with response: SavedTracksResponseModel) {
+        router.showSpotifyMusic(with: response)
     }
 
     var controller: BaseViewInput? {

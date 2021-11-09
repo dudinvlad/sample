@@ -27,15 +27,15 @@ struct RestSpotifyService: SpotifyService {
         }
     }
 
-    func loadSavedTracks(_ completion: @escaping ([SpotifyTrack], ApiManager.NetworkError?) -> Void) {
-        let request = SpotifyEndpoints.savedTracks
+    func loadSavedTracks(offset: Int = .zero, _ completion: @escaping SavedTrackCompletion) {
+        let request = SpotifyEndpoints.savedTracks(offset)
 
         apiManager.request(endoint: request) { (response: SavedTracksResponseModel?, error) in
-            guard let responseItems = response?.items else { return }
+            guard
+                let responseItem = response
+            else { return }
 
-            let responseTracks = responseItems.compactMap { $0.track }
-            let tracksWithPreview = responseTracks.filter { $0.previewUrl != nil }
-            completion(tracksWithPreview, nil)
+            completion(responseItem, nil)
         }
     }
 
@@ -46,14 +46,6 @@ struct RestSpotifyService: SpotifyService {
             guard let responseItems = response?.devices else { return }
 
             completion(responseItems, nil)
-        }
-    }
-
-    func startPlayback(with deviceId: String, uri: String) {
-        let request = SpotifyEndpoints.startPlayer(deviceId, uri)
-
-        apiManager.request(endoint: request) { (response: String?, error) in
-            print(error)
         }
     }
 }

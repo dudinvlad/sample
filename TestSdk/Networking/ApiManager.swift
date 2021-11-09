@@ -47,6 +47,10 @@ class ApiManager {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
+            if let spotifyError = try? decoder.decode(SpotifyErrorResponse.self, from: data) {
+                completion(nil, spotifyError.error.message)
+            }
+
             let responseObject = try decoder.decode(T.self, from: data)
 
             if let error = response.error?.localizedDescription {
@@ -86,4 +90,3 @@ final class AlamofireLogger: EventMonitor {
         NSLog("⚡️⚡️⚡️⚡️ Response All Headers: \(String(describing: response.response?.allHeaderFields))")
     }
 }
-

@@ -40,11 +40,11 @@ protocol ChooseSourceInteractorInputProtocol {
 
 protocol ChooseSourceInteractorOutputProtocol: BaseInteractorOutput {
     func spotifySuccess(with accessToken: String)
-    func success(with tracks: [SpotifyTrack])
+    func success(with response: SavedTracksResponseModel)
 }
 
 // MARK: - Router
 
 protocol ChooseSourceRouterInputProtocol {
-    func showSpotifyMusic(_ tracks: [SpotifyTrack])
+    func showSpotifyMusic(with response: SavedTracksResponseModel)
 }

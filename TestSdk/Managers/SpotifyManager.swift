@@ -42,7 +42,7 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     func connect(_ completion: @escaping (String) -> Void) {
         self.spotifyCodeCallBack = completion
-        sessionManager.initiateSession(with: [.streaming, .userModifyPlaybackState, .playlistReadPrivate, .userLibraryRead], options: .clientOnly)
+        sessionManager.initiateSession(with: [.playlistReadPrivate, .userLibraryRead], options: .clientOnly)
     }
 
     func swapAccessToken(_ code: String) {

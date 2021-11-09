@@ -17,9 +17,18 @@ extension Module {
 
         weak var output: InteractorOutput!
 
-        required init() { }
+        private let spotifyService: SpotifyService
 
+        required init(spotifyService: SpotifyService) {
+            self.spotifyService = spotifyService
+        }
     }
 }
 
-extension Interactor: Module.InteractorInput { }
+extension Interactor: Module.InteractorInput {
+    func fetchSavedTracks(with offset: Int) {
+        spotifyService.loadSavedTracks(offset: offset) { [weak self] response, error in
+            self?.output.success(with: response)
+        }
+    }
+}

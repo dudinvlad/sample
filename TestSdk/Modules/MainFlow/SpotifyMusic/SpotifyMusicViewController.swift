@@ -33,10 +33,10 @@ extension Module {
             fatalError("init(coder:) has not been implemented")
         }
 
-        init(_ track: [SpotifyTrack]) {
+        init(_ inputData: SavedTracksResponseModel) {
             super.init(nibName: nil, bundle: nil)
 
-            dataSource = track
+            dataSource = inputData.items.map { $0.track }
         }
 
         override func viewDidLoad() {
@@ -74,6 +74,12 @@ extension Module {
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             self.output.saveSelectedTrack(dataSource[indexPath.row])
         }
+
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            if dataSource.count - 1 == indexPath.row {
+                self.output.requestMoreSaveTrack()
+            }
+        }
     }
 }
 
@@ -92,4 +98,9 @@ private extension View {
     }
 }
 
-extension View: Module.ViewInput { }
+extension View: Module.ViewInput {
+    func updateTracks(with data: [SpotifyTrack]) {
+        self.dataSource += data
+        trackTableView.reloadData()
+    }
+}
