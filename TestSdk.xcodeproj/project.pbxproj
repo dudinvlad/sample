@@ -394,11 +394,11 @@
 			isa = PBXGroup;
 			children = (
 				02578E922721F0FB0006AA7C /* WelcomeModule.swift */,
-				02578E932721F0FB0006AA7C /* WelcomePresenter.swift */,
-				02578E942721F0FB0006AA7C /* WelcomeRouter.swift */,
-				02578E952721F0FB0006AA7C /* WelcomeViewController.swift */,
 				02578E962721F0FB0006AA7C /* WelcomeAssembly.swift */,
+				02578E952721F0FB0006AA7C /* WelcomeViewController.swift */,
+				02578E932721F0FB0006AA7C /* WelcomePresenter.swift */,
 				02578E972721F0FC0006AA7C /* WelcomeInteractor.swift */,
+				02578E942721F0FB0006AA7C /* WelcomeRouter.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
