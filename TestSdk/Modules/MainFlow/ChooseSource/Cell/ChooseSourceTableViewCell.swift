@@ -58,10 +58,10 @@ class ChooseSourceTableViewCell: UITableViewCell {
         descriptionLabel.text = item.name
         let smallImage = item.album.images.first
         guard
-            let imageUrl = URL(string: smallImage?.url ?? "")
+            let imageUrlString = smallImage?.url
         else { return }
 
-        iconImageView.sd_setImage(with: imageUrl)
+        iconImageView.sd_setImage(with: URL(string: imageUrlString), placeholderImage: Style.Image.offlineMusic)
     }
 
 

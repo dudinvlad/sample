@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0223E010273AC5BC00796465 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 0223E00F273AC5BC00796465 /* SDWebImage */; };
+		0223E018273BD68200796465 /* OfflineMusicModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E012273BD68200796465 /* OfflineMusicModule.swift */; };
+		0223E019273BD68200796465 /* OfflineMusicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E013273BD68200796465 /* OfflineMusicPresenter.swift */; };
+		0223E01A273BD68200796465 /* OfflineMusicRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E014273BD68200796465 /* OfflineMusicRouter.swift */; };
+		0223E01B273BD68200796465 /* OfflineMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E015273BD68200796465 /* OfflineMusicViewController.swift */; };
+		0223E01C273BD68200796465 /* OfflineMusicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E016273BD68200796465 /* OfflineMusicAssembly.swift */; };
+		0223E01D273BD68200796465 /* OfflineMusicInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E017273BD68200796465 /* OfflineMusicInteractor.swift */; };
 		023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE711272AE52D00023261 /* NVActivityIndicatorView */; };
 		023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EE713272BCE1600023261 /* NetworkingActivity.swift */; };
 		023EE75627317FE300023261 /* Macaroni in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE75527317FE300023261 /* Macaroni */; };
@@ -140,6 +146,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0223E012273BD68200796465 /* OfflineMusicModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicModule.swift; sourceTree = "<group>"; };
+		0223E013273BD68200796465 /* OfflineMusicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicPresenter.swift; sourceTree = "<group>"; };
+		0223E014273BD68200796465 /* OfflineMusicRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicRouter.swift; sourceTree = "<group>"; };
+		0223E015273BD68200796465 /* OfflineMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicViewController.swift; sourceTree = "<group>"; };
+		0223E016273BD68200796465 /* OfflineMusicAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicAssembly.swift; sourceTree = "<group>"; };
+		0223E017273BD68200796465 /* OfflineMusicInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicInteractor.swift; sourceTree = "<group>"; };
 		023EE713272BCE1600023261 /* NetworkingActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingActivity.swift; sourceTree = "<group>"; };
 		023EE757273185F400023261 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		02462DD42731C7C800B3B0AD /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
@@ -293,6 +305,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0223E011273BD67300796465 /* OfflineMusic */ = {
+			isa = PBXGroup;
+			children = (
+				0223E012273BD68200796465 /* OfflineMusicModule.swift */,
+				0223E013273BD68200796465 /* OfflineMusicPresenter.swift */,
+				0223E014273BD68200796465 /* OfflineMusicRouter.swift */,
+				0223E015273BD68200796465 /* OfflineMusicViewController.swift */,
+				0223E016273BD68200796465 /* OfflineMusicAssembly.swift */,
+				0223E017273BD68200796465 /* OfflineMusicInteractor.swift */,
+			);
+			path = OfflineMusic;
+			sourceTree = "<group>";
+		};
 		023BACF4905CB7E51F0EDFC8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +451,7 @@
 		0277B2FF272A8B57003EBD38 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0223E011273BD67300796465 /* OfflineMusic */,
 				02960BE82738648F0023C1F0 /* SpotifyMusic */,
 				028F0D93273328E400E5E5D4 /* ChooseSource */,
 				028F0D862732E7C100E5E5D4 /* ChooseMusic */,
@@ -943,6 +969,8 @@
 				02F9D11327232880003CD6BA /* Color.swift in Sources */,
 				63FB3C8C272C09F900C413FA /* SubscriptionsRouter.swift in Sources */,
 				02960BF1273864A20023C1F0 /* SpotifyMusicRouter.swift in Sources */,
+				0223E01D273BD68200796465 /* OfflineMusicInteractor.swift in Sources */,
+				0223E01C273BD68200796465 /* OfflineMusicAssembly.swift in Sources */,
 				02F9D13527246503003CD6BA /* InputFieldView.swift in Sources */,
 				028F0D782732B39D00E5E5D4 /* ApiManager.swift in Sources */,
 				0277B30A272A8B69003EBD38 /* MainFlowAssembly.swift in Sources */,
@@ -976,6 +1004,7 @@
 				0277B319272A8FDE003EBD38 /* AlarmRouter.swift in Sources */,
 				02F9D1442724663C003CD6BA /* Font.swift in Sources */,
 				02F9D15F272585C8003CD6BA /* AuthServiceManager.swift in Sources */,
+				0223E01A273BD68200796465 /* OfflineMusicRouter.swift in Sources */,
 				02F9D16E2725A733003CD6BA /* UIViewController.swift in Sources */,
 				02F9D12E27246310003CD6BA /* SignupPresenter.swift in Sources */,
 				02F9D13227246310003CD6BA /* SignupInteractor.swift in Sources */,
@@ -999,10 +1028,13 @@
 				028F0DA82734537200E5E5D4 /* UserDefaultsManager.swift in Sources */,
 				0277B325272A8FEC003EBD38 /* AboutUsRouter.swift in Sources */,
 				023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */,
+				0223E018273BD68200796465 /* OfflineMusicModule.swift in Sources */,
 				02F9D14927248A51003CD6BA /* Button.swift in Sources */,
 				028F0D9D273328F300E5E5D4 /* ChooseSourceViewController.swift in Sources */,
 				02F9D13727246529003CD6BA /* Label.swift in Sources */,
+				0223E01B273BD68200796465 /* OfflineMusicViewController.swift in Sources */,
 				0277B32A272ABA9B003EBD38 /* KeychainManager.swift in Sources */,
+				0223E019273BD68200796465 /* OfflineMusicPresenter.swift in Sources */,
 				02F9D120272329EC003CD6BA /* MainAuthModule.swift in Sources */,
 				63824775273525DA0016B1C3 /* Date+Extension.swift in Sources */,
 				6370A4082732B6E100EEFD84 /* SubscriptionCardModel.swift in Sources */,
@@ -1155,7 +1187,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TestSdk/TestSdk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1253,7 +1285,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TestSdk/TestSdk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -23,6 +23,7 @@ class RestContainerFactory {
     private lazy var chooseMusicAssembly = ChooseMusicModule.ModuleAssembly()
     private lazy var chooseSourceAssembly = ChooseSourceModule.ModuleAssembly()
     private lazy var spotifyMusicAssembly = SpotifyMusicModule.ModuleAssembly()
+    private lazy var offlineMusicAssembly = OfflineMusicModule.ModuleAssembly()
 
     // MARK: - Subscriptions
 
@@ -58,6 +59,7 @@ class RestContainerFactory {
         container.register { [chooseSourceAssembly]() -> ChooseSourceModule.ModuleAssemblying in chooseSourceAssembly }
         container.register { [subscriptionsAssembly]() -> SubscriptionsModule.ModuleAssemblying in subscriptionsAssembly }
         container.register { [spotifyMusicAssembly]() -> SpotifyMusicModule.ModuleAssemblying in spotifyMusicAssembly }
+        container.register { [offlineMusicAssembly]() -> OfflineMusicModule.ModuleAssemblying in offlineMusicAssembly }
 
         // MARK: - Services
 

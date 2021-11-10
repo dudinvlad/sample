@@ -12,6 +12,8 @@ struct DataBaseManager: StorageService {
     // MARK: - Variables
     private let dataBaseReference = Database.database().reference(withPath: "users")
     private let tracksBaseReference = Database.database().reference(withPath: "saved_tracks")
+    private let tracksOfflineBaseReference = Database.database().reference(withPath: "saved_tracks_offline")
+
     private let keychain: StoreProtocol
 
     // MARK: - Init
@@ -59,20 +61,13 @@ struct DataBaseManager: StorageService {
         guard !getCurrentUserId().isEmpty else { return }
 
         tracksBaseReference.child(getCurrentUserId()).getData { error, snapshot in
-            guard let tracksDict = snapshot.value as? [String: Any] else { return }
-            let values = tracksDict.values.map {$0}
+            self.handlingTrackData(snapshot, completion: completion)
+        }
+    }
 
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: values)
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let decodedTracks = try decoder.decode([SpotifyTrack].self, from: jsonData)
-                DispatchQueue.main.async {
-                    completion(decodedTracks)
-                }
-            } catch let error {
-                print(error.localizedDescription)
-            }
+    func getOfflineTracks(completion: @escaping ([SpotifyTrack]) -> Void) {
+        tracksOfflineBaseReference.getData { error, snapshot in
+            self.handlingTrackData(snapshot, completion: completion)
         }
     }
 
@@ -81,5 +76,22 @@ struct DataBaseManager: StorageService {
     private func getCurrentUserId() -> String {
         let currentUserId: String = keychain.get(KeychainStore.KeychainKeys.userUid.rawValue) ?? ""
         return currentUserId
+    }
+
+    private func handlingTrackData(_ snapshot: DataSnapshot, completion: @escaping ([SpotifyTrack]) -> Void) {
+        guard let tracksDict = snapshot.value as? [String: Any] else { return }
+        let values = tracksDict.values.map {$0}
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: values)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let decodedTracks = try decoder.decode([SpotifyTrack].self, from: jsonData)
+            DispatchQueue.main.async {
+                completion(decodedTracks)
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }

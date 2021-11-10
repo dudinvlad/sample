@@ -23,7 +23,6 @@ extension Module {
         private let spotifyManager: SpotifyManager
         private let notificationManager: NotificationManager
         private let userDefaultsManager: UserDefaultsManager
-        private let storageService: StorageService
 
         required init(
             with spotify: SpotifyManager,
@@ -34,7 +33,6 @@ extension Module {
             self.spotifyManager = spotify
             self.notificationManager = notificationManager
             self.userDefaultsManager = userDefaultsManager
-            self.storageService = storageService
         }
 
     }
@@ -48,6 +46,10 @@ extension Presenter: Module.ViewOutput {
             self?.interactor.exchangeToken(with: code)
         }
     }
+
+    func requestOfflineTracks() {
+        self.interactor.fetchOfflineTracks()
+    }
 }
 
 extension Presenter: Module.InteractorOutput {
@@ -60,6 +62,10 @@ extension Presenter: Module.InteractorOutput {
 
     func success(with response: SavedTracksResponseModel) {
         router.showSpotifyMusic(with: response)
+    }
+
+    func offlineItems(_ items: [SpotifyTrack]) {
+        router.showOfflineMusic(with: items)
     }
 
     var controller: BaseViewInput? {

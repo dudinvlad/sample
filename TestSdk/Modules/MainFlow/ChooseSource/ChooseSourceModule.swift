@@ -28,6 +28,7 @@ protocol ChooseSourceViewInputProtocol: BaseViewInput {}
 
 protocol ChooseSourceViewOutputProtocol: BaseViewOutput {
     func requestSpotifyConnect()
+    func requestOfflineTracks()
 }
 
 // MARK: - Interactor
@@ -35,16 +36,19 @@ protocol ChooseSourceViewOutputProtocol: BaseViewOutput {
 protocol ChooseSourceInteractorInputProtocol {
     func exchangeToken(with code: String)
     func fetchSavedTracks()
+    func fetchOfflineTracks()
     func startPlayback(with device: String, uri: String)
 }
 
 protocol ChooseSourceInteractorOutputProtocol: BaseInteractorOutput {
     func spotifySuccess(with accessToken: String)
     func success(with response: SavedTracksResponseModel)
+    func offlineItems(_ items: [SpotifyTrack])
 }
 
 // MARK: - Router
 
 protocol ChooseSourceRouterInputProtocol {
     func showSpotifyMusic(with response: SavedTracksResponseModel)
+    func showOfflineMusic(with items: [SpotifyTrack])
 }

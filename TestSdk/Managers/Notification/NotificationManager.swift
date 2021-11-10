@@ -43,7 +43,6 @@ class NotificationManager {
                 print("Error \(error.localizedDescription)")
             }
         }
-
     }
 
     func removeAllPendingNotificationRequests() {
