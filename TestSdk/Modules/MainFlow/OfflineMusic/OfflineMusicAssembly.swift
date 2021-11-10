@@ -1,30 +1,26 @@
 //
-//  WelcomeAssembly.swift
+//  OfflineMusicAssembly.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 21.10.2021.
+//  Created Vladislav Dudin on 10.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 import Macaroni
 
-private typealias Module = WelcomeModule
+private typealias Module = OfflineMusicModule
 private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
-        @Injected var mainAuthAssemblying: MainAuthModule.ModuleAssemblying!
-        @Injected var userDefaultsManager: UserDefaultsManager!
-        @Injected var keychainService: StoreProtocol!
+        @Injected var storageService: StorageService!
 
-        func assemble() -> UIViewController {
-            let viewController: View   = .init()
-            let presenter: Presenter   = .init(with: userDefaultsManager, keychainStore: keychainService)
+        func assemble(_ items: [SpotifyTrack]) -> UIViewController {
+            let viewController: View   = .init(items)
+            let presenter: Presenter   = .init(storageService: storageService)
             let interactor: Interactor = .init()
-            let router: Router         = .init(
-                mainAuth: mainAuthAssemblying
-            )
+            let router: Router         = .init()
 
             viewController.output = presenter
 

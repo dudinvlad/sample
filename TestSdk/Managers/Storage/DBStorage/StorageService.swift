@@ -12,4 +12,5 @@ protocol StorageService {
     func saveTracks(_ items: [SpotifyTrack])
     func getTracks(completion: @escaping ([SpotifyTrack]) -> Void)
     func getCurrentUser(completion: @escaping (AMUser?) -> Void)
+    func getOfflineTracks(completion: @escaping ([SpotifyTrack]) -> Void)
 }

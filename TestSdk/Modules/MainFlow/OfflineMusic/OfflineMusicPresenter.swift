@@ -1,14 +1,14 @@
 //
-//  SpotifyMusicPresenter.swift
+//  OfflineMusicPresenter.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 07.11.2021.
+//  Created Vladislav Dudin on 10.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 
-private typealias Module = SpotifyMusicModule
+private typealias Module = OfflineMusicModule
 private typealias Presenter = Module.Presenter
 
 extension Module {
@@ -20,18 +20,13 @@ extension Module {
         var router: RouterInput!
 
         private let storageService: StorageService
-        private var data: SavedTracksResponseModel
-
-        private lazy var totalTracks: Int = data.total
-        private lazy var offsetTracks: Int = data.items.map { $0.track}.count
 
         required init(
-            storageService: StorageService,
-            data: SavedTracksResponseModel
+            storageService: StorageService
         ) {
             self.storageService = storageService
-            self.data = data
         }
+
     }
 }
 
@@ -44,21 +39,9 @@ extension Presenter: Module.ViewOutput {
         storageService.saveTracks([track])
         router.showRootMusicScreen()
     }
-
-    func requestMoreSaveTrack() {
-        guard offsetTracks < totalTracks else { return }
-
-        interactor.fetchSavedTracks(with: offsetTracks)
-    }
 }
 
 extension Presenter: Module.InteractorOutput {
-    func success(with data: SavedTracksResponseModel) {
-        self.totalTracks = data.total
-        self.offsetTracks += data.items.map { $0.track }.count
-        view.updateTracks(with: data.items.map { $0.track })
-    }
-
     var controller: BaseViewInput? {
         view
     }

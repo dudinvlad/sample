@@ -16,4 +16,5 @@ extension Style.Image {
     static let plusFilled = UIImage(systemName: "plus.circle.fill")?.withRenderingMode(.alwaysTemplate)
     static let emplyCircle = UIImage(systemName: "circle")
     static let spotify = UIImage(named: "spotifyLogo")
+    static let offlineMusic = UIImage(named: "offlineMusic")
 }

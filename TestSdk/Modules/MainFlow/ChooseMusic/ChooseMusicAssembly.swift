@@ -19,12 +19,13 @@ extension Module {
         @Injected var notificationManager: NotificationManager!
         @Injected var storageService: StorageService!
 
-        func assemble() -> UIViewController {
+        func assemble(with complition: (() -> Void)?) -> UIViewController {
             let viewController: View   = .init()
             let presenter: Presenter   = .init(
                 userDefaultsManager: userDefaultsManager,
                 notificationManager: notificationManager,
-                storageService: storageService
+                storageService: storageService,
+                trackDidSelectHandler: complition
             )
             let interactor: Interactor = .init()
             let router: Router         = .init(

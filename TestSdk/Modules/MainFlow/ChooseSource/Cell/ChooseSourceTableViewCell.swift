@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChooseSourceTableViewCell: UITableViewCell {
     // MARK: - Variables
@@ -57,16 +58,10 @@ class ChooseSourceTableViewCell: UITableViewCell {
         descriptionLabel.text = item.name
         let smallImage = item.album.images.first
         guard
-            let imageUrl = URL(string: smallImage?.url ?? "")
+            let imageUrlString = smallImage?.url
         else { return }
 
-        DispatchQueue.global(qos: .background).async {
-            if let imageData = try? Data(contentsOf: imageUrl) {
-                DispatchQueue.main.async {
-                    self.iconImageView.image = UIImage(data: imageData)
-                }
-            }
-        }
+        iconImageView.sd_setImage(with: URL(string: imageUrlString), placeholderImage: Style.Image.offlineMusic)
     }
 
 

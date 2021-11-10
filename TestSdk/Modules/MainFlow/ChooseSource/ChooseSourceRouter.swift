@@ -17,20 +17,27 @@ extension Module {
 
         weak var viewController: UIViewController!
         private let spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying
+        private let offlineMusicAssemblying: OfflineMusicModule.ModuleAssemblying
         private let userDefaultsManager: UserDefaultsManager
 
         required init(
             spotifyMusic: SpotifyMusicModule.ModuleAssemblying,
-            userDefaultsManager: UserDefaultsManager
+            userDefaultsManager: UserDefaultsManager,
+            offlineMusic: OfflineMusicModule.ModuleAssemblying
         ) {
             self.spotifyMusicAssemblying = spotifyMusic
             self.userDefaultsManager = userDefaultsManager
+            self.offlineMusicAssemblying = offlineMusic
         }
     }
 }
 
 extension Router: Module.RouterInput {
-    func showSpotifyMusic(_ tracks: [SpotifyTrack]) {
-        viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(tracks), animated: true)
+    func showSpotifyMusic(with response: SavedTracksResponseModel) {
+        viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(response), animated: true)
+    }
+
+    func showOfflineMusic(with items: [SpotifyTrack]) {
+        viewController.navigationController?.pushViewController(offlineMusicAssemblying.assemble(items), animated: true)
     }
 }

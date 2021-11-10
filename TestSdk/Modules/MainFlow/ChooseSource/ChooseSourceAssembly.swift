@@ -20,6 +20,7 @@ extension Module {
         @Injected var userDefaultsManager: UserDefaultsManager!
         @Injected var storageService: StorageService!
         @Injected var spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying!
+        @Injected var offlineMusicAssemblying: OfflineMusicModule.ModuleAssemblying!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
@@ -30,11 +31,13 @@ extension Module {
                 storageService: storageService
             )
             let interactor: Interactor = .init(
-                spotifyService: spotifyService
+                spotifyService: spotifyService,
+                storageService: storageService
             )
             let router: Router         = .init(
                 spotifyMusic: spotifyMusicAssemblying,
-                userDefaultsManager: userDefaultsManager
+                userDefaultsManager: userDefaultsManager,
+                offlineMusic: offlineMusicAssemblying
             )
 
             viewController.output = presenter

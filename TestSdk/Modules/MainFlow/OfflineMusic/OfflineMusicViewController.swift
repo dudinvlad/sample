@@ -1,14 +1,14 @@
 //
-//  SpotifyMusicViewController.swift
+//  OfflineMusicViewController.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 07.11.2021.
+//  Created Vladislav Dudin on 10.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 
-private typealias Module = SpotifyMusicModule
+private typealias Module = OfflineMusicModule
 private typealias View = Module.ViewController
 
 extension Module {
@@ -33,10 +33,10 @@ extension Module {
             fatalError("init(coder:) has not been implemented")
         }
 
-        init(_ inputData: SavedTracksResponseModel) {
+        init(_ inputData: [SpotifyTrack]) {
             super.init(nibName: nil, bundle: nil)
 
-            dataSource = inputData.items.map { $0.track }
+            dataSource = inputData
         }
 
         override func viewDidLoad() {
@@ -75,17 +75,17 @@ extension Module {
             self.output.saveSelectedTrack(dataSource[indexPath.row])
         }
 
-        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-            if dataSource.count - 1 == indexPath.row {
-                self.output.requestMoreSaveTrack()
-            }
-        }
+//        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//            if dataSource.count - 1 == indexPath.row {
+//                self.output.requestMoreSaveTrack()
+//            }
+//        }
     }
 }
 
 private extension View {
     func initialSetup() {
-        title = "Spotify"
+        title = "Offline music"
         view.backgroundColor = Style.Color.black
         view.addSubview(trackTableView)
 
@@ -98,9 +98,4 @@ private extension View {
     }
 }
 
-extension View: Module.ViewInput {
-    func updateTracks(with data: [SpotifyTrack]) {
-        self.dataSource += data
-        trackTableView.reloadData()
-    }
-}
+extension View: Module.ViewInput { }

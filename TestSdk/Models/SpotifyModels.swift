@@ -13,6 +13,10 @@ struct TokensResponseModel: Codable {
 
 struct SavedTracksResponseModel: Codable {
     let items: [SpotifyTrackResponse]
+    let total: Int
+    let offset: Int
+    let limit: Int
+
 }
 
 struct SpotifyTrackResponse: Codable {
@@ -77,4 +81,13 @@ struct SpotifyDevice: Codable {
     let id: String
     let name: String
     let type: String
+}
+
+class SpotifyErrorResponse: Codable {
+    let error: SpotifyError
+}
+
+class SpotifyError: Codable {
+    let status: Int
+    let message: String
 }

@@ -60,7 +60,18 @@ extension Presenter: Module.ViewOutput {
     }
 
     func showChooseMusic() {
-        router.presentChooseMusic()
+        self.fireAlarm()
+        router.presentChooseMusic(didSelectTrackHandler: { [weak self] in
+            guard let self = self else { return }
+            let date = self.view.getSelectedTime()
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "h:mm a"
+
+            let dateStr = dateFormatter.string(from: date)
+
+            self.view.configureOnAlarm(with: dateStr)
+        })
     }
 
     func fireAlarm() {

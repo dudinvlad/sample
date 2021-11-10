@@ -35,8 +35,9 @@ extension Module {
 }
 
 extension Router: Module.RouterInput {
-    func presentChooseMusic() {
-        let naviggationController = UINavigationController(rootViewController: chooseMusicAssemblying.assemble())
+    func presentChooseMusic(didSelectTrackHandler:(() -> Void)? ) {
+        let naviggationController = UINavigationController(rootViewController: chooseMusicAssemblying.assemble(with: didSelectTrackHandler))
+
         viewController.present(naviggationController, animated: true)
     }
 

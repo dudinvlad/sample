@@ -19,14 +19,28 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        required init() { }
+        private let userDefaultsManager: UserDefaultsManager
+        private let keychainStore: StoreProtocol
 
+        required init(with userDefaultsManager: UserDefaultsManager, keychainStore: StoreProtocol) {
+            self.userDefaultsManager = userDefaultsManager
+            self.keychainStore = keychainStore
+        }
     }
 }
 
 private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
+    func didLoad() {
+        let userDefaultsIsClean: Bool? = userDefaultsManager.get(UserDefaultsManager.Keys.userDefaultsIsClean.rawValue)
+
+        if userDefaultsIsClean == nil {
+            keychainStore.clear()
+            userDefaultsManager.set(false, key: UserDefaultsManager.Keys.userDefaultsIsClean.rawValue)
+        }
+    }
+
     func requestMainAuthFlow() {
         router.showMainAuthFlow()
     }

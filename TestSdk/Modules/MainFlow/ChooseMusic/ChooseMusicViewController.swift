@@ -108,6 +108,7 @@ extension Module {
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             self.output.saveSelectedTrack(dataSource[indexPath.row])
+            self.output.trackDidSelect()
         }
     }
 }
@@ -116,7 +117,6 @@ private extension View {
     func initialSetup() {
         view.backgroundColor = Style.Color.black
         view.addSubview(containerStack)
-//        view.addSubview(trackTableView)
 
         containerStack.addArrangedSubview(titleLabel)
         containerStack.addArrangedSubview(descriptionLabel)
@@ -134,13 +134,6 @@ private extension View {
         spotifyButton.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
-
-//        trackTableView.snp.makeConstraints { make in
-//            make.topMargin.equalToSuperview().offset(30)
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.bottom.equalToSuperview()
-//        }
 
         title = "Choose Music"
     }
