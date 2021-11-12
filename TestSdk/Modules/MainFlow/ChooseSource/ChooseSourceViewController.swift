@@ -87,7 +87,7 @@ extension Module {
         }
 
         private lazy var offlineAction: UIAction = .init { _ in
-            self.output.requestOfflineTracks()
+            self.output.showOfflineMusic()
         }
 
         private lazy var spacerView: UIView = .init()

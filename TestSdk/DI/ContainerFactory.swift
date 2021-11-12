@@ -32,7 +32,7 @@ class RestContainerFactory {
     // MARK: - Services
 
     private lazy var authService: AuthService = AuthServiceManager()
-    private lazy var storageService: StorageService = DataBaseManager(keychainStorage)
+    private lazy var storageService: (StorageService & SoundtrackStoreService) = StorageManager(keychainStorage)
     private lazy var keychainStorage: StoreProtocol = KeychainStore()
     private lazy var spotifyManager: SpotifyManager = SpotifyManager()
     private lazy var purchaseManager: PurchaseManager = PurchaseManager(userDefaultsManager)
@@ -40,6 +40,9 @@ class RestContainerFactory {
     private lazy var spotifyService: SpotifyService = RestSpotifyService(apiManager)
     private lazy var notificationManager: NotificationManager = NotificationManager()
     private lazy var userDefaultsManager: UserDefaultsManager = UserDefaultsManager()
+    private lazy var soundtreckService: SoundtrackService = RestSoundtrackService(apiManager)
+    private lazy var soundStoreService: SoundtrackStoreService = LocalSoundtrackManager()
+    private lazy var receiptService: ReceiptService = RestReceiptService(apiManager)
 
     func build() -> Container {
         let container = Container()
@@ -64,13 +67,16 @@ class RestContainerFactory {
         // MARK: - Services
 
         container.register{ [authService]() -> AuthService in authService}
-        container.register{ [storageService]() -> StorageService in storageService}
+        container.register{ [storageService]() -> (StorageService & SoundtrackStoreService) in storageService}
         container.register{ [keychainStorage]() -> StoreProtocol in keychainStorage}
         container.register{ [spotifyManager]() -> SpotifyManager in spotifyManager}
         container.register{ [purchaseManager]() -> PurchaseManager in purchaseManager}
         container.register{ [spotifyService]() -> SpotifyService in spotifyService}
         container.register{ [notificationManager]() -> NotificationManager in notificationManager}
         container.register{ [userDefaultsManager]() -> UserDefaultsManager in userDefaultsManager}
+        container.register{ [soundtreckService]() -> SoundtrackService in soundtreckService}
+        container.register { [soundStoreService]() -> SoundtrackStoreService in soundStoreService }
+        container.register { [receiptService]() -> ReceiptService in receiptService }
 
         return container
     }

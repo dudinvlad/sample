@@ -1,5 +1,5 @@
 //
-//  DataBaseManager.swift
+//  StorageManager.swift
 //  TestSdk
 //
 //  Created by Vladislav Dudin on 24.10.2021.
@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-struct DataBaseManager: StorageService {
+struct StorageManager: StorageService, SoundtrackStoreService {
     // MARK: - Variables
     private let dataBaseReference = Database.database().reference(withPath: "users")
     private let tracksBaseReference = Database.database().reference(withPath: "saved_tracks")
@@ -28,7 +28,7 @@ struct DataBaseManager: StorageService {
         userObjectReference.setValue(object.toAnyObject())
     }
 
-    func saveTracks(_ items: [SpotifyTrack]) {
+    func saveTracks(_ items: [Soundtrackable]) {
         guard !getCurrentUserId().isEmpty else { return }
 
         items.forEach { track in
@@ -57,16 +57,10 @@ struct DataBaseManager: StorageService {
         }
     }
 
-    func getTracks(completion: @escaping ([SpotifyTrack]) -> Void) {
+    func getTracks(completion: @escaping ([Soundtrackable]) -> Void) {
         guard !getCurrentUserId().isEmpty else { return }
 
         tracksBaseReference.child(getCurrentUserId()).getData { error, snapshot in
-            self.handlingTrackData(snapshot, completion: completion)
-        }
-    }
-
-    func getOfflineTracks(completion: @escaping ([SpotifyTrack]) -> Void) {
-        tracksOfflineBaseReference.getData { error, snapshot in
             self.handlingTrackData(snapshot, completion: completion)
         }
     }
@@ -78,7 +72,7 @@ struct DataBaseManager: StorageService {
         return currentUserId
     }
 
-    private func handlingTrackData(_ snapshot: DataSnapshot, completion: @escaping ([SpotifyTrack]) -> Void) {
+    private func handlingTrackData(_ snapshot: DataSnapshot, completion: @escaping ([Soundtrackable]) -> Void) {
         guard let tracksDict = snapshot.value as? [String: Any] else { return }
         let values = tracksDict.values.map {$0}
 
@@ -86,7 +80,7 @@ struct DataBaseManager: StorageService {
             let jsonData = try JSONSerialization.data(withJSONObject: values)
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let decodedTracks = try decoder.decode([SpotifyTrack].self, from: jsonData)
+            let decodedTracks = try decoder.decode([FirebaseSoundtrackParseModel].self, from: jsonData)
             DispatchQueue.main.async {
                 completion(decodedTracks)
             }

@@ -29,13 +29,13 @@ protocol ChooseMusicAssemblyProtocol {
 
 // MARK: - View
 protocol ChooseMusicViewInputProtocol: BaseViewInput {
-    func update(with tracks: [SpotifyTrack])
+    func update(with tracks: [Soundtrackable])
 }
 
 protocol ChooseMusicViewOutputProtocol: BaseViewOutput {
     func showChooseSource()
     func requestSavedTracks()
-    func saveSelectedTrack(_ item: SpotifyTrack)
+    func saveSelectedTrack(_ item: Soundtrackable)
     func trackDidSelect()
 }
 
@@ -46,7 +46,7 @@ protocol ChooseMusicInteractorInputProtocol {
 }
 
 protocol ChooseMusicInteractorOutputProtocol: BaseInteractorOutput {
-    func success(with tracks: [SpotifyTrack])
+    func success(with tracks: [Soundtrackable])
 }
 
 // MARK: - Router

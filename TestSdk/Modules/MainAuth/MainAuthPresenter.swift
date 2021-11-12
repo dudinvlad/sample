@@ -20,11 +20,11 @@ extension Module {
         var router: RouterInput!
 
         private let keychainService: StoreProtocol
-        private let storageService: StorageService
+        private let storageService: (StorageService & SoundtrackStoreService)
 
         required init(
             keychainService: StoreProtocol,
-            storageService: StorageService
+            storageService: (StorageService & SoundtrackStoreService)
         ) {
             self.keychainService = keychainService
             self.storageService = storageService

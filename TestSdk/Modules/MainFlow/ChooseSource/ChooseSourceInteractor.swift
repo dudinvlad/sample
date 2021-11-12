@@ -18,14 +18,21 @@ extension Module {
         weak var output: InteractorOutput!
 
         private let spotifyService: SpotifyService
-        private let storageService: StorageService
+        private let storageService: (StorageService & SoundtrackStoreService)
+        private let receiptService: ReceiptService
+        private let purchaseManager: PurchaseManager
+
 
         required init(
             spotifyService: SpotifyService,
-            storageService: StorageService
+            storageService: (StorageService & SoundtrackStoreService),
+            receiptService: ReceiptService,
+            purchaseManager: PurchaseManager
         ) {
             self.spotifyService = spotifyService
             self.storageService = storageService
+            self.receiptService = receiptService
+            self.purchaseManager = purchaseManager
         }
 
     }
@@ -38,15 +45,26 @@ extension Interactor: Module.InteractorInput {
         }
     }
 
-    func fetchSavedTracks() {
-        spotifyService.loadSavedTracks(offset: .zero) { [weak self] response, error in
-            self?.output.success(with: response)
+    func validateReceipt() {
+        let receiptString = purchaseManager.getSubscriptionReceipt() ?? ""
+        
+        self.output.controller?.showActivity()
+        receiptService.validate(receiptString) { response, error in
+            self.output.controller?.hideActivity()
+            if let error = error {
+                self.output.controller?.showNetworking(error: error)
+                self.output.receiptValidate(with: false)
+                return
+            }
+            if let isReceiptValid = response {
+                self.output.receiptValidate(with: isReceiptValid)
+            }
         }
     }
 
-    func fetchOfflineTracks() {
-        storageService.getOfflineTracks { tracks in
-            self.output.offlineItems(tracks)
+    func fetchSavedTracks() {
+        spotifyService.loadSavedTracks(offset: .zero) { [weak self] response, error in
+            self?.output.success(with: response)
         }
     }
 

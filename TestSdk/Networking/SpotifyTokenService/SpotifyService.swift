@@ -12,7 +12,7 @@ typealias SavedTrackCompletion = (SavedTracksResponseModel, ApiManager.NetworkEr
 protocol SpotifyService {
     func exchangeAccessToken(
         with code: String,
-        _ completion: @escaping (String, ApiManager.NetworkError?) -> Void
+        _ completion: @escaping (String?, ApiManager.NetworkError?) -> Void
     )
 
     func loadSavedTracks(offset: Int, _ completion: @escaping SavedTrackCompletion)

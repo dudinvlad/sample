@@ -14,12 +14,13 @@ private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
-        @Injected var storageService: StorageService!
+        @Injected var storageService: (StorageService & SoundtrackStoreService)!
+        @Injected var soundtarckService: SoundtrackService!
 
-        func assemble(_ items: [SpotifyTrack]) -> UIViewController {
-            let viewController: View   = .init(items)
-            let presenter: Presenter   = .init(storageService: storageService)
-            let interactor: Interactor = .init()
+        func assemble() -> UIViewController {
+            let viewController: View   = .init()
+            let presenter: Presenter   = .init(soundStoreService: storageService)
+            let interactor: Interactor = .init(soundtrackService: soundtarckService)
             let router: Router         = .init()
 
             viewController.output = presenter

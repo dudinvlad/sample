@@ -17,7 +17,8 @@ extension Module {
         @Injected var chooseSourceModule: ChooseSourceModule.ModuleAssemblying!
         @Injected var userDefaultsManager: UserDefaultsManager!
         @Injected var notificationManager: NotificationManager!
-        @Injected var storageService: StorageService!
+        @Injected var storageService: (StorageService & SoundtrackStoreService)!
+        @Injected var soundStoreService: SoundtrackStoreService!
 
         func assemble(with complition: (() -> Void)?) -> UIViewController {
             let viewController: View   = .init()
@@ -25,7 +26,8 @@ extension Module {
                 userDefaultsManager: userDefaultsManager,
                 notificationManager: notificationManager,
                 storageService: storageService,
-                trackDidSelectHandler: complition
+                trackDidSelectHandler: complition,
+                soundStoreService: soundStoreService
             )
             let interactor: Interactor = .init()
             let router: Router         = .init(

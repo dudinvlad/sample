@@ -27,12 +27,13 @@ extension Module {
         required init(
             with spotify: SpotifyManager,
             notificationManager: NotificationManager,
-            userDefaultsManager: UserDefaultsManager,
-            storageService: StorageService
+            userDefaultsManager: UserDefaultsManager
+
         ) {
             self.spotifyManager = spotify
             self.notificationManager = notificationManager
             self.userDefaultsManager = userDefaultsManager
+
         }
 
     }
@@ -42,18 +43,15 @@ private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
     func requestSpotifyConnect() {
-        spotifyManager.connect { [weak self] code in
-            self?.interactor.exchangeToken(with: code)
-        }
+        interactor.validateReceipt()
     }
-
-    func requestOfflineTracks() {
-        self.interactor.fetchOfflineTracks()
+    func showOfflineMusic() {
+        router.showOfflineMusic()
     }
 }
 
 extension Presenter: Module.InteractorOutput {
-    func spotifySuccess(with accessToken: String) {
+    func spotifySuccess(with accessToken: String?) {
         spotifyManager.appRemote.connectionParameters.accessToken = accessToken
         spotifyManager.appRemote.connect()
         KeychainStore().set(accessToken, key: "spotify_access_token")
@@ -64,8 +62,14 @@ extension Presenter: Module.InteractorOutput {
         router.showSpotifyMusic(with: response)
     }
 
-    func offlineItems(_ items: [SpotifyTrack]) {
-        router.showOfflineMusic(with: items)
+    func receiptValidate(with response: Bool) {
+        if response {
+            spotifyManager.connect { [weak self] code in
+                self?.interactor.exchangeToken(with: code)
+            }
+        } else {
+            router.showSubscriptionFlow()
+        }
     }
 
     var controller: BaseViewInput? {

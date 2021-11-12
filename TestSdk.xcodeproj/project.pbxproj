@@ -14,6 +14,15 @@
 		0223E01B273BD68200796465 /* OfflineMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E015273BD68200796465 /* OfflineMusicViewController.swift */; };
 		0223E01C273BD68200796465 /* OfflineMusicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E016273BD68200796465 /* OfflineMusicAssembly.swift */; };
 		0223E01D273BD68200796465 /* OfflineMusicInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E017273BD68200796465 /* OfflineMusicInteractor.swift */; };
+		0223E020273D418700796465 /* SoundtrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E01F273D418700796465 /* SoundtrackService.swift */; };
+		0223E022273D421900796465 /* AMSoundtrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E021273D421900796465 /* AMSoundtrack.swift */; };
+		0223E024273D42FE00796465 /* RestSoundtrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E023273D42FE00796465 /* RestSoundtrackService.swift */; };
+		0223E026273D43D900796465 /* SoudntrackEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E025273D43D900796465 /* SoudntrackEndpoint.swift */; };
+		0223E028273D6A2100796465 /* LocalSoundtrackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E027273D6A2100796465 /* LocalSoundtrackManager.swift */; };
+		0223E02B273DD27F00796465 /* ReceiptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E02A273DD27F00796465 /* ReceiptService.swift */; };
+		0223E02D273DD3C100796465 /* RestReceiptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E02C273DD3C100796465 /* RestReceiptService.swift */; };
+		0223E02F273DD3F200796465 /* ReceiptEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E02E273DD3F200796465 /* ReceiptEndpoints.swift */; };
+		0223E031273DDC8600796465 /* ReceiptValifationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223E030273DDC8600796465 /* ReceiptValifationResponse.swift */; };
 		023EE712272AE52D00023261 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE711272AE52D00023261 /* NVActivityIndicatorView */; };
 		023EE714272BCE1600023261 /* NetworkingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EE713272BCE1600023261 /* NetworkingActivity.swift */; };
 		023EE75627317FE300023261 /* Macaroni in Frameworks */ = {isa = PBXBuildFile; productRef = 023EE75527317FE300023261 /* Macaroni */; };
@@ -123,7 +132,7 @@
 		02F9D15C27257C15003CD6BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02F9D15B27257C15003CD6BA /* GoogleService-Info.plist */; };
 		02F9D15F272585C8003CD6BA /* AuthServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D15E272585C8003CD6BA /* AuthServiceManager.swift */; };
 		02F9D162272586BB003CD6BA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D161272586BB003CD6BA /* AuthService.swift */; };
-		02F9D164272593CE003CD6BA /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D163272593CE003CD6BA /* DataBaseManager.swift */; };
+		02F9D164272593CE003CD6BA /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D163272593CE003CD6BA /* StorageManager.swift */; };
 		02F9D1672725977D003CD6BA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D1662725977D003CD6BA /* User.swift */; };
 		02F9D16927259873003CD6BA /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D16827259873003CD6BA /* Encodable.swift */; };
 		02F9D16C272598E6003CD6BA /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D16B272598E6003CD6BA /* StorageService.swift */; };
@@ -152,6 +161,15 @@
 		0223E015273BD68200796465 /* OfflineMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicViewController.swift; sourceTree = "<group>"; };
 		0223E016273BD68200796465 /* OfflineMusicAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicAssembly.swift; sourceTree = "<group>"; };
 		0223E017273BD68200796465 /* OfflineMusicInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMusicInteractor.swift; sourceTree = "<group>"; };
+		0223E01F273D418700796465 /* SoundtrackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundtrackService.swift; sourceTree = "<group>"; };
+		0223E021273D421900796465 /* AMSoundtrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMSoundtrack.swift; sourceTree = "<group>"; };
+		0223E023273D42FE00796465 /* RestSoundtrackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestSoundtrackService.swift; sourceTree = "<group>"; };
+		0223E025273D43D900796465 /* SoudntrackEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoudntrackEndpoint.swift; sourceTree = "<group>"; };
+		0223E027273D6A2100796465 /* LocalSoundtrackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSoundtrackManager.swift; sourceTree = "<group>"; };
+		0223E02A273DD27F00796465 /* ReceiptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptService.swift; sourceTree = "<group>"; };
+		0223E02C273DD3C100796465 /* RestReceiptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestReceiptService.swift; sourceTree = "<group>"; };
+		0223E02E273DD3F200796465 /* ReceiptEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptEndpoints.swift; sourceTree = "<group>"; };
+		0223E030273DDC8600796465 /* ReceiptValifationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptValifationResponse.swift; sourceTree = "<group>"; };
 		023EE713272BCE1600023261 /* NetworkingActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingActivity.swift; sourceTree = "<group>"; };
 		023EE757273185F400023261 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		02462DD42731C7C800B3B0AD /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
@@ -258,7 +276,7 @@
 		02F9D15B27257C15003CD6BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02F9D15E272585C8003CD6BA /* AuthServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceManager.swift; sourceTree = "<group>"; };
 		02F9D161272586BB003CD6BA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		02F9D163272593CE003CD6BA /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		02F9D163272593CE003CD6BA /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		02F9D1662725977D003CD6BA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		02F9D16827259873003CD6BA /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		02F9D16B272598E6003CD6BA /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -316,6 +334,26 @@
 				0223E017273BD68200796465 /* OfflineMusicInteractor.swift */,
 			);
 			path = OfflineMusic;
+			sourceTree = "<group>";
+		};
+		0223E01E273D416000796465 /* SoundtrackService */ = {
+			isa = PBXGroup;
+			children = (
+				0223E01F273D418700796465 /* SoundtrackService.swift */,
+				0223E023273D42FE00796465 /* RestSoundtrackService.swift */,
+				0223E025273D43D900796465 /* SoudntrackEndpoint.swift */,
+			);
+			path = SoundtrackService;
+			sourceTree = "<group>";
+		};
+		0223E029273DD24600796465 /* ReceiptService */ = {
+			isa = PBXGroup;
+			children = (
+				0223E02A273DD27F00796465 /* ReceiptService.swift */,
+				0223E02C273DD3C100796465 /* RestReceiptService.swift */,
+				0223E02E273DD3F200796465 /* ReceiptEndpoints.swift */,
+			);
+			path = ReceiptService;
 			sourceTree = "<group>";
 		};
 		023BACF4905CB7E51F0EDFC8 /* Pods */ = {
@@ -512,6 +550,8 @@
 		028F0D762732B31100E5E5D4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				0223E029273DD24600796465 /* ReceiptService */,
+				0223E01E273D416000796465 /* SoundtrackService */,
 				028F0D7B2732B4A500E5E5D4 /* SpotifyTokenService */,
 				028F0D772732B39D00E5E5D4 /* ApiManager.swift */,
 				028F0D792732B40E00E5E5D4 /* EndpointType.swift */,
@@ -567,8 +607,9 @@
 		028F0DA62734535300E5E5D4 /* DBStorage */ = {
 			isa = PBXGroup;
 			children = (
-				02F9D163272593CE003CD6BA /* DataBaseManager.swift */,
+				02F9D163272593CE003CD6BA /* StorageManager.swift */,
 				02F9D16B272598E6003CD6BA /* StorageService.swift */,
+				0223E027273D6A2100796465 /* LocalSoundtrackManager.swift */,
 			);
 			path = DBStorage;
 			sourceTree = "<group>";
@@ -717,6 +758,8 @@
 				02F9D1662725977D003CD6BA /* User.swift */,
 				0277B32E272ACE76003EBD38 /* AMError.swift */,
 				028F0D822732CBBA00E5E5D4 /* SpotifyModels.swift */,
+				0223E021273D421900796465 /* AMSoundtrack.swift */,
+				0223E030273DDC8600796465 /* ReceiptValifationResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -939,9 +982,11 @@
 				0277B30B272A8B69003EBD38 /* MainFlowInteractor.swift in Sources */,
 				028F0D9F273328F300E5E5D4 /* ChooseSourceInteractor.swift in Sources */,
 				0277B31A272A8FDE003EBD38 /* AlarmViewController.swift in Sources */,
+				0223E020273D418700796465 /* SoundtrackService.swift in Sources */,
 				028F0D7F2732B59E00E5E5D4 /* RestSpotifyService.swift in Sources */,
 				02578E982721F0FC0006AA7C /* WelcomeModule.swift in Sources */,
 				63FB3C8A272C09F900C413FA /* SubscriptionsModule.swift in Sources */,
+				0223E024273D42FE00796465 /* RestSoundtrackService.swift in Sources */,
 				02F9D124272329EC003CD6BA /* MainAuthAssembly.swift in Sources */,
 				63FB3C92272C188400C413FA /* UIView+Extension.swift in Sources */,
 				02F9D117272328FB003CD6BA /* Applicable.swift in Sources */,
@@ -951,7 +996,8 @@
 				02F9D14B27248BA9003CD6BA /* BaseViewController.swift in Sources */,
 				0277B307272A8B69003EBD38 /* MainFlowPresenter.swift in Sources */,
 				028F0D912732E81C00E5E5D4 /* ChooseMusicAssembly.swift in Sources */,
-				02F9D164272593CE003CD6BA /* DataBaseManager.swift in Sources */,
+				0223E022273D421900796465 /* AMSoundtrack.swift in Sources */,
+				02F9D164272593CE003CD6BA /* StorageManager.swift in Sources */,
 				02F9D147272466B4003CD6BA /* UIView.swift in Sources */,
 				0277B323272A8FEC003EBD38 /* AboutUsModule.swift in Sources */,
 				0277B32F272ACE76003EBD38 /* AMError.swift in Sources */,
@@ -960,6 +1006,8 @@
 				0277B328272A8FEC003EBD38 /* AboutUsInteractor.swift in Sources */,
 				02F9D16C272598E6003CD6BA /* StorageService.swift in Sources */,
 				02578E992721F0FC0006AA7C /* WelcomePresenter.swift in Sources */,
+				0223E026273D43D900796465 /* SoudntrackEndpoint.swift in Sources */,
+				0223E02D273DD3C100796465 /* RestReceiptService.swift in Sources */,
 				0277B317272A8FDE003EBD38 /* AlarmModule.swift in Sources */,
 				028F0D812732B61B00E5E5D4 /* SpotifyEndpoints.swift in Sources */,
 				02F9D13127246310003CD6BA /* SignupAssembly.swift in Sources */,
@@ -974,9 +1022,11 @@
 				02F9D13527246503003CD6BA /* InputFieldView.swift in Sources */,
 				028F0D782732B39D00E5E5D4 /* ApiManager.swift in Sources */,
 				0277B30A272A8B69003EBD38 /* MainFlowAssembly.swift in Sources */,
+				0223E02B273DD27F00796465 /* ReceiptService.swift in Sources */,
 				02960BF3273864A20023C1F0 /* SpotifyMusicAssembly.swift in Sources */,
 				02F9D16927259873003CD6BA /* Encodable.swift in Sources */,
 				02F9D15927249108003CD6BA /* LoginAssembly.swift in Sources */,
+				0223E028273D6A2100796465 /* LocalSoundtrackManager.swift in Sources */,
 				02578E9A2721F0FC0006AA7C /* WelcomeRouter.swift in Sources */,
 				636E413027301DA3002C7D19 /* SubscriptionCardCollectionViewCell.swift in Sources */,
 				028F0D8F2732E81C00E5E5D4 /* ChooseMusicRouter.swift in Sources */,
@@ -1039,11 +1089,13 @@
 				63824775273525DA0016B1C3 /* Date+Extension.swift in Sources */,
 				6370A4082732B6E100EEFD84 /* SubscriptionCardModel.swift in Sources */,
 				02960BF4273864A20023C1F0 /* SpotifyMusicInteractor.swift in Sources */,
+				0223E02F273DD3F200796465 /* ReceiptEndpoints.swift in Sources */,
 				02960BEF273864A20023C1F0 /* SpotifyMusicModule.swift in Sources */,
 				02F9D13027246310003CD6BA /* SignupViewController.swift in Sources */,
 				02F9D15727249108003CD6BA /* LoginRouter.swift in Sources */,
 				02578E9B2721F0FC0006AA7C /* WelcomeViewController.swift in Sources */,
 				63FB3C8F272C09F900C413FA /* SubscriptionsInteractor.swift in Sources */,
+				0223E031273DDC8600796465 /* ReceiptValifationResponse.swift in Sources */,
 				028F0D9E273328F300E5E5D4 /* ChooseSourceAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1187,7 +1239,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TestSdk/TestSdk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1285,7 +1337,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TestSdk/TestSdk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 2HTH4FBG4Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

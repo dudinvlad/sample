@@ -16,10 +16,25 @@ extension Module {
         // MARK: - Dependencies
 
         weak var output: InteractorOutput!
+        private let soundtrackService: SoundtrackService
 
-        required init() { }
+        required init(soundtrackService: SoundtrackService) {
+            self.soundtrackService = soundtrackService
+        }
 
     }
 }
 
-extension Interactor: Module.InteractorInput { }
+extension Interactor: Module.InteractorInput {
+    func fetchDefaultsTracks() {
+        soundtrackService.fetchDefaultsSoundtracks { response, error in
+            self.output.controller?.hideActivity()
+            if let error = error {
+                self.output.controller?.showNetworking(error: error)
+                return
+            }
+
+            self.output.successDefaultsTracks(response)
+        }
+    }
+}

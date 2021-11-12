@@ -17,7 +17,7 @@ extension Module {
 
         var output: ViewOutput!
 
-        private var dataSource: [SpotifyTrack] = .init()
+        private var dataSource: [Soundtrackable] = .init()
 
         private lazy var trackTableView: UITableView = build {
             $0.register(ChooseSourceTableViewCell.self, forCellReuseIdentifier: String(describing: ChooseSourceTableViewCell.self))
@@ -33,10 +33,8 @@ extension Module {
             fatalError("init(coder:) has not been implemented")
         }
 
-        init(_ inputData: [SpotifyTrack]) {
+        init() {
             super.init(nibName: nil, bundle: nil)
-
-            dataSource = inputData
         }
 
         override func viewDidLoad() {
@@ -49,7 +47,7 @@ extension Module {
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
 
-            trackTableView.reloadData()
+            self.output.requestDefaultTracks()
         }
 
         // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -98,4 +96,9 @@ private extension View {
     }
 }
 
-extension View: Module.ViewInput { }
+extension View: Module.ViewInput {
+    func update(with soundtracks: [Soundtrackable]) {
+        self.dataSource = soundtracks
+        trackTableView.reloadData()
+    }
+}

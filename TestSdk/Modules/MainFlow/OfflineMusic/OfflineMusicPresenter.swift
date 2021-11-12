@@ -19,12 +19,12 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        private let storageService: StorageService
+        private let soundStoreService: (StorageService & SoundtrackStoreService)
 
         required init(
-            storageService: StorageService
+            soundStoreService: (StorageService & SoundtrackStoreService)
         ) {
-            self.storageService = storageService
+            self.soundStoreService = soundStoreService
         }
 
     }
@@ -33,15 +33,27 @@ extension Module {
 private extension Presenter { }
 
 extension Presenter: Module.ViewOutput {
-    func saveSelectedTrack(_ track: SpotifyTrack) {
-        guard track.previewUrl != nil else { view.showNetworking(error: "Sorry! This track is not available"); return }
+    func saveSelectedTrack(_ track: Soundtrackable) {
+        guard !track.soundtrackPath.isEmpty else { view.showNetworking(error: "Sorry! This track is not available"); return }
 
-        storageService.saveTracks([track])
+        soundStoreService.saveTracks([track])
         router.showRootMusicScreen()
+    }
+
+    func requestDefaultTracks() {
+        view.showActivity()
+        interactor.fetchDefaultsTracks()
     }
 }
 
 extension Presenter: Module.InteractorOutput {
+    func successDefaultsTracks(_ items: [Soundtrackable]?) {
+        view.hideActivity()
+        guard let soundtracks = items else { return }
+
+        view.update(with: soundtracks)
+    }
+
     var controller: BaseViewInput? {
         view
     }

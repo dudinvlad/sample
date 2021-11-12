@@ -9,8 +9,10 @@ import Foundation
 
 protocol StorageService {
     func saveUserInfo(_ object: AMUser)
-    func saveTracks(_ items: [SpotifyTrack])
-    func getTracks(completion: @escaping ([SpotifyTrack]) -> Void)
     func getCurrentUser(completion: @escaping (AMUser?) -> Void)
-    func getOfflineTracks(completion: @escaping ([SpotifyTrack]) -> Void)
+}
+
+protocol SoundtrackStoreService {
+    func saveTracks(_ items: [Soundtrackable])
+    func getTracks(completion: @escaping ([Soundtrackable]) -> Void)
 }

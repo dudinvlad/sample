@@ -21,28 +21,37 @@ extension Module {
 
         private let userDefaultsManager: UserDefaultsManager
         private let notificationManager: NotificationManager
-        private let storageService: StorageService
+        private let storageService: (StorageService & SoundtrackStoreService)
         private var trackDidSelectHandler: (() -> Void)?
+        private let soundStoreService: SoundtrackStoreService
 
         required init(
             userDefaultsManager: UserDefaultsManager,
             notificationManager: NotificationManager,
-            storageService: StorageService,
-            trackDidSelectHandler: (() -> Void)?
+            storageService: (StorageService & SoundtrackStoreService),
+            trackDidSelectHandler: (() -> Void)?,
+            soundStoreService: SoundtrackStoreService
         ) {
             self.userDefaultsManager = userDefaultsManager
             self.notificationManager = notificationManager
             self.storageService = storageService
             self.trackDidSelectHandler = trackDidSelectHandler
+            self.soundStoreService = soundStoreService
         }
 
     }
 }
 
 private extension Presenter {
-    func writeToDisk(_ item: SpotifyTrack) {
+    func writeToDisk(_ item: Soundtrackable) {
+        var soundUrlPath = item.soundtrackPath
+        if let code = item.soundtrackPath.components(separatedBy: ":").first {
+            if code == "http" {
+                soundUrlPath = "https" + item.soundtrackPath.dropFirst(4)
+            }
+        }
         guard
-            let previewUrl = URL(string: item.previewUrl ?? ""),
+            let previewUrl = URL(string: soundUrlPath),
             let soundData = try? Data(contentsOf: previewUrl)
         else { return }
 
@@ -75,7 +84,7 @@ extension Presenter: Module.ViewOutput {
         router.showChooseSourceModule()
     }
 
-    func saveSelectedTrack(_ item: SpotifyTrack) {
+    func saveSelectedTrack(_ item: Soundtrackable) {
         writeToDisk(item)
         let date: Date = userDefaultsManager.get(UserDefaultsManager.Keys.selectedDate.rawValue) ?? Date()
         notificationManager.scheduleNotification(dateTime: date)
@@ -94,7 +103,7 @@ extension Presenter: Module.ViewOutput {
 }
 
 extension Presenter: Module.InteractorOutput {
-    func success(with tracks: [SpotifyTrack]) {
+    func success(with tracks: [Soundtrackable]) {
         view.update(with: tracks)
     }
 
