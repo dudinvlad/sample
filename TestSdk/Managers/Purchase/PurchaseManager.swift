@@ -76,6 +76,15 @@ class PurchaseManager: NSObject {
 
     }
 
+    func getSubscriptionReceipt() -> String? {
+        guard
+            let receiptFileURL = Bundle.main.appStoreReceiptURL,
+            let receiptData = try? Data(contentsOf: receiptFileURL)
+        else { return nil}
+
+        return receiptData.base64EncodedString()
+    }
+
     // RESTORE PURCHASE
     func restorePurchase() {
         SKPaymentQueue.default().add(self)

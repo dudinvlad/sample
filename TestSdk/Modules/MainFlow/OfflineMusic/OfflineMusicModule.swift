@@ -20,21 +20,28 @@ struct OfflineMusicModule {
 // MARK: - Assembly
 
 protocol OfflineMusicAssemblyProtocol {
-    func assemble(_ items: [SpotifyTrack]) -> UIViewController
+    func assemble() -> UIViewController
 }
 
 // MARK: - View
-protocol OfflineMusicViewInputProtocol: BaseViewInput { }
+protocol OfflineMusicViewInputProtocol: BaseViewInput {
+    func update(with soundtracks: [Soundtrackable])
+}
 
 protocol OfflineMusicViewOutputProtocol: BaseViewOutput {
-    func saveSelectedTrack(_ track: SpotifyTrack)
+    func saveSelectedTrack(_ track: Soundtrackable)
+    func requestDefaultTracks()
 }
 
 // MARK: - Interactor
 
-protocol OfflineMusicInteractorInputProtocol { }
+protocol OfflineMusicInteractorInputProtocol {
+    func fetchDefaultsTracks()
+}
 
-protocol OfflineMusicInteractorOutputProtocol: BaseInteractorOutput { }
+protocol OfflineMusicInteractorOutputProtocol: BaseInteractorOutput {
+    func successDefaultsTracks(_ items: [Soundtrackable]?)
+}
 
 // MARK: - Router
 

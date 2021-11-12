@@ -46,7 +46,7 @@ extension Module {
             $0.addAction(spotifyAction, for: .touchUpInside)
         }
 
-        private var dataSource: [SpotifyTrack] = .init()
+        private var dataSource: [Soundtrackable] = .init()
 
         private lazy var trackTableView: UITableView = build {
             $0.register(ChooseSourceTableViewCell.self, forCellReuseIdentifier: String(describing: ChooseSourceTableViewCell.self))
@@ -140,7 +140,7 @@ private extension View {
 }
 
 extension View: Module.ViewInput {
-    func update(with tracks: [SpotifyTrack]) {
+    func update(with tracks: [Soundtrackable]) {
         dataSource = tracks
         trackTableView.isHidden = dataSource.isEmpty
         spacerView.isHidden = !dataSource.isEmpty

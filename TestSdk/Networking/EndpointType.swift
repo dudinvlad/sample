@@ -11,7 +11,7 @@ import Foundation
 enum ApiUrlsPath: String {
     case spotifyToken = "https://accounts.spotify.com"
     case spotifyWebApi = "https://api.spotify.com"
-
+    case clientWebApi = "https://sdk-spotify.dev.dnc.pp.ua/api"
 }
 
 protocol EndpointType {

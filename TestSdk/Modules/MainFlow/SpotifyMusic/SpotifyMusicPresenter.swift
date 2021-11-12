@@ -19,14 +19,14 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        private let storageService: StorageService
+        private let storageService: (StorageService & SoundtrackStoreService)
         private var data: SavedTracksResponseModel
 
         private lazy var totalTracks: Int = data.total
         private lazy var offsetTracks: Int = data.items.map { $0.track}.count
 
         required init(
-            storageService: StorageService,
+            storageService: (StorageService & SoundtrackStoreService),
             data: SavedTracksResponseModel
         ) {
             self.storageService = storageService

@@ -53,17 +53,11 @@ class ChooseSourceTableViewCell: UITableViewCell {
 
     // MARK: - Public
 
-    func setup(with item: SpotifyTrack) {
-        titleLabel.text = item.artists.first?.name
-        descriptionLabel.text = item.name
-        let smallImage = item.album.images.first
-        guard
-            let imageUrlString = smallImage?.url
-        else { return }
-
-        iconImageView.sd_setImage(with: URL(string: imageUrlString), placeholderImage: Style.Image.offlineMusic)
+    func setup(with item: Soundtrackable) {
+        titleLabel.text = item.artistName
+        descriptionLabel.text = item.soundtrackName
+        iconImageView.image = item.isSpotify ? Style.Image.spotify : Style.Image.offlineMusic
     }
-
 
     // MARK: - Private
 

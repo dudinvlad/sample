@@ -18,26 +18,31 @@ extension Module {
         @Injected var spotifyService: SpotifyService!
         @Injected var notificationManager: NotificationManager!
         @Injected var userDefaultsManager: UserDefaultsManager!
-        @Injected var storageService: StorageService!
+        @Injected var storageService: (StorageService & SoundtrackStoreService)!
         @Injected var spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying!
         @Injected var offlineMusicAssemblying: OfflineMusicModule.ModuleAssemblying!
+        @Injected var subscriptionAssemblying: SubscriptionsModule.ModuleAssemblying
+        @Injected var receiptService: ReceiptService!
+        @Injected var purchaseManager: PurchaseManager!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
             let presenter: Presenter   = .init(
                 with: spotifyManager,
                 notificationManager: notificationManager,
-                userDefaultsManager: userDefaultsManager,
-                storageService: storageService
+                userDefaultsManager: userDefaultsManager
             )
             let interactor: Interactor = .init(
                 spotifyService: spotifyService,
-                storageService: storageService
+                storageService: storageService,
+                receiptService: receiptService,
+                purchaseManager: purchaseManager
             )
             let router: Router         = .init(
                 spotifyMusic: spotifyMusicAssemblying,
                 userDefaultsManager: userDefaultsManager,
-                offlineMusic: offlineMusicAssemblying
+                offlineMusic: offlineMusicAssemblying,
+                subscription: subscriptionAssemblying
             )
 
             viewController.output = presenter

@@ -18,11 +18,12 @@ struct RestSpotifyService: SpotifyService {
     ) {
         self.apiManager = apiManager
     }
-    func exchangeAccessToken(with code: String, _ completion: @escaping (String, ApiManager.NetworkError?) -> Void) {
+    func exchangeAccessToken(with code: String, _ completion: @escaping (String?, ApiManager.NetworkError?) -> Void) {
         let request = SpotifyEndpoints.accessToken(code)
 
         apiManager.request(endoint: request) { (response: TokensResponseModel?, error) in
-            guard let accessToken = response?.accessToken else { return }
+            guard let accessToken = response?.accessToken else { completion(nil, ApiManager.NetworkError.serverError(description: "No access token found")); return }
+
             completion(accessToken, nil)
         }
     }

@@ -18,7 +18,7 @@ extension Module {
         @Injected var loginAssemblying: LoginModule.ModuleAssemblying!
         @Injected var mainFlowAssemblying: MainFlowModule.ModuleAssemblying!
         @Injected var keychainService: StoreProtocol!
-        @Injected var storageService: StorageService!
+        @Injected var storageService: (StorageService & SoundtrackStoreService)!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()

@@ -14,7 +14,7 @@ private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
-        @Injected var storageService: StorageService!
+        @Injected var storageService: (StorageService & SoundtrackStoreService)!
         @Injected var spotifyService: SpotifyService!
 
         func assemble(_ inputData: SavedTracksResponseModel) -> UIViewController {

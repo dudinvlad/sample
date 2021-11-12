@@ -24,20 +24,57 @@ struct SpotifyTrackResponse: Codable {
 }
 
 struct SpotifyTrack: Codable {
-    let id: String
+    var id: String
     let name: String
     let artists: [SpotifyArtist]
     let album: SpotifyAlbum
     let uri: String
     var previewUrl: String?
+    var isSpotify: Bool = true
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case artists
+        case album
+        case uri
+        case previewUrl
+    }
+}
+
+extension SpotifyTrack: Soundtrackable {
+    var artistName: String {
+        set{ }
+        get {
+            artists.first?.name ?? ""
+        }
+    }
+    var soundtrackName: String {
+        set{ }
+        get {
+            name
+        }
+    }
+    var soundtrackPath: String {
+        set{ }
+        get {
+            previewUrl ?? ""
+        }
+    }
+    var fileName: String {
+        set{ }
+        get {
+            name.appending(".mp3")
+        }
+    }
 
     func toAnyObject() -> Any {
         return ["id": id,
-                "name": name,
-                "uri": uri,
-                "preview_url": previewUrl ?? "",
-                "artists": artists.toAny(),
-                "album": album.toAnyObject()]
+                "soundtrack_name": soundtrackName,
+                "soundtrack_path": soundtrackPath,
+                "file_name": fileName,
+                "artist_name": artistName,
+                "is_spotify": isSpotify]
     }
 }
 
