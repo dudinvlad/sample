@@ -17,18 +17,29 @@ extension Module {
         // MARK: - Dependencies
 
         private let purchaseManager: PurchaseManager
+        private let storageManager: StorageService
 
         weak var view: ViewInput!
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        required init(with purchaseManager: PurchaseManager) {
+        required init(
+            with purchaseManager: PurchaseManager,
+            _ storageManager: StorageService
+        ) {
             self.purchaseManager = purchaseManager
+            self.storageManager = storageManager
         }
     }
 }
 
-private extension Presenter { }
+private extension Presenter {
+    func handleSuccessSubscription(_ error: PurchasesError) {
+        if error != .disabled {
+            self.view.successPurchase()
+        }
+    }
+}
 
 extension Presenter: Module.ViewOutput {
     func didLoad() {
@@ -47,12 +58,14 @@ extension Presenter: Module.ViewOutput {
     }
 
     func restoreDidTap() {
-        purchaseManager.restorePurchase()
+        purchaseManager.restorePurchase() { error, product, transaction in
+            self.handleSuccessSubscription(error)
+        }
     }
 
     func subscriptionDidTap(product: SKProduct) {
         purchaseManager.purchase(product: product) { error, product, transaltion in
-
+            self.handleSuccessSubscription(error)
         }
     }
 }

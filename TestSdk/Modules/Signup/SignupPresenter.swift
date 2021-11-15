@@ -19,11 +19,11 @@ extension Module {
         var interactor: InteractorInput!
         var router: RouterInput!
 
-        private let storageService: StorageService
+        private let storageService: (StorageService & SoundtrackStoreService)
         private let keychainService: StoreProtocol
 
         required init(
-            storageService: StorageService,
+            storageService: (StorageService & SoundtrackStoreService),
             keychainService: StoreProtocol
         ) {
             self.storageService = storageService

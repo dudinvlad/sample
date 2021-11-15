@@ -8,8 +8,8 @@
 import Foundation
 
 enum SpotifyConstants: String {
-    case spotifyClientID = "4cdd37c0271b4b4a93456b17b1b5e253"
-    case spotifyClientSecret = "10e1d6a2b39e4f67a828d490b2ec25b9"
+    case spotifyClientID = "54ae027a57ba43f28720c684dffa5805"
+    case spotifyClientSecret = "80dedbc26efb458692304baeb3ca8edf"
     case spotifyRedirectUrl = "spotify-ios-quick-start://spotify-login-callback"
 }
 

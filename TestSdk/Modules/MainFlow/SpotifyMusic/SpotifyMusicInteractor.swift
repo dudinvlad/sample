@@ -28,6 +28,10 @@ extension Module {
 extension Interactor: Module.InteractorInput {
     func fetchSavedTracks(with offset: Int) {
         spotifyService.loadSavedTracks(offset: offset) { [weak self] response, error in
+            if let errorMessage = error {
+                self?.output.controller?.showNetworking(error: errorMessage)
+                return
+            }
             self?.output.success(with: response)
         }
     }

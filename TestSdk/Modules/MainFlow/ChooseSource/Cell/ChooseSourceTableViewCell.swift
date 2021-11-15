@@ -31,6 +31,7 @@ class ChooseSourceTableViewCell: UITableViewCell {
 
     private lazy var descriptionLabel: UILabel = build {
         $0 <~ Style.Label.descriptionLabel
+        $0.textColor = .lightGray
     }
 
     // MARK: - Init

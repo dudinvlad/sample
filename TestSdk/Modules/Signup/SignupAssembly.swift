@@ -15,7 +15,7 @@ private typealias View = Module.ViewController
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var authService: AuthService!
-        @Injected var storageService: StorageService!
+        @Injected var storageService: (StorageService & SoundtrackStoreService)!
         @Injected var keychainService: StoreProtocol!
         @Injected var mainFlowAssemblying: MainFlowModule.ModuleAssemblying!
 

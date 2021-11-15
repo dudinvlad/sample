@@ -22,4 +22,8 @@ extension Module {
     }
 }
 
-extension Interactor: Module.InteractorInput { }
+extension Interactor: Module.InteractorInput {
+    func saveSubscriptionReceipt(_ receipt: String) {
+        
+    }
+}

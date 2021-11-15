@@ -33,10 +33,10 @@ extension Module {
             fatalError("init(coder:) has not been implemented")
         }
 
-        init(_ inputData: SavedTracksResponseModel) {
+        init(_ inputData: SavedTracksResponseModel?) {
             super.init(nibName: nil, bundle: nil)
 
-            dataSource = inputData.items.map { $0.track }
+            dataSource = inputData?.items.compactMap { $0.track } ?? []
         }
 
         override func viewDidLoad() {

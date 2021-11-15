@@ -31,6 +31,7 @@ protocol SubscriptionsAssemblyProtocol {
 // MARK: - View
 protocol SubscriptionsViewInputProtocol: AnyObject {
     func set(dataSource value: [SubscriptionCardModel])
+    func successPurchase()
 }
 
 protocol SubscriptionsViewOutputProtocol: BaseViewOutput {
@@ -40,7 +41,9 @@ protocol SubscriptionsViewOutputProtocol: BaseViewOutput {
 
 // MARK: - Interactor
 
-protocol SubscriptionsInteractorInputProtocol { }
+protocol SubscriptionsInteractorInputProtocol {
+    func saveSubscriptionReceipt(_ receipt: String)
+}
 
 protocol SubscriptionsInteractorOutputProtocol: AnyObject { }
 

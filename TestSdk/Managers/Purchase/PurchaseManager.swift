@@ -86,9 +86,10 @@ class PurchaseManager: NSObject {
     }
 
     // RESTORE PURCHASE
-    func restorePurchase() {
+    func restorePurchase(_ completion: @escaping (PurchasesError, SKProduct?, SKPaymentTransaction?) -> Void) {
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().restoreCompletedTransactions()
+        self.purchaseProductComplition = completion
     }
 
     // FETCH AVAILABLE IAP PRODUCTS
@@ -129,7 +130,9 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                     p0.price.floatValue < p1.price.floatValue
                 })
 
-                complition(products)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    complition(products)
+                }
             }
         }
     }
@@ -147,26 +150,9 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                 switch trans.transactionState {
                 case .purchased:
                     log("Product purchase done")
-                    SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    SKPaymentQueue.default().finishTransaction(trans)
                     if let complition = self.purchaseProductComplition {
                         complition(PurchasesError.purchased, self.productToPurchase, trans)
-
-                        let now = Date()
-                        var expiredPaymentDate: Date?
-
-                        if productID.contains(".weekly") {
-                            expiredPaymentDate = now.addDays(n: 7)
-                        }
-
-                        if productID.contains(".monthly") {
-                            expiredPaymentDate = now.addMonth(n: 1)
-                        }
-
-                        if productID.contains(".yearly") {
-                            expiredPaymentDate = now.addYear(n: 1)
-                        }
-
-                        userDefaultsManager.set(expiredPaymentDate, key: UserDefaultsManager.Keys.expiredPaymentDate.rawValue)
                     }
 
                 case .failed:
@@ -174,13 +160,14 @@ extension PurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionObserv
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     if let complition = self.purchaseProductComplition {
                         complition(PurchasesError.disabled, self.productToPurchase, trans)
-
-                        userDefaultsManager.delete(by: UserDefaultsManager.Keys.expiredPaymentDate.rawValue)
                     }
 
                 case .restored:
                     log("Product restored")
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    if let completion = self.purchaseProductComplition {
+                        completion(PurchasesError.restored, nil, nil)
+                    }
 
                 default: break
                 }}}

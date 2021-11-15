@@ -12,7 +12,6 @@ class UserDefaultsManager: StoreProtocol {
         case selectedDate
         case selectedUri
         case deviceId
-        case expiredPaymentDate
         case userDefaultsIsClean
     }
 

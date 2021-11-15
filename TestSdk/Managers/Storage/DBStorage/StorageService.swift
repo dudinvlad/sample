@@ -10,6 +10,8 @@ import Foundation
 protocol StorageService {
     func saveUserInfo(_ object: AMUser)
     func getCurrentUser(completion: @escaping (AMUser?) -> Void)
+    func saveSubscriptionReceipt(_ receipt: String)
+    func getSubscriptionReceipt(_ completion: @escaping (String) -> Void)
 }
 
 protocol SoundtrackStoreService {

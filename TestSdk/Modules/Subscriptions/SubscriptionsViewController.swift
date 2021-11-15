@@ -183,6 +183,7 @@ private extension View {
         view.backgroundColor = Style.Color.main
         collectionView.delegate = self
         collectionView.dataSource = self
+        self.isModalInPresentation = true
     }
 
     func makeConstraints() {
@@ -234,11 +235,13 @@ private extension View {
 extension View: Module.ViewInput {
     func set(dataSource value: [SubscriptionCardModel]) {
         self.dataSource = value
+        self.isModalInPresentation = false
+        self.collectionView.stopSkeletonAnimation()
+        self.view.hideSkeleton()
+        self.collectionView.reloadData()
+    }
 
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.stopSkeletonAnimation()
-            self?.view.hideSkeleton()
-            self?.collectionView.reloadData()
-        }
+    func successPurchase() {
+        dismiss(animated: true, completion: nil)
     }
 }

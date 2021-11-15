@@ -11,11 +11,6 @@ import Foundation
 class ApiManager {
     typealias ResponseBlock<T: Codable> = (_ object: T?, _ error: String?) -> Void
 
-    enum NetworkError: Error {
-        case parsingError
-        case serverError(description: String)
-    }
-
     // MARK: - Variables
 
     lazy var session: Session = {
@@ -49,6 +44,12 @@ class ApiManager {
 
             if let spotifyError = try? decoder.decode(SpotifyErrorResponse.self, from: data) {
                 completion(nil, spotifyError.error.message)
+                return
+            }
+
+            if let apiError = try? decoder.decode(ApiError.self, from: data) {
+                completion(nil, apiError.message)
+                return
             }
 
             let responseObject = try decoder.decode(T.self, from: data)
