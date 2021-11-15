@@ -12,6 +12,7 @@ struct StorageManager: StorageService, SoundtrackStoreService {
     // MARK: - Variables
     private let dataBaseReference = Database.database().reference(withPath: "users")
     private let tracksBaseReference = Database.database().reference(withPath: "saved_tracks")
+    private let subscriptionBaseReference = Database.database().reference(withPath: "subscriptions")
     private let tracksOfflineBaseReference = Database.database().reference(withPath: "saved_tracks_offline")
 
     private let keychain: StoreProtocol
@@ -34,6 +35,21 @@ struct StorageManager: StorageService, SoundtrackStoreService {
         items.forEach { track in
             let trackObjectReference = tracksBaseReference.child(getCurrentUserId()).child(track.id)
             trackObjectReference.setValue(track.toAnyObject())
+        }
+    }
+
+    func saveSubscriptionReceipt(_ receipt: String) {
+        let subscriptionObjectReference = subscriptionBaseReference.child(getCurrentUserId())
+        subscriptionObjectReference.setValue(receipt)
+    }
+
+    func getSubscriptionReceipt(_ completion: @escaping (String) -> Void) {
+        guard !getCurrentUserId().isEmpty else { return }
+
+        subscriptionBaseReference.child(getCurrentUserId()).getData { error, snapshot in
+            guard let receiptData = snapshot.value as? String else { return }
+
+            completion(receiptData)
         }
     }
 

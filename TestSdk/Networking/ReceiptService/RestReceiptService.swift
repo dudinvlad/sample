@@ -20,11 +20,10 @@ struct RestReceiptService: ReceiptService {
     }
 
     func validate(_ receipt: String, _ completion: @escaping (Bool?, String?) -> Void) {
-        guard !receipt.isEmpty else { completion(false, nil); return }
         let request = ReceiptEndpoints.validate(receipt)
 
         apiManager.request(endoint: request) { (response: ReceiptValifationModel?, error) in
-            completion(response?.valid, nil)
+            completion(response?.valid, error)
         }
     }
 }

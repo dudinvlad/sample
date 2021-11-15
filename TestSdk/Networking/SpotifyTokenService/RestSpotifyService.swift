@@ -18,11 +18,15 @@ struct RestSpotifyService: SpotifyService {
     ) {
         self.apiManager = apiManager
     }
-    func exchangeAccessToken(with code: String, _ completion: @escaping (String?, ApiManager.NetworkError?) -> Void) {
+    func exchangeAccessToken(with code: String, _ completion: @escaping (String?, String?) -> Void) {
         let request = SpotifyEndpoints.accessToken(code)
 
         apiManager.request(endoint: request) { (response: TokensResponseModel?, error) in
-            guard let accessToken = response?.accessToken else { completion(nil, ApiManager.NetworkError.serverError(description: "No access token found")); return }
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let accessToken = response?.accessToken else { completion(nil, "No access token found"); return }
 
             completion(accessToken, nil)
         }
@@ -32,21 +36,7 @@ struct RestSpotifyService: SpotifyService {
         let request = SpotifyEndpoints.savedTracks(offset)
 
         apiManager.request(endoint: request) { (response: SavedTracksResponseModel?, error) in
-            guard
-                let responseItem = response
-            else { return }
-
-            completion(responseItem, nil)
-        }
-    }
-
-    func getAvailableDevices(_ completion: @escaping ([SpotifyDevice], ApiManager.NetworkError?) -> Void) {
-        let request = SpotifyEndpoints.devices
-
-        apiManager.request(endoint: request) { (response: SpotifyDevicesResponse?, error) in
-            guard let responseItems = response?.devices else { return }
-
-            completion(responseItems, nil)
+            completion(response, error)
         }
     }
 }

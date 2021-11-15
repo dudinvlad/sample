@@ -15,10 +15,13 @@ private typealias View = Module.ViewController
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
         @Injected var purchaseManager: PurchaseManager!
+        @Injected var storageManager: StorageService!
 
         func assemble() -> UIViewController {
             let viewController: View   = .init()
-            let presenter: Presenter   = .init(with: purchaseManager)
+            let presenter: Presenter   = .init(
+                with: purchaseManager,
+                storageManager)
             let interactor: Interactor = .init()
             let router: Router         = .init()
 

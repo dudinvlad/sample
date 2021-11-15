@@ -52,13 +52,15 @@ extension Presenter: Module.ViewOutput {
 
 extension Presenter: Module.InteractorOutput {
     func spotifySuccess(with accessToken: String?) {
-        spotifyManager.appRemote.connectionParameters.accessToken = accessToken
-        spotifyManager.appRemote.connect()
         KeychainStore().set(accessToken, key: "spotify_access_token")
-        interactor.fetchSavedTracks()
+        view.showActivity()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.view.hideActivity()
+            self.interactor.fetchSavedTracks()
+        }
     }
 
-    func success(with response: SavedTracksResponseModel) {
+    func success(with response: SavedTracksResponseModel?) {
         router.showSpotifyMusic(with: response)
     }
 

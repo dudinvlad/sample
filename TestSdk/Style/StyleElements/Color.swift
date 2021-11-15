@@ -8,8 +8,8 @@
 import UIKit
 
 extension Style.Color {
-    static let main = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-    static let nightBlue = #colorLiteral(red: 0.01568627451, green: 0.01176470588, blue: 0.2823529412, alpha: 1)
+    static let main = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    static let nightBlue = #colorLiteral(red: 0.1294377126, green: 0.1217846514, blue: 0.1231930272, alpha: 1)
     static let mainGray = #colorLiteral(red: 0.6431372549, green: 0.6431372549, blue: 0.6431372549, alpha: 1)
     static let black = #colorLiteral(red: 0, green: 0.05098039216, blue: 0.07843137255, alpha: 1)
     static let white = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

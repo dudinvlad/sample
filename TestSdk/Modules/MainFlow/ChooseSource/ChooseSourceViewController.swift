@@ -82,7 +82,6 @@ extension Module {
         }
 
         private lazy var spotifyAction: UIAction = .init { _ in
-//            self.output.presentSubscriptionsModule()
             self.output.requestSpotifyConnect()
         }
 

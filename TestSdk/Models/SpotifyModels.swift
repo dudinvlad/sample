@@ -128,3 +128,8 @@ class SpotifyError: Codable {
     let status: Int
     let message: String
 }
+
+class ApiError: Codable {
+    let message: String
+    let statusCode: Int
+}
