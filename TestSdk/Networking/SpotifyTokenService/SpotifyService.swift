@@ -15,4 +15,5 @@ protocol SpotifyService {
         _ completion: @escaping (String?, String?) -> Void
     )
     func loadSavedTracks(offset: Int, _ completion: @escaping SavedTrackCompletion)
+    func searchTracks(with query: String, offset: Int, _ completion: @escaping (SearchTrackResponse?, String?) -> Void)
 }

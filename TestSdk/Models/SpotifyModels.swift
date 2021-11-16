@@ -16,7 +16,17 @@ struct SavedTracksResponseModel: Codable {
     let total: Int
     let offset: Int
     let limit: Int
+}
 
+struct SearchTrackResponse: Codable {
+    let tracks: SearchTracksResponseModel
+}
+
+struct SearchTracksResponseModel: Codable {
+    let items: [SpotifyTrack]
+    let total: Int
+    let offset: Int
+    let limit: Int
 }
 
 struct SpotifyTrackResponse: Codable {

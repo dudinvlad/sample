@@ -13,6 +13,7 @@ enum SpotifyEndpoints: EndpointType {
     case devices
     case startPlayer(_ deviceId: String, _ uri: String)
     case pausePlayer(_ deviceId: String)
+    case searchTracks(_ query: String, _ offset: Int)
 
     var endpointPath: String {
         switch self {
@@ -21,12 +22,13 @@ enum SpotifyEndpoints: EndpointType {
             case .devices: return "/v1/me/player/devices"
             case .startPlayer: return "/v1/me/player/play"
             case .pausePlayer: return "/v1/me/player/pause"
+            case .searchTracks: return "/v1/search"
         }
     }
 
     var encoding: ParameterEncoding {
         switch self {
-        case .accessToken, .devices, .savedTracks:
+        case .accessToken, .devices, .savedTracks, .searchTracks:
             return URLEncoding.default
         default:
             return JSONEncoding.default
@@ -37,7 +39,7 @@ enum SpotifyEndpoints: EndpointType {
         switch self {
         case .accessToken:
             return ApiUrlsPath.spotifyToken.rawValue
-        case .savedTracks, .devices, .startPlayer, .pausePlayer:
+        case .savedTracks, .devices, .startPlayer, .pausePlayer, .searchTracks:
             return ApiUrlsPath.spotifyWebApi.rawValue
         }
     }
@@ -49,6 +51,8 @@ enum SpotifyEndpoints: EndpointType {
             fullUrl += "?device_id=\(id)"
         case .startPlayer(let id, _):
             fullUrl += "?device_id=\(id)"
+//        case .searchTracks(let query, let offset):
+//            fullUrl += "?q=\(query)&type=track&limit=50&offset=\(offset)"
         default:
             break
         }
@@ -59,7 +63,7 @@ enum SpotifyEndpoints: EndpointType {
         switch self {
         case .accessToken:
             return .post
-        case .savedTracks, .devices:
+        case .savedTracks, .devices, .searchTracks:
             return .get
         case .startPlayer, .pausePlayer:
             return .put
@@ -70,7 +74,7 @@ enum SpotifyEndpoints: EndpointType {
         switch self {
         case .accessToken:
             return createSpotifyHeaders()
-        case .savedTracks, .devices, .startPlayer, .pausePlayer:
+        case .savedTracks, .devices, .startPlayer, .pausePlayer, .searchTracks:
             let accessToken: String = KeychainStore().get("spotify_access_token") ?? ""
             return ["Authorization": "Bearer \(accessToken)",
                     "Content-Type": "application/json"]
@@ -86,6 +90,11 @@ enum SpotifyEndpoints: EndpointType {
                     "position_ms": 0]
             case .savedTracks(let offset):
             return ["offset": offset]
+        case .searchTracks(let query, let offset):
+            return ["limit": 50,
+                    "offset": offset,
+                    "type": "track",
+                    "q": query]
             default:
                 return [:]
         }

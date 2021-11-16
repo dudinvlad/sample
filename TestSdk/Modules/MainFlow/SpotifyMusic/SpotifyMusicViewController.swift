@@ -19,12 +19,18 @@ extension Module {
 
         private var dataSource: [SpotifyTrack] = .init()
 
+        private lazy var searchBar: UISearchBar = build {
+            $0.placeholder = "Search tracks"
+            $0.delegate = self
+        }
+
         private lazy var trackTableView: UITableView = build {
             $0.register(ChooseSourceTableViewCell.self, forCellReuseIdentifier: String(describing: ChooseSourceTableViewCell.self))
             $0.dataSource = self
             $0.delegate = self
             $0.backgroundColor = .clear
             $0.separatorStyle = .none
+            $0.keyboardDismissMode = .onDrag
         }
 
         // MARK: - Lifecycle
@@ -33,10 +39,11 @@ extension Module {
             fatalError("init(coder:) has not been implemented")
         }
 
-        init(_ inputData: SavedTracksResponseModel?) {
+//        init(_ inputData: SavedTracksResponseModel?) {
+        init() {
             super.init(nibName: nil, bundle: nil)
 
-            dataSource = inputData?.items.compactMap { $0.track } ?? []
+//            dataSource = inputData?.items.compactMap { $0.track } ?? []
         }
 
         override func viewDidLoad() {
@@ -77,7 +84,7 @@ extension Module {
 
         func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
             if dataSource.count - 1 == indexPath.row {
-                self.output.requestMoreSaveTrack()
+//                self.output.requestMoreSearchTracks()
             }
         }
     }
@@ -87,10 +94,17 @@ private extension View {
     func initialSetup() {
         title = "Spotify"
         view.backgroundColor = Style.Color.black
+        view.addSubview(searchBar)
         view.addSubview(trackTableView)
 
-        trackTableView.snp.makeConstraints { make in
+        searchBar.snp.makeConstraints { make in
             make.topMargin.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+
+        trackTableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview()
@@ -100,7 +114,17 @@ private extension View {
 
 extension View: Module.ViewInput {
     func updateTracks(with data: [SpotifyTrack]) {
-        self.dataSource += data
+        self.dataSource = data
         trackTableView.reloadData()
+    }
+}
+
+extension View: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.output.requestSearch(searchText)
     }
 }

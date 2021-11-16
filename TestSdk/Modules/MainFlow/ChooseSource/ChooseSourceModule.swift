@@ -49,7 +49,8 @@ protocol ChooseSourceInteractorOutputProtocol: BaseInteractorOutput {
 // MARK: - Router
 
 protocol ChooseSourceRouterInputProtocol {
-    func showSpotifyMusic(with response: SavedTracksResponseModel?)
+//    func showSpotifyMusic(with response: SavedTracksResponseModel?)
+    func showSpotifyMusic()
     func showOfflineMusic()
     func showSubscriptionFlow()
 }

@@ -36,8 +36,12 @@ extension Module {
 }
 
 extension Router: Module.RouterInput {
-    func showSpotifyMusic(with response: SavedTracksResponseModel?) {
-        viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(response), animated: true)
+//    func showSpotifyMusic(with response: SavedTracksResponseModel?) {
+//        viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(response), animated: true)
+//    }
+
+    func showSpotifyMusic() {
+        viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(), animated: true)
     }
 
     func showOfflineMusic() {

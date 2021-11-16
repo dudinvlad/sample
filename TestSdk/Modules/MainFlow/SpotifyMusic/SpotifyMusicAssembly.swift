@@ -17,11 +17,13 @@ extension Module {
         @Injected var storageService: (StorageService & SoundtrackStoreService)!
         @Injected var spotifyService: SpotifyService!
 
-        func assemble(_ inputData: SavedTracksResponseModel?) -> UIViewController {
-            let viewController: View   = .init(inputData)
+//        func assemble(_ inputData: SavedTracksResponseModel?) -> UIViewController {
+        func assemble() -> UIViewController {
+//            let viewController: View   = .init(inputData)
+            let viewController: View   = .init()
             let presenter: Presenter   = .init(
-                storageService: storageService,
-                data: inputData
+                storageService: storageService
+//                data: inputData
             )
             let interactor: Interactor = .init(spotifyService: spotifyService)
             let router: Router         = .init()

@@ -17,18 +17,15 @@ extension Module {
         // MARK: - Dependencies
 
         private let purchaseManager: PurchaseManager
-        private let storageManager: StorageService
 
         weak var view: ViewInput!
         var interactor: InteractorInput!
         var router: RouterInput!
 
         required init(
-            with purchaseManager: PurchaseManager,
-            _ storageManager: StorageService
+            with purchaseManager: PurchaseManager
         ) {
             self.purchaseManager = purchaseManager
-            self.storageManager = storageManager
         }
     }
 }

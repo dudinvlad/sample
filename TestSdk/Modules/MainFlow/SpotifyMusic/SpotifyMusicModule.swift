@@ -20,7 +20,8 @@ struct SpotifyMusicModule {
 // MARK: - Assembly
 
 protocol SpotifyMusicAssemblyProtocol {
-    func assemble(_ inputData: SavedTracksResponseModel?) -> UIViewController
+//    func assemble(_ inputData: SavedTracksResponseModel?) -> UIViewController
+    func assemble() -> UIViewController
 }
 
 // MARK: - View
@@ -30,17 +31,20 @@ protocol SpotifyMusicViewInputProtocol: BaseViewInput {
 
 protocol SpotifyMusicViewOutputProtocol: BaseViewOutput {
     func saveSelectedTrack(_ track: SpotifyTrack)
-    func requestMoreSaveTrack() 
+//    func requestMoreSaveTrack()
+    func requestMoreSearchTracks()
+    func requestSearch(_ query: String)
 }
 
 // MARK: - Interactor
 
 protocol SpotifyMusicInteractorInputProtocol {
-    func fetchSavedTracks(with offset: Int)
+//    func fetchSavedTracks(with offset: Int)
+    func searchTracks(with query: String, offset: Int)
 }
 
 protocol SpotifyMusicInteractorOutputProtocol: BaseInteractorOutput {
-    func success(with data: SavedTracksResponseModel?)
+    func success(with data: SearchTracksResponseModel?)
 }
 
 // MARK: - Router
