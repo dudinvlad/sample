@@ -16,6 +16,7 @@ extension Module {
         // MARK: - Dependencies
 
         var output: ViewOutput!
+        private let isSpotifyAuthorize: Bool
 
         // MARK: - Variables
     
@@ -48,27 +49,27 @@ extension Module {
         }
 
         private lazy var offlineLogoImageView: UIImageView = build {
-            $0.image = Style.Image.offlineMusic
+            $0.image = isSpotifyAuthorize ? Style.Image.spotify : Style.Image.offlineMusic
         }
 
         private lazy var titleLabel: UILabel = build {
             $0 <~ Style.Label.titleLabel
-            $0.text = "Spotify"
+            $0.text = isSpotifyAuthorize ? "Search tracks" : "Spotify"
         }
 
         private lazy var offlineTitleLabel: UILabel = build {
             $0 <~ Style.Label.titleLabel
-            $0.text = "Default songs"
+            $0.text = isSpotifyAuthorize ? "Saved tracks" : "Default songs"
         }
 
         private lazy var descriptionLabel: UILabel = build {
             $0 <~ Style.Label.descriptionLabel
-            $0.text = "Online · Premium required"
+            $0.text = isSpotifyAuthorize ? "Search your favourite music" : "Online · Premium required"
         }
 
         private lazy var offlineDescriptionLabel: UILabel = build {
             $0 <~ Style.Label.descriptionLabel
-            $0.text = "Default · songs"
+            $0.text = isSpotifyAuthorize ? "Your most loved tracks" : "Default · songs"
         }
 
         private lazy var spotifyButton: UIButton = build {
@@ -82,10 +83,15 @@ extension Module {
         }
 
         private lazy var spotifyAction: UIAction = .init { _ in
+            self.isSpotifyAuthorize ?
+            self.output.showSearchSpotifyMusic() :
             self.output.requestSpotifyConnect()
+
         }
 
         private lazy var offlineAction: UIAction = .init { _ in
+            self.isSpotifyAuthorize ?
+            self.output.showSavedSpotifyMusic() :
             self.output.showOfflineMusic()
         }
 
@@ -95,11 +101,11 @@ extension Module {
 
         private lazy var arrowImageView: UIImageView = build {
             $0.image = Style.Image.chevronRight
-            $0.tintColor = Style.Color.main
+            $0.tintColor = Style.Color.white
         }
         private lazy var offlineArrowImageView: UIImageView = build {
             $0.image = Style.Image.chevronRight
-            $0.tintColor = Style.Color.main
+            $0.tintColor = Style.Color.white
         }
 
         // MARK: - Lifecycle
@@ -108,9 +114,9 @@ extension Module {
             fatalError("init(coder:) has not been implemented")
         }
 
-        init() {
+        init(_ isSpotifyAuthorize: Bool) {
+            self.isSpotifyAuthorize = isSpotifyAuthorize
             super.init(nibName: nil, bundle: nil)
-
         }
 
         override func viewDidLoad() {
@@ -119,25 +125,13 @@ extension Module {
             output?.didLoad()
             initialSetup()
         }
-
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-
-            output?.didAppear()
-        }
-
-        override func viewDidDisappear(_ animated: Bool) {
-            super.viewDidDisappear(animated)
-
-            output?.didDisappear()
-        }
     }
 }
 
 private extension View {
     private func initialSetup() {
         view.backgroundColor = Style.Color.black
-        title = "Choose Source"
+        title = isSpotifyAuthorize ? "Choose Spotify Source" : "Choose Source"
         view.addSubview(containerStack)
         view.addSubview(spotifyButton)
         view.addSubview(offlineButton)

@@ -42,6 +42,10 @@ extension Interactor: Module.InteractorInput {
     func exchangeToken(with code: String) {
         spotifyService.exchangeAccessToken(with: code) { [weak self] accessToken, error in
             if let errorMessage = error {
+                if errorMessage.contains("code_verifier") {
+                    self?.output.controller?.showNetworking(error: "Please re-install your spotify application in order to get access")
+                    return
+                }
                 self?.output.controller?.showNetworking(error: errorMessage)
                 return
             }

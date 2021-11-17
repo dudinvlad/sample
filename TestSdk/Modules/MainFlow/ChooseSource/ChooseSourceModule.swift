@@ -20,7 +20,7 @@ struct ChooseSourceModule {
 // MARK: - Assembly
 
 protocol ChooseSourceAssemblyProtocol {
-    func assemble() -> UIViewController
+    func assemble(isSpotifyAuth: Bool) -> UIViewController
 }
 
 // MARK: - View
@@ -29,6 +29,8 @@ protocol ChooseSourceViewInputProtocol: BaseViewInput {}
 protocol ChooseSourceViewOutputProtocol: BaseViewOutput {
     func requestSpotifyConnect()
     func showOfflineMusic()
+    func showSearchSpotifyMusic()
+    func showSavedSpotifyMusic()
 }
 
 // MARK: - Interactor
@@ -49,8 +51,9 @@ protocol ChooseSourceInteractorOutputProtocol: BaseInteractorOutput {
 // MARK: - Router
 
 protocol ChooseSourceRouterInputProtocol {
-//    func showSpotifyMusic(with response: SavedTracksResponseModel?)
-    func showSpotifyMusic()
+    func showSpotifyMusic(with response: SavedTracksResponseModel?)
+    func showSpotifySearchMusic()
+    func showSpotifySource()
     func showOfflineMusic()
     func showSubscriptionFlow()
 }

@@ -9,5 +9,6 @@ pod 'ImplusAnalytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
 pod 'Firebase/Database'
+pod 'Firebase/Crashlytics'
 
 end

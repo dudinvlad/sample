@@ -131,7 +131,9 @@ struct SpotifyDevice: Codable {
 }
 
 class SpotifyErrorResponse: Codable {
-    let error: SpotifyError
+    let error: String
+    let errorDescription: String
+
 }
 
 class SpotifyError: Codable {

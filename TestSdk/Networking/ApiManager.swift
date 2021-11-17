@@ -43,7 +43,7 @@ class ApiManager {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
             if let spotifyError = try? decoder.decode(SpotifyErrorResponse.self, from: data) {
-                completion(nil, spotifyError.error.message)
+                completion(nil, spotifyError.errorDescription)
                 return
             }
 

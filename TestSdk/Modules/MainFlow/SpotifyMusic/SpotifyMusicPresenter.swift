@@ -24,14 +24,13 @@ extension Module {
 
         private lazy var totalTracks: Int = data?.total ?? .zero
         private lazy var offsetTracks: Int = data?.items.map { $0.track}.count ?? .zero
-        private var lastQuery: String?
 
         required init(
-            storageService: (StorageService & SoundtrackStoreService)
-//            data: SavedTracksResponseModel?
+            storageService: (StorageService & SoundtrackStoreService),
+            data: SavedTracksResponseModel?
         ) {
             self.storageService = storageService
-//            self.data = data
+            self.data = data
         }
     }
 }
@@ -46,36 +45,20 @@ extension Presenter: Module.ViewOutput {
         router.showRootMusicScreen()
     }
 
-//    func requestMoreSaveTrack() {
-//        guard offsetTracks < totalTracks else { return }
-//
-//        interactor.fetchSavedTracks(with: offsetTracks)
-//    }
+    func requestMoreSaveTrack() {
+        guard offsetTracks < totalTracks else { return }
 
-    func requestMoreSearchTracks() {
-        guard
-            offsetTracks < totalTracks,
-            let query = lastQuery
-        else { return }
-
-        interactor.searchTracks(with: query, offset: offsetTracks)
-    }
-
-    func requestSearch(_ query: String) {
-        guard !query.isEmpty else { return }
-
-        self.lastQuery = query
-        interactor.searchTracks(with: query, offset: .zero)
+        interactor.fetchSavedTracks(with: offsetTracks)
     }
 }
 
 extension Presenter: Module.InteractorOutput {
-    func success(with data: SearchTracksResponseModel?) {
+    func success(with data: SavedTracksResponseModel?) {
         guard let trackResponse = data else { return }
 
         self.totalTracks = trackResponse.total
-        self.offsetTracks += trackResponse.items.count
-        view.updateTracks(with: trackResponse.items)
+        self.offsetTracks += trackResponse.items.compactMap { $0.track}.count
+        view.updateTracks(with: trackResponse.items.compactMap { $0.track })
     }
 
     var controller: BaseViewInput? {

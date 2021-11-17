@@ -53,16 +53,25 @@ extension Presenter: Module.ViewOutput {
 extension Presenter: Module.InteractorOutput {
     func spotifySuccess(with accessToken: String?) {
         KeychainStore().set(accessToken, key: "spotify_access_token")
-        router.showSpotifyMusic()
-//        view.showActivity()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.view.hideActivity()
-//            self.interactor.fetchSavedTracks()
-//        }
+        view.showActivity()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.view.hideActivity()
+            self.router.showSpotifySource()
+        }
+    }
+
+    func showSavedSpotifyMusic() {
+        view.showActivity()
+        self.interactor.fetchSavedTracks()
+    }
+
+    func showSearchSpotifyMusic() {
+        router.showSpotifySearchMusic()
     }
 
     func success(with response: SavedTracksResponseModel?) {
-//        router.showSpotifyMusic(with: response)
+        self.view.hideActivity()
+        router.showSpotifyMusic(with: response)
     }
 
     func receiptValidate(with response: Bool) {

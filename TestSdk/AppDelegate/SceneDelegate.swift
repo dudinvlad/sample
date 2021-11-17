@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let exchangeCode = parameters?["code"] {
             spotifyManager.swapAccessToken(exchangeCode)
         } else if let error = parameters?[SPTAppRemoteErrorDescriptionKey] {
-            print(error)
+            window?.rootViewController?.showAlert(with: "Please re-login into your spotify account and try again", title: "Ops!")
         }
     }
 

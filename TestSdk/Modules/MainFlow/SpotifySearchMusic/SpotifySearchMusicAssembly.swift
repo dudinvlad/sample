@@ -1,28 +1,25 @@
 //
-//  SpotifyMusicAssembly.swift
+//  SpotifySearchMusicAssembly.swift
 //  TestSdk
 //
-//  Created Vladislav Dudin on 07.11.2021.
+//  Created Vladislav Dudin on 16.11.2021.
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
 import Macaroni
 
-private typealias Module = SpotifyMusicModule
+private typealias Module = SpotifySearchMusicModule
 private typealias View = Module.ViewController
 
 extension Module {
     final class ModuleAssembly: ModuleAssemblying {
-        @Injected var storageService: (StorageService & SoundtrackStoreService)!
+        @Injected var storageManager: (SoundtrackStoreService & StorageService)!
         @Injected var spotifyService: SpotifyService!
 
-        func assemble(_ inputData: SavedTracksResponseModel?) -> UIViewController {
-            let viewController: View   = .init(inputData)
-            let presenter: Presenter   = .init(
-                storageService: storageService,
-                data: inputData
-            )
+        func assemble() -> UIViewController {
+            let viewController: View   = .init()
+            let presenter: Presenter   = .init(storageService: storageManager)
             let interactor: Interactor = .init(spotifyService: spotifyService)
             let router: Router         = .init()
 

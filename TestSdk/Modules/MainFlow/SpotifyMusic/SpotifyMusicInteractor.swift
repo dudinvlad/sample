@@ -20,8 +20,6 @@ extension Module {
 
         // MARK: - Variables
 
-        private var searchItem: DispatchWorkItem?
-
         // MARK: - Init
 
         required init(spotifyService: SpotifyService) {
@@ -31,30 +29,13 @@ extension Module {
 }
 
 extension Interactor: Module.InteractorInput {
-//    func fetchSavedTracks(with offset: Int) {
-//        spotifyService.loadSavedTracks(offset: offset) { [weak self] response, error in
-//            if let errorMessage = error {
-//                self?.output.controller?.showNetworking(error: errorMessage)
-//                return
-//            }
-//            self?.output.success(with: response)
-//        }
-//    }
-
-    func searchTracks(with query: String, offset: Int) {
-        searchItem?.cancel()
-        let task = DispatchWorkItem { [weak self] in
-            self?.spotifyService.searchTracks(with: query, offset: offset) { response, error in
-                if let error = error {
-                    self?.output.controller?.showNetworking(error: error)
-                    return
-                }
-
-                self?.output.success(with: response?.tracks)
+    func fetchSavedTracks(with offset: Int) {
+        spotifyService.loadSavedTracks(offset: offset) { [weak self] response, error in
+            if let errorMessage = error {
+                self?.output.controller?.showNetworking(error: errorMessage)
+                return
             }
+            self?.output.success(with: response)
         }
-
-        searchItem = task
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: task)
     }
 }
