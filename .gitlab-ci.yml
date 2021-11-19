@@ -6,6 +6,9 @@
 
 # Lifted from: https://about.gitlab.com/2016/03/10/setting-up-gitlab-ci-for-ios-projects/
 # This file assumes an own GitLab CI runner, setup on a macOS system.
+variables:
+  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: "vbdc-qwnf-dvij-gllb" # App specific password
+
 stages:
   - build
   - test
