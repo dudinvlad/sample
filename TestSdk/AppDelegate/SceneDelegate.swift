@@ -33,13 +33,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
 
-        let parameters = spotifyManager.appRemote.authorizationParameters(from: url)
+        spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
 
-        if let exchangeCode = parameters?["code"] {
-            spotifyManager.swapAccessToken(exchangeCode)
-        } else if let error = parameters?[SPTAppRemoteErrorDescriptionKey] {
-            window?.rootViewController?.showAlert(with: "Please re-login into your spotify account and try again", title: "Ops!")
-        }
+//        let parameters = spotifyManager.appRemote.authorizationParameters(from: url)
+//
+//        if let exchangeCode = parameters?["code"] {
+//            spotifyManager.swapAccessToken(exchangeCode)
+//        } else if let error = parameters?[SPTAppRemoteErrorDescriptionKey] {
+//            window?.rootViewController?.showAlert(with: "Please re-login into your spotify account and try again", title: "Ops!")
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

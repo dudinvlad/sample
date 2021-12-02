@@ -43,7 +43,6 @@ protocol ChooseSourceInteractorInputProtocol {
 }
 
 protocol ChooseSourceInteractorOutputProtocol: BaseInteractorOutput {
-    func spotifySuccess(with accessToken: String?)
     func success(with response: SavedTracksResponseModel?)
     func receiptValidate(with response: Bool)
 }

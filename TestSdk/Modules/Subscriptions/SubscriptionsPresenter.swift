@@ -33,6 +33,8 @@ extension Module {
 private extension Presenter {
     func handleSuccessSubscription(_ error: PurchasesError) {
         if error != .disabled {
+            guard self.view != nil else { return }
+
             self.view.successPurchase()
         }
     }

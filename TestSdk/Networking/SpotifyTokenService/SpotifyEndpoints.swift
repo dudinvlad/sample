@@ -8,6 +8,7 @@
 import Alamofire
 
 enum SpotifyEndpoints: EndpointType {
+    case authorize
     case accessToken(_ code: String)
     case savedTracks(_ offset: Int)
     case devices
@@ -17,7 +18,8 @@ enum SpotifyEndpoints: EndpointType {
 
     var endpointPath: String {
         switch self {
-            case .accessToken: return "/api/token"
+        case .authorize: return "/authorize"
+            case .accessToken: return  "/authorize"//"/api/token"
             case .savedTracks: return "/v1/me/tracks"
             case .devices: return "/v1/me/player/devices"
             case .startPlayer: return "/v1/me/player/play"
@@ -28,7 +30,7 @@ enum SpotifyEndpoints: EndpointType {
 
     var encoding: ParameterEncoding {
         switch self {
-        case .accessToken, .devices, .savedTracks, .searchTracks:
+        case .accessToken, .devices, .savedTracks, .searchTracks, .authorize:
             return URLEncoding.default
         default:
             return JSONEncoding.default
@@ -37,7 +39,7 @@ enum SpotifyEndpoints: EndpointType {
 
     var baseUrl: String {
         switch self {
-        case .accessToken:
+        case .accessToken, .authorize:
             return ApiUrlsPath.spotifyToken.rawValue
         case .savedTracks, .devices, .startPlayer, .pausePlayer, .searchTracks:
             return ApiUrlsPath.spotifyWebApi.rawValue
@@ -62,8 +64,8 @@ enum SpotifyEndpoints: EndpointType {
     var httpMethod: HTTPMethod {
         switch self {
         case .accessToken:
-            return .post
-        case .savedTracks, .devices, .searchTracks:
+            return .get
+        case .savedTracks, .devices, .searchTracks, .authorize:
             return .get
         case .startPlayer, .pausePlayer:
             return .put
@@ -72,12 +74,14 @@ enum SpotifyEndpoints: EndpointType {
 
     var headers: HTTPHeaders {
         switch self {
-        case .accessToken:
-            return createSpotifyHeaders()
+//        case .accessToken:
+//            return createSpotifyHeaders()
         case .savedTracks, .devices, .startPlayer, .pausePlayer, .searchTracks:
-            let accessToken: String = KeychainStore().get("spotify_access_token") ?? ""
+            let accessToken: String = KeychainStore().get(KeychainStore.KeychainKeys.spotifyToken.rawValue) ?? ""
             return ["Authorization": "Bearer \(accessToken)",
                     "Content-Type": "application/json"]
+        case .accessToken, .authorize:
+            return ["Content-Type": "application/json"]
         }
     }
 
@@ -85,6 +89,10 @@ enum SpotifyEndpoints: EndpointType {
         switch self {
             case .accessToken(let code):
                 return createSpotifyParameters(with: code)
+        case .authorize:
+            return ["client_id": SpotifyConstants.spotifyClientID.rawValue,
+                    "response_type": "code",
+                    "redirect_uri": SpotifyConstants.spotifyRedirectUrl.rawValue]
             case .startPlayer(_, let uri):
             return ["context_uri": uri,
                     "position_ms": 0]
@@ -111,8 +119,9 @@ enum SpotifyEndpoints: EndpointType {
     }
 
     private func createSpotifyParameters(with code: String) -> Parameters {
-        return ["code": code,
-                "grant_type": "authorization_code",
+        return ["client_id": SpotifyConstants.spotifyClientID.rawValue,
+                "scope": "user-library-read",
+                "response_type": "code",
                 "redirect_uri": SpotifyConstants.spotifyRedirectUrl.rawValue]
     }
 }

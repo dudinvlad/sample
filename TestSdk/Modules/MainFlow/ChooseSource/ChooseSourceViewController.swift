@@ -153,7 +153,7 @@ private extension View {
         offlineContainerStack.addArrangedSubview(offlineArrowImageView)
 
         spotifyContainerStack.setCustomSpacing(10, after: logoImageView)
-//        offlineContainerStack.setCustomSpacing(10, after: offlineLogoImageView)
+        offlineContainerStack.setCustomSpacing(10, after: offlineLogoImageView)
 
         titleContainerStack.addArrangedSubview(titleLabel)
         titleContainerStack.addArrangedSubview(descriptionLabel)

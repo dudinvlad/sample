@@ -10,5 +10,6 @@ pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
 pod 'Firebase/Database'
 pod 'Firebase/Crashlytics'
+pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git'
 
 end

@@ -40,16 +40,18 @@ extension Module {
 
 extension Interactor: Module.InteractorInput {
     func exchangeToken(with code: String) {
+        self.output.controller?.showActivity()
         spotifyService.exchangeAccessToken(with: code) { [weak self] accessToken, error in
+            self?.output.controller?.hideActivity()
             if let errorMessage = error {
                 if errorMessage.contains("code_verifier") {
-                    self?.output.controller?.showNetworking(error: "Please re-install your spotify application in order to get access")
+                    self?.output.controller?.showNetworking(error: "Please allow 24 hours for spotify to generate necessary data for you")
                     return
                 }
                 self?.output.controller?.showNetworking(error: errorMessage)
                 return
             }
-            self?.output.spotifySuccess(with: accessToken)
+//            self?.output.spotifySuccess(with: accessToken)
         }
     }
 

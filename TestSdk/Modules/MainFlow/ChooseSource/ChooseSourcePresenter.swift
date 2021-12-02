@@ -39,7 +39,16 @@ extension Module {
     }
 }
 
-private extension Presenter { }
+private extension Presenter {
+    func spotifySuccess(with accessToken: String?) {
+        KeychainStore().set(accessToken, key: "spotify_access_token")
+        view.showActivity()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.view.hideActivity()
+            self.router.showSpotifySource()
+        }
+    }
+}
 
 extension Presenter: Module.ViewOutput {
     func requestSpotifyConnect() {
@@ -51,15 +60,6 @@ extension Presenter: Module.ViewOutput {
 }
 
 extension Presenter: Module.InteractorOutput {
-    func spotifySuccess(with accessToken: String?) {
-        KeychainStore().set(accessToken, key: "spotify_access_token")
-        view.showActivity()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.view.hideActivity()
-            self.router.showSpotifySource()
-        }
-    }
-
     func showSavedSpotifyMusic() {
         view.showActivity()
         self.interactor.fetchSavedTracks()
@@ -76,8 +76,8 @@ extension Presenter: Module.InteractorOutput {
 
     func receiptValidate(with response: Bool) {
         if response {
-            spotifyManager.connect { [weak self] code in
-                self?.interactor.exchangeToken(with: code)
+            spotifyManager.connect { [weak self] token in
+                self?.spotifySuccess(with: token)
             }
         } else {
             router.showSubscriptionFlow()
