@@ -16,8 +16,11 @@ extension Module {
         // MARK: - Dependencies
 
         weak var output: InteractorOutput!
-
         private let spotifyService: SpotifyService
+
+        // MARK: - Variables
+
+        // MARK: - Init
 
         required init(spotifyService: SpotifyService) {
             self.spotifyService = spotifyService

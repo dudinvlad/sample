@@ -56,8 +56,7 @@ class NotificationManager {
 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "h:mm a"
-                complition?(dateFormatter.string(from: nextTriggerDate)
-)
+                complition?(dateFormatter.string(from: nextTriggerDate))
             }
         })
     }

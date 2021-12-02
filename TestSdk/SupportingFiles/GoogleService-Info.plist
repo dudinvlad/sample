@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>287065715134-ooobp7fs8crng4onskmoeoj9eppff9t2.apps.googleusercontent.com</string>
+	<string>1066542937400-hbllum2oh3m79i46bv7fakkt2i3q7e1t.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.287065715134-ooobp7fs8crng4onskmoeoj9eppff9t2</string>
+	<string>com.googleusercontent.apps.1066542937400-hbllum2oh3m79i46bv7fakkt2i3q7e1t</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1066542937400-np11nmk07mm0akacjd7ovoloq0loodnb.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBmjl-mc-5KVakJRm6tlbTWm2OxtSYwRS4</string>
+	<string>AIzaSyBnRWxsiPlPGOZSlzi3tnGzmmvA8rtwbIU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>287065715134</string>
+	<string>1066542937400</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.t.TestSdk</string>
+	<string>co.appeconomy.alarm</string>
 	<key>PROJECT_ID</key>
-	<string>musicalarm-33a5f</string>
+	<string>ring-alarm-spotify-plus</string>
 	<key>STORAGE_BUCKET</key>
-	<string>musicalarm-33a5f.appspot.com</string>
+	<string>ring-alarm-spotify-plus.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:287065715134:ios:a801ff81c8cce10e8489ef</string>
+	<string>1:1066542937400:ios:1525d18539298caa20fdcd</string>
+	<key>DATABASE_URL</key>
+	<string>https://ring-alarm-spotify-plus-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>

@@ -39,6 +39,7 @@ extension Module {
             $0.setImage(Style.Image.close, for: .normal)
             $0.tintColor = Style.Color.white
             $0.addAction(closeDidTap, for: .touchUpInside)
+            $0.isEnabled = false
         }
 
         private lazy var restoreButton: UIButton = build {
@@ -236,6 +237,7 @@ extension View: Module.ViewInput {
     func set(dataSource value: [SubscriptionCardModel]) {
         self.dataSource = value
         self.isModalInPresentation = false
+        self.closeButton.isEnabled = true
         self.collectionView.stopSkeletonAnimation()
         self.view.hideSkeleton()
         self.collectionView.reloadData()

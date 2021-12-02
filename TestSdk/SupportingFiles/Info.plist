@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Ring Alarm Spotify Plus</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,11 +21,13 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.spotify.iOS-SDK-Quick-Start</string>
+			<string>co.appeconomy.alarm</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>spotify-ios-quick-start</string>
+				<string>http</string>
 			</array>
 		</dict>
 	</array>
@@ -87,7 +91,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>Us</key>
-	<string></string>
 </dict>
 </plist>

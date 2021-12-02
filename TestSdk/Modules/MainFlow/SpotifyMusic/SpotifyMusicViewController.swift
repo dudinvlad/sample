@@ -25,6 +25,7 @@ extension Module {
             $0.delegate = self
             $0.backgroundColor = .clear
             $0.separatorStyle = .none
+            $0.keyboardDismissMode = .onDrag
         }
 
         // MARK: - Lifecycle
@@ -90,7 +91,7 @@ private extension View {
         view.addSubview(trackTableView)
 
         trackTableView.snp.makeConstraints { make in
-            make.topMargin.equalToSuperview().offset(30)
+            make.top.topMargin.equalToSuperview().offset(30)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview()

@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import JWTDecode
 
 enum SpotifyConstants: String {
-    case spotifyClientID = "54ae027a57ba43f28720c684dffa5805"
-    case spotifyClientSecret = "80dedbc26efb458692304baeb3ca8edf"
-    case spotifyRedirectUrl = "spotify-ios-quick-start://spotify-login-callback"
+    case spotifyClientID = "f590b8702f064c3f9cf7cf892ef6586a"
+    case spotifyClientSecret = "ca335889875c4554b7be7f45af112e2a"
+    case spotifyRedirectUrl = "http://com.app.ringalarmspotify/callback"//"spotify-ios-quick-start://spotify-login-callback"
 }
 
 class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate {
@@ -20,6 +21,7 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     lazy var sessionManager: SPTSessionManager = {
         let manager = SPTSessionManager(configuration: configuration, delegate: self)
+        manager.alwaysShowAuthorizationDialog = false
         manager.delegate = self
         return manager
     }()
@@ -42,11 +44,10 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
 
     func connect(_ completion: @escaping (String) -> Void) {
         self.spotifyCodeCallBack = completion
-        sessionManager.initiateSession(with: [.playlistReadPrivate, .userLibraryRead], options: .clientOnly)
+            sessionManager.initiateSession(with: [.playlistReadPrivate, .userLibraryRead], options: .clientOnly)
     }
 
     func swapAccessToken(_ code: String) {
-        spotifyCodeCallBack?(code)
     }
 
     // MARK: - SPTAppRemoteDelegate
@@ -73,7 +74,8 @@ class SpotifyManager: NSObject, SPTAppRemoteDelegate, SPTSessionManagerDelegate 
     }
 
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
-        appRemote.connectionParameters.accessToken = session.accessToken
-        appRemote.connect()
+        DispatchQueue.main.async {
+            self.spotifyCodeCallBack?(session.accessToken)
+        }
     }
 }

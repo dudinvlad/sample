@@ -17,6 +17,7 @@ protocol StoreProtocol: AnyObject {
 class KeychainStore: StoreProtocol {
     enum KeychainKeys: String {
         case userUid
+        case spotifyToken = "spotify_access_token"
     }
     private let keychain = Keychain(service: Bundle.main.bundleIdentifier ?? "")
 

@@ -9,11 +9,11 @@ import UIKit
 
 extension Style.Label {
     static let inputTitleLabel = ColoredLabel(
-        titleColor: Style.Color.nightBlue,
+        titleColor: Style.Color.mainGray,
         font: Style.Font.authTitleBold
     )
     static let infoLabel = ColoredLabel(
-        titleColor: Style.Color.nightBlue,
+        titleColor: Style.Color.mainGray,
         font: Style.Font.infoMedium,
         align: .center
     )
@@ -24,7 +24,7 @@ extension Style.Label {
     )
 
     static let descriptionLabel = ColoredLabel(
-        titleColor: Style.Color.nightBlue,
+        titleColor: Style.Color.mainGray,
         font: Style.Font.infoMedium,
         numberOfLines: .zero
     )

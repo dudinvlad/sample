@@ -7,6 +7,7 @@
 
 import Alamofire
 import Foundation
+import Sentry
 
 class ApiManager {
     typealias ResponseBlock<T: Codable> = (_ object: T?, _ error: String?) -> Void
@@ -16,7 +17,8 @@ class ApiManager {
     lazy var session: Session = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 60
-        return Alamofire.Session(configuration: configuration, eventMonitors: [AlamofireLogger()])
+        configuration.timeoutIntervalForResource = 60
+        return Alamofire.Session(configuration: configuration, interceptor: ApiRequestInterceptor(), eventMonitors: [AlamofireLogger()])
     }()
 
     // MARK: - Public
@@ -28,7 +30,7 @@ class ApiManager {
             parameters: endoint.params,
             encoding: endoint.encoding,
             headers: endoint.headers
-        ).responseData { dataResponse in
+        ).validate().responseData { dataResponse in
             self.handleResponse(dataResponse, completion: completion)
         }
     }
@@ -43,11 +45,13 @@ class ApiManager {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
             if let spotifyError = try? decoder.decode(SpotifyErrorResponse.self, from: data) {
-                completion(nil, spotifyError.error.message)
+                SentrySDK.capture(message: spotifyError.errorDescription)
+                completion(nil, spotifyError.errorDescription)
                 return
             }
 
             if let apiError = try? decoder.decode(ApiError.self, from: data) {
+                SentrySDK.capture(message: apiError.message)
                 completion(nil, apiError.message)
                 return
             }

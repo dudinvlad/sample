@@ -39,4 +39,12 @@ struct RestSpotifyService: SpotifyService {
             completion(response, error)
         }
     }
+
+    func searchTracks(with query: String, offset: Int, _ completion: @escaping (SearchTrackResponse?, String?) -> Void) {
+        let request = SpotifyEndpoints.searchTracks(query, offset)
+
+        apiManager.request(endoint: request) { (response: SearchTrackResponse?, error) in
+            completion(response, error)
+        }
+    }
 }

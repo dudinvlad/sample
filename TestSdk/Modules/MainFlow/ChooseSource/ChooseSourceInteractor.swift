@@ -40,23 +40,29 @@ extension Module {
 
 extension Interactor: Module.InteractorInput {
     func exchangeToken(with code: String) {
+        self.output.controller?.showActivity()
         spotifyService.exchangeAccessToken(with: code) { [weak self] accessToken, error in
+            self?.output.controller?.hideActivity()
             if let errorMessage = error {
+                if errorMessage.contains("code_verifier") {
+                    self?.output.controller?.showNetworking(error: "Please allow 24 hours for spotify to generate necessary data for you")
+                    return
+                }
                 self?.output.controller?.showNetworking(error: errorMessage)
                 return
             }
-            self?.output.spotifySuccess(with: accessToken)
+//            self?.output.spotifySuccess(with: accessToken)
         }
     }
 
     func validateReceipt() {
         let receiptString = purchaseManager.getSubscriptionReceipt() ?? ""
+        guard !receiptString.isEmpty else { self.output.receiptValidate(with: false); return }
 
         self.output.controller?.showActivity()
         receiptService.validate(receiptString) { response, error in
             self.output.controller?.hideActivity()
             if let error = error {
-                self.output.controller?.showNetworking(error: error)
                 self.output.receiptValidate(with: false)
             } else if let isValid = response {
                 self.output.receiptValidate(with: isValid)

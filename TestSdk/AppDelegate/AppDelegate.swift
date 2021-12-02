@@ -9,6 +9,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import Firebase
 import Macaroni
+import Sentry
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         FirebaseApp.configure()
-
+        SentrySDK.start { options in
+            options.dsn = "https://61add017558f411894e8bc202f85bf87@o201605.ingest.sentry.io/6071104"
+            options.debug = true
+            options.tracesSampleRate = 1.0
+            options.beforeBreadcrumb = { crumb in
+                return crumb
+            }
+        }
         registerNotification()
         return true
     }

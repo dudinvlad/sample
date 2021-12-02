@@ -30,7 +30,7 @@ protocol SpotifyMusicViewInputProtocol: BaseViewInput {
 
 protocol SpotifyMusicViewOutputProtocol: BaseViewOutput {
     func saveSelectedTrack(_ track: SpotifyTrack)
-    func requestMoreSaveTrack() 
+    func requestMoreSaveTrack()
 }
 
 // MARK: - Interactor

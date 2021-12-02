@@ -28,7 +28,7 @@ extension Module {
 
 extension Router: Module.RouterInput {
     func showChooseSourceModule() {
-        viewController.navigationController?.pushViewController(chooseSourceModule.assemble(), animated: true)
+        viewController.navigationController?.pushViewController(chooseSourceModule.assemble(isSpotifyAuth: false), animated: true)
     }
 
     func dismissChooseFlow() {

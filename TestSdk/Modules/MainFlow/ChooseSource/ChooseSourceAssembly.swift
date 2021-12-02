@@ -21,12 +21,14 @@ extension Module {
         @Injected var storageService: (StorageService & SoundtrackStoreService)!
         @Injected var spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying!
         @Injected var offlineMusicAssemblying: OfflineMusicModule.ModuleAssemblying!
-        @Injected var subscriptionAssemblying: SubscriptionsModule.ModuleAssemblying
+        @Injected var subscriptionAssemblying: SubscriptionsModule.ModuleAssemblying!
+        @Injected var chooseSourceAssemblying: ChooseSourceModule.ModuleAssemblying!
+        @Injected var spotifySearchAssemblying: SpotifySearchMusicModule.ModuleAssemblying!
         @Injected var receiptService: ReceiptService!
         @Injected var purchaseManager: PurchaseManager!
 
-        func assemble() -> UIViewController {
-            let viewController: View   = .init()
+        func assemble(isSpotifyAuth: Bool) -> UIViewController {
+            let viewController: View   = .init(isSpotifyAuth)
             let presenter: Presenter   = .init(
                 with: spotifyManager,
                 notificationManager: notificationManager,
@@ -42,7 +44,9 @@ extension Module {
                 spotifyMusic: spotifyMusicAssemblying,
                 userDefaultsManager: userDefaultsManager,
                 offlineMusic: offlineMusicAssemblying,
-                subscription: subscriptionAssemblying
+                subscription: subscriptionAssemblying,
+                spotifySourceAssemblying: chooseSourceAssemblying,
+                spotifySearchAssemblying: spotifySearchAssemblying
             )
 
             viewController.output = presenter

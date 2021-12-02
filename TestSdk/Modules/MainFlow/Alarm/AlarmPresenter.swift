@@ -57,6 +57,7 @@ extension Presenter: Module.ViewOutput {
     func logout() {
         keychainManager.clear()
         router.presentAuthFlow()
+        notificationManager.removeAllPendingNotificationRequests()
     }
 
     func showChooseMusic() {

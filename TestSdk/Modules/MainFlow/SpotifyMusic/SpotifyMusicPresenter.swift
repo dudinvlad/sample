@@ -57,8 +57,8 @@ extension Presenter: Module.InteractorOutput {
         guard let trackResponse = data else { return }
 
         self.totalTracks = trackResponse.total
-        self.offsetTracks += trackResponse.items.map { $0.track }.count
-        view.updateTracks(with: trackResponse.items.map { $0.track })
+        self.offsetTracks += trackResponse.items.compactMap { $0.track}.count
+        view.updateTracks(with: trackResponse.items.compactMap { $0.track })
     }
 
     var controller: BaseViewInput? {

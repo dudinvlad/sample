@@ -19,18 +19,24 @@ extension Module {
         private let spotifyMusicAssemblying: SpotifyMusicModule.ModuleAssemblying
         private let offlineMusicAssemblying: OfflineMusicModule.ModuleAssemblying
         private let subscriptionAssemblying: SubscriptionsModule.ModuleAssemblying
+        private let spotifySourceAssemblying: ChooseSourceModule.ModuleAssemblying
+        private let spotifySearchAssemblying: SpotifySearchMusicModule.ModuleAssemblying
         private let userDefaultsManager: UserDefaultsManager
 
         required init(
             spotifyMusic: SpotifyMusicModule.ModuleAssemblying,
             userDefaultsManager: UserDefaultsManager,
             offlineMusic: OfflineMusicModule.ModuleAssemblying,
-            subscription: SubscriptionsModule.ModuleAssemblying
+            subscription: SubscriptionsModule.ModuleAssemblying,
+            spotifySourceAssemblying: ChooseSourceModule.ModuleAssemblying,
+            spotifySearchAssemblying: SpotifySearchMusicModule.ModuleAssemblying
         ) {
             self.spotifyMusicAssemblying = spotifyMusic
             self.userDefaultsManager = userDefaultsManager
             self.offlineMusicAssemblying = offlineMusic
             self.subscriptionAssemblying = subscription
+            self.spotifySourceAssemblying = spotifySourceAssemblying
+            self.spotifySearchAssemblying = spotifySearchAssemblying
         }
     }
 }
@@ -38,6 +44,14 @@ extension Module {
 extension Router: Module.RouterInput {
     func showSpotifyMusic(with response: SavedTracksResponseModel?) {
         viewController.navigationController?.pushViewController(spotifyMusicAssemblying.assemble(response), animated: true)
+    }
+
+    func showSpotifySearchMusic() {
+        viewController.navigationController?.pushViewController(spotifySearchAssemblying.assemble(), animated: true)
+    }
+
+    func showSpotifySource() {
+        viewController.navigationController?.pushViewController(spotifySourceAssemblying.assemble(isSpotifyAuth: true), animated: true)
     }
 
     func showOfflineMusic() {
